@@ -63,8 +63,8 @@ public class Person {
     @Override
     public String toString() {
         return firstName + " " 
-               + lastName + " "
-               + address + " "
+               + lastName + " | "
+               + address + " | "
                + telephone;
     }
 }

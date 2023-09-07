@@ -33,13 +33,13 @@ public class Application {
         Scanner scan = new Scanner(System.in);
         Person p3 = new Person();
         System.out.print("Enter first name: ");
-        p3.setFirstName(scan.next());
+        p3.setFirstName(scan.nextLine());
         System.out.print("Enter last name: ");
-        p3.setLastName(scan.next());
+        p3.setLastName(scan.nextLine());
         System.out.print("Enter address: ");
-        p3.setAddress(scan.next());
+        p3.setAddress(scan.nextLine());
         System.out.print("Enter telephone: ");
-        p3.setTelephone(scan.next());
+        p3.setTelephone(scan.nextLine());
         pc.createPerson(p3);
 
         SpringApplication.run(Application.class, args);

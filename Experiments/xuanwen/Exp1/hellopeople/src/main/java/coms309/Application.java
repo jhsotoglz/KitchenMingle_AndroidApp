@@ -29,19 +29,6 @@ public class Application {
         Person p2 = new Person("Emma", "Green", "1 Second Ave", "234-567-1098");
         pc.createPerson(p2);
 
-        //user input
-        Scanner scan = new Scanner(System.in);
-        Person p3 = new Person();
-        System.out.print("Enter first name: ");
-        p3.setFirstName(scan.nextLine());
-        System.out.print("Enter last name: ");
-        p3.setLastName(scan.nextLine());
-        System.out.print("Enter address: ");
-        p3.setAddress(scan.nextLine());
-        System.out.print("Enter telephone: ");
-        p3.setTelephone(scan.nextLine());
-        pc.createPerson(p3);
-
         SpringApplication.run(Application.class, args);
     }
 

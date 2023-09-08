@@ -13,22 +13,25 @@ public class Person {
 
     private String lastName;
 
-    private String address;
+    private String major;
 
     private String telephone;
 
-    private String workplace;
+    private String email;
+
+    private int ID;
 
     public Person(){
         
     }
 
-    public Person(String firstName, String lastName, String address, String telephone, String workplace){
+    public Person(String firstName, String lastName, String major, String telephone, String email, int ID){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+        this.major = major;
         this.telephone = telephone;
-        this.workplace = workplace;
+        this.email = email;
+        this.ID = ID;
     }
 
     public String getFirstName() {
@@ -47,12 +50,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return this.address;
+    public String getMajor() {
+        return this.major;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String getTelephone() {
@@ -63,20 +66,30 @@ public class Person {
         this.telephone = telephone;
     }
 
-    public String getWorkplace() {
-        return this.workplace;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setWorkplace(String workplace) {
-        this.workplace = workplace;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public int getID() {
+        return this.ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override
     public String toString() {
         return firstName + " "
                + lastName + " "
-               + address + " "
+               + major + " "
                + telephone + " "
-                + workplace;
+                + email + " "
+                + ID;
     }
 }

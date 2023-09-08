@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdcca3c6-4898-4f86-b4ec-379de9958422" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Exp1/HelloWorld.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Exp1/activity_counter.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Exp1/activity_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Exp1/main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Exp1/res/button.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mettryc.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/mettryc/Exp1/HelloWorld.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/mettryc/Exp1/main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/mettryc/Exp1/res/button.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelloWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +27,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2V7Lyh7sNhxSd3yIOcub2TD0lUg" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -50,6 +39,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cidr.known.project.marker": "true",
     "last_opened_file_path": "/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc",
     "project.structure.last.edited": "Project",

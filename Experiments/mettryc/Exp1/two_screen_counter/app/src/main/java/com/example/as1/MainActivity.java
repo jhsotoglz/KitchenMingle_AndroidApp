@@ -9,16 +9,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
+    Button toCounterBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.toCounterBtn);
+        toCounterBtn = findViewById(R.id.toCounter);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        toCounterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {

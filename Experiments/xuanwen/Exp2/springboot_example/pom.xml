@@ -5,23 +5,24 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>coms309</groupId>
-  <artifactId>onetomany</artifactId>
+  <artifactId>onetoone</artifactId>
   <version>1.0.0</version>
 
   <!-- To make it a spring boot project -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.4.2</version>
+    <version>2.4.0</version>
   </parent>
 
-  <name>one-to-many</name>
+  <name>one-to-one</name>
 
   <properties>
 
     <!-- Generic properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
 
   </properties>
 
@@ -45,13 +46,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-
-    <!-- The dependency to use Swagger to document stuff -->
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-boot-starter</artifactId>
-      <version>3.0.0</version>
     </dependency>
 
   </dependencies>

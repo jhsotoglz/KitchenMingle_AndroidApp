@@ -14,12 +14,13 @@ public class DecrementActivity extends AppCompatActivity {
     Button toCounterBtn;
     TextView numberTxt;
 
-    int counter = 0;
+    Intent intent = getIntent();
+    int counter = intent.getIntExtra("CounterValue", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_counter);
+        setContentView(R.layout.activity_decrement);
 
         decreaseBtn = findViewById(R.id.decreaseBtn);
         toCounterBtn = findViewById(R.id.toCounter);

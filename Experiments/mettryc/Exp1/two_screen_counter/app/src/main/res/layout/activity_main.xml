@@ -20,9 +20,10 @@
         android:id="@+id/helloWorld"
         android:layout_width="175dp"
         android:layout_height="82dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginStart="198dp"
+        android:layout_marginBottom="56dp"
         android:text="Hello World!"
         app:layout_constraintBottom_toTopOf="@+id/toCounter"
-        tools:layout_editor_absoluteX="118dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

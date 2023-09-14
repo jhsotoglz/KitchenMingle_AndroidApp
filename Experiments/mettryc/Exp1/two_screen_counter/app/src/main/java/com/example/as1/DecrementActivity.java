@@ -14,9 +14,6 @@ public class DecrementActivity extends AppCompatActivity {
     Button toCounterBtn;
     TextView numberTxt;
 
-    Intent intent = getIntent();
-    int counter = intent.getIntExtra("CounterValue", 0);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +27,8 @@ public class DecrementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                Intent counter_intent = getIntent();
+                int counter = counter_intent.getIntExtra("CounterValue", 0);
                 numberTxt.setText(String.valueOf(--counter));
             }
         });

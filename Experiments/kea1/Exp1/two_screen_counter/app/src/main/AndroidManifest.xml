@@ -13,6 +13,9 @@
             android:name=".CounterActivity"
             android:exported="true" />
         <activity
+            android:name=".HelloWorldActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

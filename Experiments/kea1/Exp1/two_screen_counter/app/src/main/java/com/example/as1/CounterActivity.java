@@ -12,6 +12,7 @@ public class CounterActivity extends AppCompatActivity {
 
     Button increaseBtn;
     Button backBtn;
+    Button helloWorldButton;
     TextView numberTxt;
 
     int counter = 0;
@@ -24,6 +25,7 @@ public class CounterActivity extends AppCompatActivity {
         increaseBtn = findViewById(R.id.increaseBtn);
         backBtn = findViewById(R.id.backBtn);
         numberTxt = findViewById(R.id.number);
+        helloWorldButton = findViewById(R.id.helloWorldButton);
 
         increaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,11 +40,19 @@ public class CounterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(CounterActivity.this, MainActivity.class);
-                startActivity(intent);
+                Intent intentMain = new Intent(CounterActivity.this, MainActivity.class);
+                startActivity(intentMain);
             }
         });
 
+        helloWorldButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(CounterActivity.this, HelloWorldActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

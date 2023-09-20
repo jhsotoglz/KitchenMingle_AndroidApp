@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 public class SignUpActivity extends AppCompatActivity {
 
     Button btnToMain, btnSignUp;
-    //EditText
+    EditText passwordEditText, usernameEditText, emailEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         btnToMain = findViewById(R.id.btnToMain);
         btnSignUp = findViewById(R.id.btnSignUp);
-
+        emailEditText = findViewById(R.id.emailEditText);
+        usernameEditText = findViewById(R.id.usernameEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
 
         btnToMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,14 +33,15 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-//        btnSignUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                String email = emailEditText.getText().toString();
-//                String password = passwordEditText.getText().toString();
-//            }
-//        });
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                String email = emailEditText.getText().toString();
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+            }
+        });
 
 
     }

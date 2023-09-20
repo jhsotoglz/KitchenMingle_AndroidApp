@@ -29,7 +29,7 @@
         app:layout_constraintVertical_bias="0.383" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordEditText"
         android:layout_width="224dp"
         android:layout_height="72dp"
         android:layout_marginEnd="96dp"
@@ -40,14 +40,14 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/emailEditText"
         android:layout_width="220dp"
         android:layout_height="73dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="52dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

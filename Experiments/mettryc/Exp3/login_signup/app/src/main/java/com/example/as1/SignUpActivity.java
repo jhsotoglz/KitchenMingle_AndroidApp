@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    Button btnToMain;
-    Button btnSignUp;
+    Button btnToMain, btnSignUp;
+    //EditText
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,15 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(return_intent);
             }
         });
+
+//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                String email = emailEditText.getText().toString();
+//                String password = passwordEditText.getText().toString();
+//            }
+//        });
 
 
     }

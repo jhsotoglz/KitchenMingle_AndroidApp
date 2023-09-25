@@ -43,6 +43,19 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
                 String passwordConfirm = confirmPasswordEditText.getText().toString();
 
+                // validating email format
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                if (!email.matches(emailPattern)) {
+                    // Invalid email format, change color of email field & disable sign up button
+                    //emailEditText.setError("Invalid email address");
+                    emailEditText.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
+                    btnSignUp.setEnabled(false);
+                } else {
+                    // if emails match, remove indicator (if any) and enable the sign-up button
+                    emailEditText.setBackgroundColor(getResources().getColor(android.R.color.white));
+                    btnSignUp.setEnabled(true);
+                }
+
                 //if PW's don't match, change color of password fields & disable signup button
                 if(!password.equals(passwordConfirm)){
                     passwordEditText.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));

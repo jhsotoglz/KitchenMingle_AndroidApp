@@ -42,34 +42,48 @@ public class SignUpActivity extends AppCompatActivity {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 String passwordConfirm = confirmPasswordEditText.getText().toString();
+                int validUser, validEmail, validConfirmPW, validPassword = 1;
+                int valid = 1;
 
-                // validating email format
+                // Email validating indicator
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                if (!email.matches(emailPattern)) {
-                    // Invalid email format, change color of email field & disable sign up button
-                    //emailEditText.setError("Invalid email address");
-                    emailEditText.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
-                    btnSignUp.setEnabled(false);
+                if (!email.matches(emailPattern) || email.length() > 50) {
+                    emailEditText.setError("Invalid email address");
+                    validEmail = -1;
                 } else {
-                    // if emails match, remove indicator (if any) and enable the sign-up button
-                    emailEditText.setBackgroundColor(getResources().getColor(android.R.color.white));
-                    btnSignUp.setEnabled(true);
+                    validEmail = 0;
                 }
 
-                //if PW's don't match, change color of password fields & disable signup button
+                // PW matching & requirement indicators
                 if(!password.equals(passwordConfirm)){
-                    passwordEditText.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
-                    confirmPasswordEditText.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
+                    confirmPasswordEditText.setError("Passwords must be the same");
+                    validConfirmPW = -1;
+                } else {
+                    validConfirmPW = 0;
+                }
+                if(password.length() > 50 || password.length() < 7){
+                    passwordEditText.setError("Passwords must be between 7-50 characters");
+                    validPassword = -1;
+                } else {
+                    validPassword = 0;
+                }
+
+                // Username validation indicator
+                if (username.length() > 20 || username.length() < 3 || !username.matches("[a-zA-Z0-9]+")) {
+                    usernameEditText.setError("Username must be between 3-20 characters and contain only numbers and letters");
+                    validUser = -1;
+                } else {
+                    validUser = 0;
+                }
+
+                valid = validUser + validEmail + validConfirmPW + validPassword;
+
+                if(valid != 0){
                     btnSignUp.setEnabled(false);
                 } else {
-                    // if PW's match, remove indicator (if any) and enable the sign-up button
-                    passwordEditText.setBackgroundColor(getResources().getColor(android.R.color.white));
-                    confirmPasswordEditText.setBackgroundColor(getResources().getColor(android.R.color.white));
                     btnSignUp.setEnabled(true);
                 }
             }
         });
-
-
     }
 }

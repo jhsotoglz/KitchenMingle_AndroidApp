@@ -6,8 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import java.io.IOException;
-
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,12 +39,6 @@ public class LoginActivity extends AppCompatActivity {
             {
                String email = emailEditText.getText().toString();
                String password = passwordEditText.getText().toString();
-                try {
-                    String response = StringRequestActivity.sendLoginRequest(email, password);
-                    // Process the response as needed
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                // sendLoginRequest(email, password); // TODO: create this function
             }
         });

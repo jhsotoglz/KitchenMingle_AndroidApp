@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import java.io.IOException;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -80,6 +82,13 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if(valid != 0){
                     btnSignUp.setEnabled(false);
+                    // string request
+                    try {
+                        String response = StringRequestActivity.sendSignUpRequest(email, username, password);
+                        // Process the response as needed
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     btnSignUp.setEnabled(true);
                 }

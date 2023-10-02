@@ -2,13 +2,13 @@ package com.example.as1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import java.io.IOException;
-
-
+import android.widget.Toast;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,8 +24,8 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
         btnToMain = findViewById(R.id.btnToMain);
-        emailEditText = findViewById(R.id.emailEditText);;
-        passwordEditText = findViewById(R.id.passwordEditText);;
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
 
         btnToMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,37 +41,29 @@ public class LoginActivity extends AppCompatActivity {
             {
                String email = emailEditText.getText().toString();
                String password = passwordEditText.getText().toString();
+               Log.d("LoginActivity", "Log In button clicked");   // TODO: remove, for debugging only
                 try {
                     String response = StringRequestActivity.sendLoginRequest(email, password);
                     // Process the response as needed
-                } catch (IOException e) {
+                    if(response.equals("success")){
+                        // TODO: Navigate to home page, temp: success message
+                        Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        // Show error message
+                        Toast.makeText(LoginActivity.this, "Login failed. Please check your credentials.", Toast.LENGTH_SHORT).show();
+                        // Change color of input fields to red
+                        ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
+                        shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_red_light));
+                        shapeDrawable.getPaint().setStrokeWidth(5f); // border width
+                        emailEditText.setBackground(shapeDrawable);
+                        passwordEditText.setBackground(shapeDrawable);
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-               // sendLoginRequest(email, password); // TODO: create this function
             }
         });
 
     }
-    /*private void sendLoginRequest(String email, String password) {
-        showProgressDialog();
-
-        StringRequest strReq = new StringRequest(Method.GET, Const.URL_STRING_REQ, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, response.toString());
-                msgResponse.setText(response.toString());
-                hideProgressDialog();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                hideProgressDialog();
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-
-    }*/
 }

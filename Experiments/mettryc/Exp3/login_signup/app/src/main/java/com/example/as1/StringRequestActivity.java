@@ -1,49 +1,43 @@
 package com.example.as1;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class StringRequestActivity {
 
-    public static String sendSignUpRequest(String email, String username, String password) throws IOException {
-        String url = "http://coms-309-033.class.las.iastate.edu/signup"; // Replace with your actual endpoint
+    public static String sendLoginRequest(String email, String password) throws Exception {
+        // Construct the URL for your login endpoint
+        String url = "http://coms-309-033.class.las.iastate.edu:8080/login";
 
-        String jsonInputString = String.format("{\"email\": \"%s\", \"username\": \"%s\", \"password\": \"%s\"}", email, username, password);
-
-        return sendRequest(url, jsonInputString);
-    }
-
-    public static String sendLoginRequest(String email, String password) throws IOException {
-        String url = "http://coms-309-033.class.las.iastate.edu/login"; // Replace with your actual endpoint
-
-        String jsonInputString = String.format("{\"email\": \"%s\", \"password\": \"%s\"}", email, password);
-
-        return sendRequest(url, jsonInputString);
-    }
-
-    private static String sendRequest(String url, String jsonInputString) throws IOException {
+        // Create a connection
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+
+        // Set the request method to POST
         connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "application/json");
+
+        // Enable input and output streams
+        connection.setDoInput(true);
         connection.setDoOutput(true);
 
-        try (OutputStream os = connection.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
-            os.write(input, 0, input.length);
+        // Construct the request body (email and password)
+        String requestBody = "email=" + email + "&password=" + password;
+
+        // Write the request body to the connection
+        connection.getOutputStream().write(requestBody.getBytes());
+
+        // Get the response from the server
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
         }
 
-        try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(connection.getInputStream(), "utf-8"))) {
-            StringBuilder response = new StringBuilder();
-            String responseLine;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
-            return response.toString();
-        } finally {
-            connection.disconnect();
-        }
+        reader.close();
+
+        // Return the response
+        return response.toString();
     }
 }
-

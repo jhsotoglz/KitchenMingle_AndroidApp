@@ -83,12 +83,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if(valid != 0){
                     btnSignUp.setEnabled(false);
                     // string request
-                    try {
+                    /*try {
                         String response = StringRequestActivity.sendSignUpRequest(email, username, password);
                         // Process the response as needed
                     } catch (IOException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                 } else {
                     btnSignUp.setEnabled(true);
                 }

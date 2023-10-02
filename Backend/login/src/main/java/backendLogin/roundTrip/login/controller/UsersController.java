@@ -19,7 +19,7 @@ public class UsersController {
     }
 
     @PostMapping("users/post/{name}/{e}/{p}")
-    Users PostUsers(@PathVariable String name, @PathVariable String e, String p){
+    Users PostUsers(@PathVariable String name, @PathVariable String e, @PathVariable String p){
         Users newUser = new Users();
         newUser.setUsername(name);
         newUser.setEmail(e);

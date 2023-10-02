@@ -9,25 +9,26 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
-        button = findViewById(R.id.toCounterBtn);
+    // Method to handle login button click
+    public void goToLoginActivity(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, CounterActivity.class);
-                startActivity(intent);
-            }
-        });
+    // Method to handle sign-up button click
+    public void goToSignUpActivity(View view) {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
 
-
+    public void goBack(View view) {
+        onBackPressed(); // This method invokes the system's back button behavior
     }
 
 

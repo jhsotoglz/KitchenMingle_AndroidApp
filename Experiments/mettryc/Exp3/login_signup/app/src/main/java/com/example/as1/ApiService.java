@@ -5,11 +5,12 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiService {
+    // TODO: fix
     @POST("login")
-    Call<LoginActivity> sendLoginRequest(@Body LoginActivity newUser);
+    Call<something> sendLoginRequest(@Body LoginActivity newUser);
 
     @POST("signup")
-    Call<SignUpActivity> sendSignUpRequest(@Body SignUpActivity newUser);
+    Call<something> sendSignUpRequest(@Body SignUpActivity newUser);
 }
 
 

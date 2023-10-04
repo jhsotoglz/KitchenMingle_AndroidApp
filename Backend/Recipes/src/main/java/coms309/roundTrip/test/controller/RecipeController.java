@@ -32,4 +32,9 @@ public class RecipeController {
         recipeRepository.save(newRecipe);
         return newRecipe;
     }
+
+    @DeleteMapping("recipe/delete/{id}")
+    void deleteRecipeById(@PathVariable Long id) {
+        recipeRepository.deleteById(id);
+    }
 }

@@ -44,53 +44,41 @@ public class SignUpActivity extends AppCompatActivity {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 String passwordConfirm = confirmPasswordEditText.getText().toString();
-                int validUser, validEmail, validConfirmPW, validPassword = 1;
-                int valid = 1;
+                boolean valid = true;
 
                 // Email validating indicator
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 if (!email.matches(emailPattern) || email.length() > 50) {
                     emailEditText.setError("Invalid email address");
-                    validEmail = -1;
-                } else {
-                    validEmail = 0;
+                    valid = false;
                 }
 
                 // PW matching & requirement indicators
                 if(!password.equals(passwordConfirm)){
                     confirmPasswordEditText.setError("Passwords must be the same");
-                    validConfirmPW = -1;
-                } else {
-                    validConfirmPW = 0;
+                    valid = false;
                 }
                 if(password.length() > 50 || password.length() < 7){
                     passwordEditText.setError("Passwords must be between 7-50 characters");
-                    validPassword = -1;
-                } else {
-                    validPassword = 0;
+                    valid = false;
                 }
 
                 // Username validation indicator
                 if (username.length() > 20 || username.length() < 3 || !username.matches("[a-zA-Z0-9]+")) {
                     usernameEditText.setError("Username must be between 3-20 characters and contain only numbers and letters");
-                    validUser = -1;
-                } else {
-                    validUser = 0;
+                    valid = false;
                 }
 
-                valid = validUser + validEmail + validConfirmPW + validPassword;
-
-                if(valid != 0){
-                    btnSignUp.setEnabled(false);
-                    // string request
-                    /*try {
+                if(valid){
+                    btnSignUp.setEnabled(true);
+                    try {
                         String response = StringRequestActivity.sendSignUpRequest(email, username, password);
                         // Process the response as needed
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    }*/
+                    }
                 } else {
-                    btnSignUp.setEnabled(true);
+                    btnSignUp.setEnabled(false);
                 }
             }
         });

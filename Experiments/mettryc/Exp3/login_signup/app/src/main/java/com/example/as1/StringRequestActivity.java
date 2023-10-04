@@ -40,4 +40,28 @@ public class StringRequestActivity {
         // Return the response
         return response.toString();
     }
+    public static String sendSignUpRequest(String email, String username, String password) throws Exception {
+        String url = "http://coms-309-033.class.las.iastate.edu:8080/signup";
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod("POST");
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+
+        // Construct the request body (email, username, and password)
+        String requestBody = "email=" + email + "&username=" + username + "&password=" + password;
+
+        connection.getOutputStream().write(requestBody.getBytes());
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+
+        reader.close();
+
+        return response.toString();
+    }
 }

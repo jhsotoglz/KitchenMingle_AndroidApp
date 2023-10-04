@@ -41,6 +41,10 @@ public class UsersController {
         if (usersRepository.existsByEmail(newUser.getEmail())) {
             return ResponseEntity.badRequest().body("Email already in use");
         }
+        // Check if the username is already taken by other user
+        if (usersRepository.existsByUsername(newUser.getUsername())) {
+            return ResponseEntity.badRequest().body("Username already taken");
+        }
         // Add the user to the database
         usersRepository.save(newUser);
         return ResponseEntity.ok("User registered successfully: " + newUser.toString());

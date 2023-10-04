@@ -5,6 +5,7 @@ import backendLogin.roundTrip.login.NotFoundException;
 import backendLogin.roundTrip.login.model.Users;
 import backendLogin.roundTrip.login.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,20 +16,41 @@ public class UsersController {
     @Autowired
     UsersRepository usersRepository;
 
+    // Show all users
     @GetMapping("users")
     List<Users> GetAllUsers(){
         return usersRepository.findAll();
     }
 
-    @PostMapping("users/register")
-    Users AddUsers(@RequestBody Users newUser){
-        usersRepository.save(newUser);
-        return newUser;
+    // Show user based on id
+    @GetMapping("users/{id}")
+    Users GetUsers(@PathVariable Long id){
+        Optional<Users> existingUser = usersRepository.findById(id);
+        // Check if id exists
+        if(existingUser.isPresent()){
+            return existingUser.get();
+        }else{
+            throw new NotFoundException("User with id "+ id + " not found");
+        }
     }
 
+    // Register new user. Check if email exists
+    @PostMapping("users/register")
+    ResponseEntity<String> RegisterUsers(@RequestBody Users newUser) {
+        // Check if the user with the provided email already exists
+        if (usersRepository.existsByEmail(newUser.getEmail())) {
+            return ResponseEntity.badRequest().body("Email already in use");
+        }
+        // Add the user to the database
+        usersRepository.save(newUser);
+        return ResponseEntity.ok("User registered successfully: " + newUser.toString());
+    }
+
+    // Change user info based on id
     @PutMapping("users/put/{id}")
     Users ChangeUsers(@PathVariable Long id, @RequestBody Users newInfo){
         Optional<Users> existingUser = usersRepository.findById(id);
+        // Check if id exists
         if(existingUser.isPresent()) {
             Users updateUser = existingUser.get();
             updateUser.setEmail(newInfo.getEmail());
@@ -41,9 +63,11 @@ public class UsersController {
         }
     }
 
+    // Delete user based on id
     @DeleteMapping("users/delete/{id}")
     void DeleteUsers(@PathVariable Long id){
         Optional<Users> existingUser = usersRepository.findById(id);
+        // Check if id exists
         if(existingUser.isPresent()){
             usersRepository.delete(existingUser.get());
         }else{

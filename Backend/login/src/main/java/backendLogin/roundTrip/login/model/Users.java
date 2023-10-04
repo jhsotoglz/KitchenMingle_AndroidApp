@@ -49,5 +49,9 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String toString(){
+        return getUsername() +" | "+ getEmail() + " | "+ getPassword();
+    }
 }
 

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\jesus\\OneDrive\\Escritorio\\Fall-2023\\COMS_309\\lg_116\\Experiments\\jhsoto\\Exp2\\Ingredients\\frontend\\ingredientsFrontend\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\jesus\\.gradle\\caches\\transforms-3\\07441370f36484c89d75fe9903511729\\transformed\\appcompat-1.3.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

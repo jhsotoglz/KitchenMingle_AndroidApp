@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 @RestController
 public class UsersController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
     @Autowired
     UsersRepository usersRepository;
 
@@ -95,31 +91,6 @@ public class UsersController {
             throw new NotFoundException("User with id "+ id + " not found");
         }
     }
-
-//    @GetMapping("users/login")
-//    String login(@RequestBody Users loginUser){
-//        Users dbUser = usersRepository.findByEmail(loginUser.getEmail());
-//        if(dbUser != null){
-//            if(dbUser.getPassword().equals(loginUser.getPassword())){
-//                return "Login successful. Welcome!";
-//            }
-//        }
-//        return "Login failed. Check your email and password.";
-//    }
-
-//    @GetMapping("users/login")
-//    ResponseEntity<String> login(@RequestBody Users loginUser){
-//        logger.info("recieved login request for email: " + loginUser.getEmail());
-//        Users dbUser = usersRepository.findByEmail(loginUser.getEmail());
-//        if(dbUser != null){
-//            if(dbUser.getPassword().equals(loginUser.getPassword())){
-//                logger.info("Login successful for email: "+ loginUser.getEmail());
-//                return ResponseEntity.ok("Login successful. Welcome!");
-//            }
-//        }
-//        logger.info("Login fail for email: "+ loginUser.getEmail());
-//        return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
-//    }
 
     @PostMapping("users/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {

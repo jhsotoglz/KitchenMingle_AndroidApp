@@ -90,14 +90,25 @@ public class UsersController {
         }
     }
 
+//    @GetMapping("users/login")
+//    String login(@RequestBody Users loginUser){
+//        Users dbUser = usersRepository.findByEmail(loginUser.getEmail());
+//        if(dbUser != null){
+//            if(dbUser.getPassword().equals(loginUser.getPassword())){
+//                return "Login successful. Welcome!";
+//            }
+//        }
+//        return "Login failed. Check your email and password.";
+//    }
+
     @GetMapping("users/login")
-    String login(@RequestBody Users loginUser){
+    ResponseEntity<String> login(@RequestBody Users loginUser){
         Users dbUser = usersRepository.findByEmail(loginUser.getEmail());
         if(dbUser != null){
             if(dbUser.getPassword().equals(loginUser.getPassword())){
-                return "Login successful. Welcome!";
+                return ResponseEntity.ok("Login successful. Welcome!");
             }
         }
-        return "Login failed. Check your email and password.";
+        return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
     }
 }

@@ -8,6 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example.as1.api.Users;
+import com.example.as1.api.UsersApi;
+import com.example.as1.api.ApiClientFactory;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 
 
@@ -41,11 +48,18 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                // Get user input from EditText
                 String email = emailEditText.getText().toString();
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 String passwordConfirm = confirmPasswordEditText.getText().toString();
                 boolean valid = true;
+
+                // Create a Users object with user input
+                Users newUser = new Users();
+                newUser.setUsername(username);
+                newUser.setEmail(email);
+                newUser.setPassword(password);
 
                 // Email validating indicator
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -73,21 +87,37 @@ public class SignUpActivity extends AppCompatActivity {
                 if(valid) {
                     btnSignUp.setEnabled(true);
                     try {
-                        String response = StringRequestActivity.sendSignUpRequest(email, username, password);
-                        if (response.startsWith("User registered successfully")){
-                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
-                            // Todo: take user to home page
-                        } else {
-                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
-                            valid = false;
-                            // Todo: make button to login "did you mean to sign in?"
-                        }
+                        registerUser(newUser);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
                     btnSignUp.setEnabled(false);
                 }
+            }
+        });
+    }
+
+    private void registerUser(Users newUser){
+        UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
+
+        Call<String> call = usersApi.RegisterUsers(newUser);
+
+        call.enqueue(new Callback<String>(){
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    // Registration successful, handle success
+                    // Todo: take user to home page
+                } else {
+                    // registration failed, handle failure
+                    Toast.makeText(SignUpActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                    // Todo: make button to login "did you mean to sign in?"
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t){
+                // handle network error on request failure
             }
         });
     }

@@ -8,7 +8,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
-import android.util.Log;
+import com.example.as1.api.Users;
+import com.example.as1.api.UsersApi;
+import com.example.as1.api.ApiClientFactory;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,11 +44,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                // Get user input from EditText
                String email = emailEditText.getText().toString();
                String password = passwordEditText.getText().toString();
-               Log.d("LoginActivity", "Log In button clicked");   // TODO: remove, for debugging only
+
+              // Log.d("LoginActivity", "Log In button clicked");   // TODO: remove, for debugging only
                 try {
-                    String response = StringRequestActivity.sendLoginRequest(email, password);
+                //    String response = StringRequestActivity.sendLoginRequest(email, password);
                     // Process the response as needed
                     if (response.startsWith("Login successful")){
                         Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -65,4 +72,29 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    /*private void loginUser(Users loginUser){
+        UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
+
+        Call<String> call = usersApi.RegisterUsers(loginUser);
+
+        call.enqueue(new Callback<String>(){
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    // Registration successful, handle success
+                    // Todo: take user to home page
+                } else {
+                    // registration failed, handle failure
+                    Toast.makeText(LoginActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                    // Todo: make button to login "did you mean to sign in?"
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t){
+                // handle network error on request failure
+            }
+        });
+    }
 }
+    }*/

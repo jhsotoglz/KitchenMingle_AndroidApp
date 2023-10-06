@@ -6,14 +6,28 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.PUT;
+import retrofit2.http.DELETE;
 
 public interface UsersApi {
-    @GET("user/all")
-    Call<List<Users>> GetAllUsers();
+    @GET("users")
+    Call<List<Users>> getAllUsers();
 
-    @POST("user/post/{name}")
-    Call<Users> PostUsersByPath(@Path("name") String name);
+    @GET("user/{id}")
+    Call<Users> getUser(@Path("id") Long id);
 
-    @POST("user/post")
-    Call<Users> PostUsersByBody(@Body Users newUser);
+    @PUT("users/put/{id}")
+    Call<Users> updateUser(@Path("id") Long id, @Body Users newInfo);
+
+    @DELETE("users/delete/{id}")
+    Call<Void> deleteUser(@Path("id") Long id);
+
+    @GET("users/login")
+    Call<Users> login(@Body Users loginUser);
+
+    @POST("users/register")
+    Call<String> RegisterUsers(@Body Users newUser);
+
+    @GET("users/getEmail/{email}")
+    Call<Users> GetUsersByEmail(@Path("email") String email);
 }

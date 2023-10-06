@@ -1,7 +1,5 @@
 package com.example.as1.api;
 
-// package test.connect.myapplication.api;
-
 import android.util.Log;
 
 import retrofit2.Call;

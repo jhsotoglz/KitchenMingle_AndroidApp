@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 // create new user object
                 Users loginUser = new Users();
                 loginUser.setEmail(email);
+                loginUser.setUsername(null);
                 loginUser.setPassword(password);
 
                 try {

@@ -22,7 +22,7 @@ public interface UsersApi {
     @DELETE("users/delete/{id}")
     Call<Void> deleteUser(@Path("id") Long id);
 
-    @GET("users/login")
+    @POST("users/login")
     Call<String> login(@Body Users loginUser);
 
     @POST("users/register")

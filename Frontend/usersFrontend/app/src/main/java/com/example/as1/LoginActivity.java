@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser.setPassword(password);
 
                 try {
+                    Toast.makeText(LoginActivity.this, "Trying to log in...", Toast.LENGTH_SHORT).show();
                     loginUser(loginUser);
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 
@@ -73,7 +74,14 @@ public class SignUpActivity extends AppCompatActivity {
                     btnSignUp.setEnabled(true);
                     try {
                         String response = StringRequestActivity.sendSignUpRequest(email, username, password);
-                        // Process the response as needed
+                        if (response.startsWith("User registered successfully")){
+                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
+                            // Todo: take user to home page
+                        } else {
+                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
+                            valid = false;
+                            // Todo: make button to login "did you mean to sign in?"
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

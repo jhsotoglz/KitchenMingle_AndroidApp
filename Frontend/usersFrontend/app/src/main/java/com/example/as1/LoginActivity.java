@@ -45,13 +45,12 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String response = StringRequestActivity.sendLoginRequest(email, password);
                     // Process the response as needed
-                    if(response.equals("success")){
+                    if (response.startsWith("Login successful")){
+                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                         // TODO: Navigate to home page, temp: success message
-                        Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
-
                     } else {
                         // Show error message
-                        Toast.makeText(LoginActivity.this, "Login failed. Please check your credentials.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                         // Change color of input fields to red
                         ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
                         shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_red_light));

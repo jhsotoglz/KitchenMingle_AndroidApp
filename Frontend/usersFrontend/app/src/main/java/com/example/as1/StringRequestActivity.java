@@ -8,7 +8,7 @@ public class StringRequestActivity {
 
     public static String sendLoginRequest(String email, String password) throws Exception {
         // Construct the URL for your login endpoint
-        String url = "http://coms-309-033.class.las.iastate.edu:8080/login";
+        String url = "http://coms-309-033.class.las.iastate.edu:8080/users/login";
 
         // Create a connection
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
@@ -41,7 +41,7 @@ public class StringRequestActivity {
         return response.toString();
     }
     public static String sendSignUpRequest(String email, String username, String password) throws Exception {
-        String url = "http://coms-309-033.class.las.iastate.edu:8080/signup";
+        String url = "http://coms-309-033.class.las.iastate.edu:8080/users/register";
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod("POST");
         connection.setDoInput(true);

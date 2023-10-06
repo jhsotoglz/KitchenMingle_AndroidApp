@@ -34,6 +34,17 @@ public class UsersController {
         }
     }
 
+    @GetMapping("users/getEmail/{email}")
+    Users GetUsersByEmail(@PathVariable String email){
+        Users existingUser = usersRepository.findByEmail(email);
+        if(existingUser != null){
+            return existingUser;
+        }else{
+            throw new NotFoundException("User with email "+ email + " not found");
+        }
+    }
+
+
     // Register new user. Check if email exists
     @PostMapping("users/register")
     ResponseEntity<String> RegisterUsers(@RequestBody Users newUser) {
@@ -77,5 +88,16 @@ public class UsersController {
         }else{
             throw new NotFoundException("User with id "+ id + " not found");
         }
+    }
+
+    @GetMapping("users/login")
+    String login(@RequestBody Users loginUser){
+        Users dbUser = usersRepository.findByEmail(loginUser.getEmail());
+        if(dbUser != null){
+            if(dbUser.getPassword().equals(loginUser.getPassword())){
+                return "Login successful. Welcome!";
+            }
+        }
+        return "Login failed. Check your email and password.";
     }
 }

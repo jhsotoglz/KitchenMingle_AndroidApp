@@ -72,6 +72,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     // login successful, handle success
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                    ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
+                    shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_green_light));
+                    shapeDrawable.getPaint().setStrokeWidth(5f); // border width
+                    emailEditText.setBackground(shapeDrawable);
+                    passwordEditText.setBackground(shapeDrawable);
                     // Todo: take user to home page
                 } else {
                     // login failed, handle failure

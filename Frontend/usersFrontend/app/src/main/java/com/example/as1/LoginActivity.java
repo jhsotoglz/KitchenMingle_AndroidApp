@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(LoginActivity.this, "Received a response...", Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {   // OK
                     // login successful, handle success
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();

@@ -104,12 +104,13 @@ public class SignUpActivity extends AppCompatActivity {
         call.enqueue(new Callback<String>(){
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()) {
+                if (response.code() == 200 ) { // OK
                     // Registration successful, handle success
+                    Toast.makeText(SignUpActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
                     // TODO: take user to home page
                 } else {
                     // registration failed, handle failure
-                    Toast.makeText(SignUpActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Did you mean to sign in?", Toast.LENGTH_SHORT).show();
                     // TODO: make button to login "did you mean to sign in?"
                 }
             }

@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin, btnToMain;
-    EditText emailEditText,passwordEditText;
+    EditText emailEditText, passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,67 +34,59 @@ public class LoginActivity extends AppCompatActivity {
 
         btnToMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 // Get user input from EditText
-               String email = emailEditText.getText().toString();
-               String password = passwordEditText.getText().toString();
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
 
-              // Log.d("LoginActivity", "Log In button clicked");   // TODO: remove, for debugging only
+                // create new user object
+                Users loginUser = new Users();
+                loginUser.setEmail(email);
+                loginUser.setPassword(password);
+
                 try {
-                //    String response = StringRequestActivity.sendLoginRequest(email, password);
-                    // Process the response as needed
-                    if (response.startsWith("Login successful")){
-                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
-                        // TODO: Navigate to home page, temp: success message
-                    } else {
-                        // Show error message
-                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
-                        // Change color of input fields to red
-                        ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
-                        shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_red_light));
-                        shapeDrawable.getPaint().setStrokeWidth(5f); // border width
-                        emailEditText.setBackground(shapeDrawable);
-                        passwordEditText.setBackground(shapeDrawable);
-                    }
+                    loginUser(loginUser);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-
     }
 
-    /*private void loginUser(Users loginUser){
+
+    private void loginUser(Users loginUser) {
         UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
 
-        Call<String> call = usersApi.RegisterUsers(loginUser);
+        Call<Users> call = usersApi.login(loginUser);
 
-        call.enqueue(new Callback<String>(){
+        call.enqueue(new Callback<Users>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Users> call, Response<Users> response) {
                 if (response.isSuccessful()) {
-                    // Registration successful, handle success
+                    // login successful, handle success
                     // Todo: take user to home page
                 } else {
-                    // registration failed, handle failure
-                    Toast.makeText(LoginActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
-                    // Todo: make button to login "did you mean to sign in?"
+                    // login failed, handle failure
+                    Toast.makeText(LoginActivity.this, "Login Failed, check your email and password", Toast.LENGTH_SHORT).show();
+                    ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
+                    shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_red_light));
+                    shapeDrawable.getPaint().setStrokeWidth(5f); // border width
+                    emailEditText.setBackground(shapeDrawable);
+                    passwordEditText.setBackground(shapeDrawable);
                 }
             }
+
             @Override
-            public void onFailure(Call<String> call, Throwable t){
+            public void onFailure(Call<Users> call, Throwable t) {
                 // handle network error on request failure
             }
         });
     }
 }
-    }*/

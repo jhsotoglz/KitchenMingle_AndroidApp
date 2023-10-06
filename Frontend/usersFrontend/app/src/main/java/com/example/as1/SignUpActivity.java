@@ -108,11 +108,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
                     // Registration successful, handle success
-                    // Todo: take user to home page
+                    // TODO: take user to home page
                 } else {
                     // registration failed, handle failure
                     Toast.makeText(SignUpActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
-                    // Todo: make button to login "did you mean to sign in?"
+                    // TODO: make button to login "did you mean to sign in?"
                 }
             }
             @Override

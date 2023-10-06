@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if (response.isSuccessful()) {
                     // login successful, handle success
+                    Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     // Todo: take user to home page
                 } else {
                     // login failed, handle failure

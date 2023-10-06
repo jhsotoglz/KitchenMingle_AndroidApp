@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+// todo: button to pantry
+
         btnToSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

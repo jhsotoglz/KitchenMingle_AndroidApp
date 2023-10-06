@@ -8,8 +8,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TableRow;
 
 import java.util.List;
 
@@ -17,6 +19,10 @@ import test.connect.myapplication.api.SlimCallback;
 import test.connect.myapplication.model.Ingredient;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TableLayout tableLayout;
+    private int rowNumber = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,22 +34,14 @@ public class MainActivity extends AppCompatActivity {
         apiText1.setMovementMethod(new ScrollingMovementMethod());
         apiText1.setHeight(350);
 
-        Button PostByPathBtn = findViewById(R.id.activity_main_post_by_path_button);
         Button PostByBodyBtn = findViewById(R.id.activity_main_post_by_body_button);
         EditText ingredientNameIn = findViewById(R.id.activity_main_recipename_editText);
-        //Button deleteButton = findViewById(R.id.activity_main_delete_button);
+
+        tableLayout = findViewById(R.id.tableLayout); // Initialize TableLayout
+
 
         RegenerateAllIngredientsOnScreen(apiText1);
 
-        PostByPathBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GetIngredientAPI().PostIngredientByPath(ingredientNameIn.getText().toString()).enqueue(new SlimCallback<Ingredient>(ingredient ->{
-                    RegenerateAllIngredientsOnScreen(apiText1);
-                    ingredientNameIn.setText("");
-                }));
-            }
-        });
 
         PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,36 +51,23 @@ public class MainActivity extends AppCompatActivity {
                 GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient ->{
                     RegenerateAllIngredientsOnScreen(apiText1);
                     ingredientNameIn.setText("");
+
+
                 }));
+                String ingredientName = ingredientNameIn.getText().toString().trim();
+
+                if (!ingredientName.isEmpty()) {
+                    // Create a new row for the ingredient
+                    addDataRow(ingredientName);
+
+                    // Clear the input field
+                    ingredientNameIn.setText("");
+                }
+
             }
         });
-
-//        deleteButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Get the ingredient ID that you want to delete (you can retrieve it from user input or elsewhere)
-//                String ingredientIdToDelete = ingredientNameIn.getText().toString();
-//
-//                if (!ingredientIdToDelete.isEmpty()) {
-//                    // Convert the ingredient ID to Long if needed
-//                    Long idToDelete = Long.parseLong(ingredientIdToDelete);
-//
-//                    // Call the API to delete the ingredient by ID
-//                    GetIngredientAPI().deleteIngredientById(idToDelete).enqueue(new SlimCallback<Void>(response -> {
-//                        // Handle the success or error response as needed
-//                        RegenerateAllIngredientsOnScreen(apiText1);
-//                        ingredientNameIn.setText(""); // Clear the input field
-//                    }));
-//                } else {
-//                    // Handle the case where the input is empty or invalid
-//                    // You can display a message to the user or perform other actions
-//                    Toast.makeText(MainActivity.this, "Please enter a valid ingredient ID.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
     }
 
-    // This method prints all the current stored ingredients in the database
     void RegenerateAllIngredientsOnScreen(TextView apiText1){
         GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
             apiText1.setText("");
@@ -92,6 +77,84 @@ public class MainActivity extends AppCompatActivity {
             }
         }, "GetAllIngredients"));
     }
+
+
+    private void addDataRow(String ingredientName) {
+        TableRow row = new TableRow(this);
+
+        TextView ingredientNameTextView = new TextView(this);
+        ingredientNameTextView.setText(ingredientName);
+
+        TextView quantityTextView = new TextView(this);
+        quantityTextView.setText("0");
+
+        Button increaseButton = new Button(this);
+        increaseButton.setText("+");
+        increaseButton.setTag("increase" + rowNumber);
+        increaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                increaseQuantity(view);
+            }
+        });
+
+        Button decreaseButton = new Button(this);
+        decreaseButton.setText("-");
+        decreaseButton.setTag("decrease" + rowNumber);
+        decreaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decreaseQuantity(view);
+            }
+        });
+
+        row.addView(ingredientNameTextView);
+        row.addView(quantityTextView);
+        row.addView(increaseButton);
+        row.addView(decreaseButton);
+
+        tableLayout.addView(row);
+        rowNumber++; // Increment the row number
+    }
+
+
+    public void decreaseQuantity(View view) {
+        TableRow row = (TableRow) view.getParent(); // Get the parent row
+        TextView quantityTextView = row.findViewWithTag("quantityTextView");
+
+        // Get the current quantity as a string
+        String currentQuantityStr = quantityTextView.getText().toString();
+
+        try {
+            int currentQuantity = Integer.parseInt(currentQuantityStr);
+            if (currentQuantity > 0) {
+                currentQuantity--; // Decrement the quantity if it's greater than 0
+                quantityTextView.setText(String.valueOf(currentQuantity)); // Update the TextView
+            }
+        } catch (NumberFormatException e) {
+            // Handle parsing error if the quantity is not a valid integer
+        }
+    }
+
+    public void increaseQuantity(View view) {
+        TableRow row = (TableRow) view.getParent(); // Get the parent row
+        TextView quantityTextView = row.findViewWithTag("quantityTextView");
+
+        // Get the current quantity as a string
+        String currentQuantityStr = quantityTextView.getText().toString();
+
+        try {
+            int currentQuantity = Integer.parseInt(currentQuantityStr);
+            if (currentQuantity > 0) {
+                currentQuantity++; // Increase the quantity if it's greater than 0
+                quantityTextView.setText(String.valueOf(currentQuantity)); // Update the TextView
+            }
+        } catch (NumberFormatException e) {
+            // Handle parsing error if the quantity is not a valid integer
+        }
+    }
+
+
 }
 
 

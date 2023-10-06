@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string-array name="ingredients_array">
+        <item>Ingredient 1</item>
+        <item>Ingredient 2</item>
+        <item>Ingredient 3</item>
+    </string-array>
 </resources>

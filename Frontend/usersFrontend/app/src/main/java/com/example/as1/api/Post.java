@@ -1,6 +1,6 @@
 package com.example.as1.api;
-
 import com.google.gson.annotations.SerializedName;
+
 
 public class Post{
     private int userId;

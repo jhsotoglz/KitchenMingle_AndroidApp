@@ -8,9 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
-import com.example.as1.api.Users;
-import com.example.as1.api.UsersApi;
-import com.example.as1.api.ApiClientFactory;
+import com.example.as1.api.*;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,11 +62,11 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser(Users loginUser) {
         UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
 
-        Call<Users> call = usersApi.login(loginUser);
+        Call<String> call = usersApi.login(loginUser);
 
-        call.enqueue(new Callback<Users>() {
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Users> call, Response<Users> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
                     // login successful, handle success
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
@@ -90,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Users> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 // handle network error on request failure
             }
         });

@@ -7,20 +7,33 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Ingredient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
     private String ingredientName;
 
-    // Constructor
+    private int quantity; // Added quantity variable
+
+    // Constructors
+
     public Ingredient() {
+        // Default constructor
     }
 
-    public int getId() {
+    public Ingredient(String ingredientName, int quantity) {
+        this.ingredientName = ingredientName;
+        this.quantity = quantity;
+    }
+
+    // Getters and setters
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -30,5 +43,22 @@ public class Ingredient {
 
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", ingredientName='" + ingredientName + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

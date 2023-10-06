@@ -46,14 +46,13 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 // create new user object
-                Users loginUser = new Users();
-                loginUser.setEmail(email);
-                loginUser.setUsername(null);
-                loginUser.setPassword(password);
+                LoginRequest loginRequest = new LoginRequest();
+                loginRequest.setEmail(email);
+                loginRequest.setPassword(password);
 
                 try {
                     Toast.makeText(LoginActivity.this, "Trying to log in...", Toast.LENGTH_SHORT).show();
-                    loginUser(loginUser);
+                    loginUser(loginRequest);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -62,10 +61,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void loginUser(Users loginUser) {
+    private void loginUser(LoginRequest loginRequest) {
         UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
 
-        Call<String> call = usersApi.login(loginUser);
+        Call<String> call = usersApi.login(loginRequest);
 
         call.enqueue(new Callback<String>() {
             @Override

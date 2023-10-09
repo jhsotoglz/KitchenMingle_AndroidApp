@@ -1931,8 +1931,10 @@ id bounceEnd
 id bounceStart
 id btnLogin
 id btnSignUp
+id btnToIngredient
 id btnToLogin
 id btnToMain
+id btnToRecipe
 id btnToSignUp
 id button
 id buttonPanel

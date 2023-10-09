@@ -1,14 +1,14 @@
-#Mon Oct 09 10:41:46 CDT 2023
-base.0=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex
-base.3=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
-base.4=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex
+#Mon Oct 09 13:43:12 CDT 2023
+base.0=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex
+base.3=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex
+base.4=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
-path.2=3/classes.dex
-path.3=6/classes.dex
-path.4=13/classes.dex
+path.2=13/classes.dex
+path.3=3/classes.dex
+path.4=6/classes.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
 renamed.2=classes3.dex

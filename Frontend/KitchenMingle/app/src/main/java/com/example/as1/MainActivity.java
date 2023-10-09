@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnToLogin, btnToSignUp;
+    Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnToLogin = findViewById(R.id.btnToLogin);
         btnToSignUp = findViewById(R.id.btnToSignUp);
+        btnToRecipe = findViewById(R.id.btnToRecipe);
+        btnToIngredient = findViewById(R.id.btnToIngredient);
 
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-// todo: button to pantry
-
         btnToSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -38,5 +38,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnToRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnToIngredient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, IngredientActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 }

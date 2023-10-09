@@ -1,73 +1,66 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.sumon.androidvolley"
+3    package="com.example.as1"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-9        android:targetSdkVersion="26" />
-10    <!-- internet permission -->
+9        android:targetSdkVersion="31" />
+10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:4:5-67
-11-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:4:22-64
+11-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:3:5-67
+11-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:3:22-64
 12
 13    <application
-13-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:6:5-25:19
-14        android:name="com.example.sumon.androidvolley.app.AppController"
-14-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:8:9-73
-15        android:allowBackup="true"
-15-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:9:9-35
+13-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:5:5-28:19
+14        android:allowBackup="true"
+14-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:7:9-35
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.5.0] /Users/mettryc/.gradle/caches/transforms-3/1d682199c6b07e4f6f458f93bcb0b081/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
 16        android:debuggable="true"
 17        android:extractNativeLibs="true"
 18        android:icon="@mipmap/ic_launcher"
-18-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:10:9-43
+18-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:8:9-43
 19        android:label="@string/app_name"
-19-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:11:9-41
+19-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:9:9-41
 20        android:roundIcon="@mipmap/ic_launcher_round"
-20-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:12:9-54
+20-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:10:9-54
 21        android:supportsRtl="true"
-21-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:13:9-35
-22        android:theme="@style/AppTheme"
-22-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:14:9-40
+21-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:11:9-35
+22        android:theme="@style/Theme.AS1"
+22-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:12:9-41
 23        android:usesCleartextTraffic="true" >
-23-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:7:9-44
-24        <activity android:name="com.example.sumon.androidvolley.MainActivity" >
-24-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:15:9-21:20
-24-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:15:19-47
-25            <intent-filter>
-25-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:16:13-20:29
-26                <action android:name="android.intent.action.MAIN" />
-26-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:17:17-69
-26-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:17:25-66
-27
-28                <category android:name="android.intent.category.LAUNCHER" />
-28-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:19:17-77
-28-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:19:27-74
-29            </intent-filter>
-30        </activity>
-31        <activity android:name="com.example.sumon.androidvolley.StringRequestActivity" />
-31-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:22:9-59
-31-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:22:19-56
-32        <activity android:name="com.example.sumon.androidvolley.JsonRequestActivity" />
-32-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:23:9-57
-32-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:23:19-54
-33        <activity android:name="com.example.sumon.androidvolley.ImageRequestActivity" />
-33-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:24:9-67
-33-->/Users/mettryc/Desktop/Com_S_309/lg_116/Experiments/mettryc/Exp2/AndroidVolley/app/src/main/AndroidManifest.xml:24:19-55
-34
-35        <meta-data
-35-->[com.android.support:appcompat-v7:26.1.0] /Users/mettryc/.gradle/caches/transforms-3/a0f36b1e15d4c25d8c9960dded1cf324/transformed/appcompat-v7-26.1.0/AndroidManifest.xml:26:9-28:38
-36            android:name="android.support.VERSION"
-36-->[com.android.support:appcompat-v7:26.1.0] /Users/mettryc/.gradle/caches/transforms-3/a0f36b1e15d4c25d8c9960dded1cf324/transformed/appcompat-v7-26.1.0/AndroidManifest.xml:27:13-51
-37            android:value="26.1.0" />
-37-->[com.android.support:appcompat-v7:26.1.0] /Users/mettryc/.gradle/caches/transforms-3/a0f36b1e15d4c25d8c9960dded1cf324/transformed/appcompat-v7-26.1.0/AndroidManifest.xml:28:13-35
-38        <meta-data
-38-->[android.arch.lifecycle:runtime:1.0.0] /Users/mettryc/.gradle/caches/transforms-3/0e5f402003ce76b8a3850b2862d7eb2d/transformed/runtime-1.0.0/AndroidManifest.xml:25:9-27:47
-39            android:name="android.arch.lifecycle.VERSION"
-39-->[android.arch.lifecycle:runtime:1.0.0] /Users/mettryc/.gradle/caches/transforms-3/0e5f402003ce76b8a3850b2862d7eb2d/transformed/runtime-1.0.0/AndroidManifest.xml:26:13-58
-40            android:value="27.0.0-SNAPSHOT" />
-40-->[android.arch.lifecycle:runtime:1.0.0] /Users/mettryc/.gradle/caches/transforms-3/0e5f402003ce76b8a3850b2862d7eb2d/transformed/runtime-1.0.0/AndroidManifest.xml:27:13-44
-41    </application>
-42
-43</manifest>
+23-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:6:9-44
+24        <activity
+24-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:13:9-15:39
+25            android:name="com.example.as1.SignUpActivity"
+25-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:14:13-43
+26            android:exported="true" />
+26-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:15:13-36
+27        <activity
+27-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:16:9-18:39
+28            android:name="com.example.as1.LoginActivity"
+28-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:17:13-42
+29            android:exported="true" />
+29-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:18:13-36
+30        <activity
+30-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:19:9-26:20
+31            android:name="com.example.as1.MainActivity"
+31-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:20:13-41
+32            android:exported="true" >
+32-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:21:13-36
+33            <intent-filter>
+33-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:22:13-25:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:23:17-69
+34-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:23:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:24:17-77
+36-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/usersFrontend/app/src/main/AndroidManifest.xml:24:27-74
+37            </intent-filter>
+38        </activity>
+39    </application>
+40
+41</manifest>

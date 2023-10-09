@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TableRow;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.List;
 import test.connect.myapplication.api.SlimCallback;
 import test.connect.myapplication.model.Ingredient;
 
-public class MainActivity extends AppCompatActivity {
+public class IngredientMainActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
     private int rowNumber = 1;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ingredient_main);
 
         TextView apiText1 = findViewById(R.id.activity_main_textView1);
 

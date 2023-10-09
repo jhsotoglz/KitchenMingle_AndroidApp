@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,12 +46,13 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 // create new user object
-                Users loginUser = new Users();
-                loginUser.setEmail(email);
-                loginUser.setPassword(password);
+                LoginRequest loginRequest = new LoginRequest();
+                loginRequest.setEmail(email);
+                loginRequest.setPassword(password);
 
                 try {
-                    loginUser(loginUser);
+                    Toast.makeText(LoginActivity.this, "Trying to log in...", Toast.LENGTH_SHORT).show();
+                    loginUser(loginRequest);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -59,15 +61,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void loginUser(Users loginUser) {
+    private void loginUser(LoginRequest loginRequest) {
         UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
 
-        Call<String> call = usersApi.login(loginUser);
+        Call<String> call = usersApi.login(loginRequest);
 
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (response.code() == 200) {   // OKq
+                Toast.makeText(LoginActivity.this, "Received a response...", Toast.LENGTH_SHORT).show();
+                if (response.code() == 200) {   // OK
                     // login successful, handle success
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());

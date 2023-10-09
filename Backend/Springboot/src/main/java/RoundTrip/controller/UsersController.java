@@ -2,6 +2,7 @@ package RoundTrip.controller;
 
 
 import RoundTrip.NotFoundException;
+import RoundTrip.model.LoginRequest;
 import RoundTrip.model.Users;
 import RoundTrip.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 public class UsersController {
+
     @Autowired
     UsersRepository usersRepository;
 
@@ -90,25 +92,19 @@ public class UsersController {
         }
     }
 
-//    @GetMapping("users/login")
-//    String login(@RequestBody Users loginUser){
-//        Users dbUser = usersRepository.findByEmail(loginUser.getEmail());
-//        if(dbUser != null){
-//            if(dbUser.getPassword().equals(loginUser.getPassword())){
-//                return "Login successful. Welcome!";
-//            }
-//        }
-//        return "Login failed. Check your email and password.";
-//    }
+    @PostMapping("users/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
 
-    @GetMapping("users/login")
-    ResponseEntity<String> login(@RequestBody Users loginUser){
-        Users dbUser = usersRepository.findByEmail(loginUser.getEmail());
-        if(dbUser != null){
-            if(dbUser.getPassword().equals(loginUser.getPassword())){
+        Users dbUser = usersRepository.findByEmail(email);
+
+        if (dbUser != null) {
+            if (dbUser.getPassword().equals(password)) {
                 return ResponseEntity.ok("Login successful. Welcome!");
             }
         }
+
         return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
     }
 }

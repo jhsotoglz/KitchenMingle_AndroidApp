@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setProgress(75);
                 if (response.isSuccessful()) {   // response status code is between 200-299
                     // login successful, handle success
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressBar.setProgress(100);
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
                     shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_green_light));

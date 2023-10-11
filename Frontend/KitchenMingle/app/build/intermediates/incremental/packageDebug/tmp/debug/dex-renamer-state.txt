@@ -1,4 +1,4 @@
-#Mon Oct 09 13:43:12 CDT 2023
+#Mon Oct 09 13:56:50 CDT 2023
 base.0=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.2=/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex

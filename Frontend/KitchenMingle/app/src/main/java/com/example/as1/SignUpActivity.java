@@ -119,8 +119,10 @@ public class SignUpActivity extends AppCompatActivity {
                 if (response.isSuccessful()) { // response status code between 200-299
                     // Registration successful, handle success
                     progressBar.setProgress(100);
-                    Toast.makeText(SignUpActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
-                    // TODO: take user to home page
+                    Toast.makeText(SignUpActivity.this, "Successfully Registered! Please log in.", Toast.LENGTH_SHORT).show();
+                    // Navigate to LoginActivity
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 } else {
                     // registration failed, handle failure
                     progressBar.setVisibility(View.INVISIBLE);

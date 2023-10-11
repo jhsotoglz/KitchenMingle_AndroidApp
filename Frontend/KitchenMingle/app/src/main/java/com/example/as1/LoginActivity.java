@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Toast.makeText(LoginActivity.this, "Received a response...", Toast.LENGTH_SHORT).show();
-                if (response.code() == 200) {   // OK
+                if (response.isSuccessful()) {   // response status code is between 200-299
                     // login successful, handle success
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());

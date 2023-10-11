@@ -106,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
         call.enqueue(new Callback<String>(){
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (response.code() == 200) { // OK
+                if (response.isSuccessful()) { // response status code between 200-299
                     // Registration successful, handle success
                     Toast.makeText(SignUpActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
                     // TODO: take user to home page

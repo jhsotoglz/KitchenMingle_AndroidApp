@@ -45,6 +45,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                // disable sign-up while validating
+                btnSignUp.setEnabled(false);
+
                 // Get user input from EditText
                 String email = emailEditText.getText().toString();
                 String username = usernameEditText.getText().toString();
@@ -82,14 +85,14 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 if(valid) {
-                    btnSignUp.setEnabled(true);
                     try {
                         registerUser(newUser);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
-                    btnSignUp.setEnabled(false);
+                    // re-enable sign-up button
+                    btnSignUp.setEnabled(true);
                 }
             }
         });

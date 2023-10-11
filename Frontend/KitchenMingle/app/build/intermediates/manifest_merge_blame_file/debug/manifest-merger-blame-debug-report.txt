@@ -28,51 +28,52 @@
 20-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:10:9-54
 21        android:supportsRtl="true"
 21-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:11:9-35
-22        android:theme="@style/Theme.AS1"
-22-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:12:9-41
-23        android:usesCleartextTraffic="true" >
-23-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:6:9-44
-24        <activity
-24-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:13:9-15:39
-25            android:name="com.example.as1.SignUpActivity"
-25-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:14:13-43
-26            android:exported="true" />
-26-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:15:13-36
-27        <activity
-27-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:16:9-18:39
-28            android:name="com.example.as1.LoginActivity"
-28-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:17:13-42
-29            android:exported="true" />
-29-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:18:13-36
-30        <activity
-30-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:19:9-21:39
-31            android:name="com.example.as1.RecipeActivity"
-31-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:20:13-43
-32            android:exported="true" />
-32-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:21:13-36
-33        <activity
-33-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:22:9-24:39
-34            android:name="com.example.as1.IngredientActivity"
-34-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:23:13-47
-35            android:exported="true" />
-35-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:24:13-36
-36        <activity
-36-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:25:9-32:20
-37            android:name="com.example.as1.MainActivity"
-37-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:26:13-41
-38            android:exported="true" >
-38-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:27:13-36
-39            <intent-filter>
-39-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:28:13-31:29
-40                <action android:name="android.intent.action.MAIN" />
-40-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:29:17-69
-40-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:29:25-66
-41
-42                <category android:name="android.intent.category.LAUNCHER" />
-42-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:30:17-77
-42-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:30:27-74
-43            </intent-filter>
-44        </activity>
-45    </application>
-46
-47</manifest>
+22        android:testOnly="true"
+23        android:theme="@style/Theme.AS1"
+23-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:12:9-41
+24        android:usesCleartextTraffic="true" >
+24-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:6:9-44
+25        <activity
+25-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:13:9-15:39
+26            android:name="com.example.as1.SignUpActivity"
+26-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:14:13-43
+27            android:exported="true" />
+27-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:15:13-36
+28        <activity
+28-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:16:9-18:39
+29            android:name="com.example.as1.LoginActivity"
+29-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:17:13-42
+30            android:exported="true" />
+30-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:18:13-36
+31        <activity
+31-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:19:9-21:39
+32            android:name="com.example.as1.RecipeActivity"
+32-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:20:13-43
+33            android:exported="true" />
+33-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:21:13-36
+34        <activity
+34-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:22:9-24:39
+35            android:name="com.example.as1.IngredientActivity"
+35-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:23:13-47
+36            android:exported="true" />
+36-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:24:13-36
+37        <activity
+37-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:25:9-32:20
+38            android:name="com.example.as1.MainActivity"
+38-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:26:13-41
+39            android:exported="true" >
+39-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:27:13-36
+40            <intent-filter>
+40-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:28:13-31:29
+41                <action android:name="android.intent.action.MAIN" />
+41-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:29:17-69
+41-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:29:25-66
+42
+43                <category android:name="android.intent.category.LAUNCHER" />
+43-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:30:17-77
+43-->/Users/mettryc/Desktop/Com_S_309/lg_116/Frontend/KitchenMingle/app/src/main/AndroidManifest.xml:30:27-74
+44            </intent-filter>
+45        </activity>
+46    </application>
+47
+48</manifest>

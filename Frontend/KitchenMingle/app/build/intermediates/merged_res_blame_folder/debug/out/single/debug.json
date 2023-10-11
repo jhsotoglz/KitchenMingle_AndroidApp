@@ -4,8 +4,8 @@
         "source": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-main-20:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.as1.app-merged_res-18:/layout_activity_ingredient.xml.flat",
-        "source": "com.example.as1.app-main-20:/layout/activity_ingredient.xml"
+        "merged": "com.example.as1.app-merged_res-18:/layout_activity_signup.xml.flat",
+        "source": "com.example.as1.app-main-20:/layout/activity_signup.xml"
     },
     {
         "merged": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-merged_res-18:/mipmap-xxxhdpi_ic_launcher.webp.flat",
@@ -26,10 +26,6 @@
     {
         "merged": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-merged_res-18:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-main-20:/mipmap-xhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.example.as1.app-merged_res-18:/layout_activity_recipe.xml.flat",
-        "source": "com.example.as1.app-main-20:/layout/activity_recipe.xml"
     },
     {
         "merged": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-merged_res-18:/layout_activity_signup.xml.flat",
@@ -58,6 +54,10 @@
     {
         "merged": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-merged_res-18:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
         "source": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-pngs-14:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.as1.app-merged_res-18:/layout_activity_login.xml.flat",
+        "source": "com.example.as1.app-main-20:/layout/activity_login.xml"
     },
     {
         "merged": "/Users/mettryc/.gradle/daemon/8.0/com.example.as1.app-merged_res-18:/mipmap-xxhdpi_ic_launcher.webp.flat",

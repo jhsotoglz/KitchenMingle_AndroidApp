@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.as1.api.*;
 import com.example.as1.api.ApiClientFactory;
@@ -20,6 +21,8 @@ public class SignUpActivity extends AppCompatActivity {
     Button btnToMain, btnSignUp;
     EditText passwordEditText, usernameEditText, emailEditText, confirmPasswordEditText;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
+        progressBar = findViewById(R.id.progressBar);
 
         btnToMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +90,10 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if(valid) {
                     try {
+                        progressBar.setVisibility(View.VISIBLE);
+                        Toast.makeText(SignUpActivity.this, "Trying to register...", Toast.LENGTH_SHORT).show();
                         registerUser(newUser);
+                        progressBar.setProgress(25);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -106,18 +113,25 @@ public class SignUpActivity extends AppCompatActivity {
         call.enqueue(new Callback<String>(){
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progressBar.setProgress(50);
+                Toast.makeText(SignUpActivity.this, "Received a response...", Toast.LENGTH_SHORT).show();
+                progressBar.setProgress(75);
                 if (response.isSuccessful()) { // response status code between 200-299
                     // Registration successful, handle success
+                    progressBar.setVisibility(View.INVISIBLE);
+
                     Toast.makeText(SignUpActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
                     // TODO: take user to home page
                 } else {
                     // registration failed, handle failure
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(SignUpActivity.this, "Did you mean to sign in?", Toast.LENGTH_SHORT).show();
                     // TODO: make button to login "did you mean to sign in?"
                 }
             }
             @Override
             public void onFailure(Call<String> call, Throwable t){
+                progressBar.setVisibility(View.INVISIBLE);
                 // handle network error on request failure
             }
         });

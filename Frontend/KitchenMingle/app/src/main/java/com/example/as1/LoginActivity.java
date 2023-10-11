@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
@@ -23,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnToMain;
     EditText emailEditText, passwordEditText;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         btnToMain = findViewById(R.id.btnToMain);
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+        progressBar = findViewById(R.id.progressBar);
+
 
         btnToMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +59,9 @@ public class LoginActivity extends AppCompatActivity {
                 loginRequest.setPassword(password);
 
                 try {
+                    progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(LoginActivity.this, "Trying to log in...", Toast.LENGTH_SHORT).show();
+                    progressBar.setProgress(25);
                     loginUser(loginRequest);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -72,9 +79,12 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progressBar.setProgress(50);
                 Toast.makeText(LoginActivity.this, "Received a response...", Toast.LENGTH_SHORT).show();
+                progressBar.setProgress(75);
                 if (response.isSuccessful()) {   // response status code is between 200-299
                     // login successful, handle success
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
                     shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_green_light));
@@ -84,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     // Todo: take user to home page
                 } else {
                     // login failed, handle failure
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(LoginActivity.this, "Login Failed, check your email and password", Toast.LENGTH_SHORT).show();
                     ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
                     shapeDrawable.getPaint().setColor(getResources().getColor(android.R.color.holo_red_light));
@@ -95,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                progressBar.setVisibility(View.INVISIBLE);
                 // handle network error on request failure
             }
         });

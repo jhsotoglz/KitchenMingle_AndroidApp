@@ -17,8 +17,23 @@ import java.util.Optional;
 public class AdminController {
     @Autowired
     AdminRepository adminRepository;
+    @Autowired
     UsersRepository usersRepository;
 
+    @GetMapping("admin")
+    List<Admin> GetAllAdmin(){
+        return adminRepository.findAll();
+    }
+
+    @GetMapping("admin/getId/{id}")
+    Admin GetAdminById(@PathVariable Long id){
+        Optional<Admin> existingAdmin = adminRepository.findById(id);
+        if(existingAdmin.isPresent()){
+            return existingAdmin.get();
+        }else{
+            throw new NotFoundException("User with id "+ id + " not found");
+        }
+    }
     @GetMapping("admin/getEmail/{email}")
     Admin GetAdminByEmail(@PathVariable String email){
         Admin existingAdmin = adminRepository.findByEmail(email);
@@ -30,7 +45,7 @@ public class AdminController {
     }
 
 
-    //TODO: special format for admin email
+    // Consider implement special format for admin email 'xxx@admin.com'
     @PostMapping("admin/register")
     ResponseEntity<String> RegisterAdmin(@RequestBody Admin newAdmin) {
         // Check if the user with the provided email already exists

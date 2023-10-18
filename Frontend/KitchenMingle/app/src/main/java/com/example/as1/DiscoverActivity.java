@@ -1,13 +1,9 @@
 package com.example.as1;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
-
-
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -19,22 +19,22 @@ public class UsersController {
     UsersRepository usersRepository;
 
     // Show all users
-    @GetMapping("users")
-    List<Users> GetAllUsers(){
-        return usersRepository.findAll();
-    }
-
-    // Show user based on id
-    @GetMapping("users/{id}")
-    Users GetUsers(@PathVariable Long id){
-        Optional<Users> existingUser = usersRepository.findById(id);
-        // Check if id exists
-        if(existingUser.isPresent()){
-            return existingUser.get();
-        }else{
-            throw new NotFoundException("User with id "+ id + " not found");
-        }
-    }
+//    @GetMapping("users")
+//    List<Users> GetAllUsers(){
+//        return usersRepository.findAll();
+//    }
+//
+//    // Show user based on id
+//    @GetMapping("users/{id}")
+//    Users GetUsers(@PathVariable Long id){
+//        Optional<Users> existingUser = usersRepository.findById(id);
+//        // Check if id exists
+//        if(existingUser.isPresent()){
+//            return existingUser.get();
+//        }else{
+//            throw new NotFoundException("User with id "+ id + " not found");
+//        }
+//    }
 
     @GetMapping("users/getEmail/{email}")
     Users GetUsersByEmail(@PathVariable String email){
@@ -81,16 +81,16 @@ public class UsersController {
     }
 
     // Delete user based on id
-    @DeleteMapping("users/delete/{id}")
-    void DeleteUsers(@PathVariable Long id){
-        Optional<Users> existingUser = usersRepository.findById(id);
-        // Check if id exists
-        if(existingUser.isPresent()){
-            usersRepository.delete(existingUser.get());
-        }else{
-            throw new NotFoundException("User with id "+ id + " not found");
-        }
-    }
+//    @DeleteMapping("users/delete/{id}")
+//    void DeleteUsers(@PathVariable Long id){
+//        Optional<Users> existingUser = usersRepository.findById(id);
+//        // Check if id exists
+//        if(existingUser.isPresent()){
+//            usersRepository.delete(existingUser.get());
+//        }else{
+//            throw new NotFoundException("User with id "+ id + " not found");
+//        }
+//    }
 
     @PostMapping("users/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {

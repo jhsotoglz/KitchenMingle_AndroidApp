@@ -2,6 +2,9 @@ package RoundTrip.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 public class Pantry {
@@ -9,13 +12,20 @@ public class Pantry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Ingredient ingredient;
+
+    // Pantry has many-to-many relationship with the Ingredient
+    // i.e. a pantry contains multiple ingredients and an ingredient to be used in multiple pantries
+    @ManyToMany
+    @JoinTable(name = "pantry_ingredients",
+            joinColumns = @JoinColumn(name = "pantry_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> ingredients = new HashSet<>();
     private int quantity;
 
+    // Pantry has many-to-one relationship with the User entity
+    // i.e. each pantry belongs to one user
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "users_id")
     private Users user;
 
     public Pantry() {
@@ -30,12 +40,12 @@ public class Pantry {
         this.id = id;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public int getQuantity() {

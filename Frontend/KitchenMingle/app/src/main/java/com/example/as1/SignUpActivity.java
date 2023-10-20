@@ -1,4 +1,4 @@
-package com.example.as1;
+package com;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+<<<<<<<< HEAD:Frontend/KitchenMingle/app/src/main/java/com/example/as1/SignUpActivity.java
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.as1.api.*;
@@ -15,6 +16,11 @@ import com.example.as1.model.Users;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+========
+import android.widget.Toast;
+
+
+>>>>>>>> 19-demo-2-frontend-login:Frontend/KitchenMingle/app/src/main/java/com/SignUpActivity.java
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -90,10 +96,22 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if(valid) {
                     try {
+<<<<<<<< HEAD:Frontend/KitchenMingle/app/src/main/java/com/example/as1/SignUpActivity.java
                         progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(SignUpActivity.this, "Trying to register...", Toast.LENGTH_SHORT).show();
                         registerUser(newUser);
                         progressBar.setProgress(25);
+========
+                        String response = StringRequestActivity.sendSignUpRequest(email, username, password);
+                        if (response.startsWith("User registered successfully")){
+                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
+                            // Todo: take user to home page
+                        } else {
+                            Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
+                            valid = false;
+                            // Todo: make button to login saying "did you mean to sign in?"
+                        }
+>>>>>>>> 19-demo-2-frontend-login:Frontend/KitchenMingle/app/src/main/java/com/SignUpActivity.java
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

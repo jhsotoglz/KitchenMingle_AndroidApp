@@ -16,6 +16,10 @@ public class Users {
     public Users() {
     }
 
+    public Users(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

@@ -31,7 +31,7 @@ public class IngredientController {
     // Create and save a new ingredient by providing the name in the URL
     @PostMapping("ingredient/post/{name}")
     Ingredient PostIngredientByPath(@PathVariable String name){
-        Ingredient newIngredient = new Ingredient(name, 0);
+        Ingredient newIngredient = new Ingredient(name);
         ingredientRepository.save(newIngredient);
         return newIngredient;
     }
@@ -47,32 +47,6 @@ public class IngredientController {
     @DeleteMapping("ingredient/delete/{id}")
     void deleteIngredientById(@PathVariable Long id) {
         ingredientRepository.deleteById(id);
-    }
-
-    // Increment the quantity of an ingredient by 1
-    @PostMapping("ingredient/increment/{id}")
-    Ingredient incrementIngredientQuantity(@PathVariable Long id) {
-        Ingredient ingredient = ingredientRepository.findById(id).orElse(null);
-        if (ingredient != null) {
-            ingredient.setQuantity(ingredient.getQuantity() + 1);
-            ingredientRepository.save(ingredient);
-        }
-        return ingredient;
-    }
-
-    // Decrement the quantity of an ingredient by 1 and delete if quantity reaches 0
-    @PostMapping("ingredient/decrement/{id}")
-    Ingredient decrementIngredientQuantity(@PathVariable Long id) {
-        Ingredient ingredient = ingredientRepository.findById(id).orElse(null);
-        if (ingredient != null && ingredient.getQuantity() > 0) {
-            ingredient.setQuantity(ingredient.getQuantity() - 1);
-            ingredientRepository.save(ingredient);
-        } else if (ingredient != null && ingredient.getQuantity() == 1) {
-            // If quantity becomes 0, delete the ingredient
-            ingredientRepository.delete(ingredient);
-            return null; // Return null as the ingredient no longer exists
-        }
-        return ingredient;
     }
 
     // Create a new ingredient and associate it with recipes by specifying recipe IDs

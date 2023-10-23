@@ -1,17 +1,26 @@
 package RoundTrip.controller;
 
 import RoundTrip.model.Ingredient;
+import RoundTrip.model.Recipe;
 import RoundTrip.repository.IngredientRepository;
+import RoundTrip.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class IngredientController {
 
     @Autowired
     IngredientRepository ingredientRepository;
+
+    @Autowired
+    private RecipeRepository recipeRepository;
 
     // Gets the list with all the ingredients
     @GetMapping("ingredient/all")
@@ -64,6 +73,27 @@ public class IngredientController {
             return null; // Return null as the ingredient no longer exists
         }
         return ingredient;
+    }
+
+    // Create a new ingredient and associate it with recipes by specifying recipe IDs
+    @PostMapping("/ingredient/create")
+    Ingredient createIngredientWithRecipes(@RequestBody Ingredient newIngredient, @RequestParam List<Long> recipeIds) {
+        Ingredient savedIngredient = ingredientRepository.save(newIngredient);
+        Set<Recipe> recipes = new HashSet<>(recipeRepository.findAllById(recipeIds));
+        savedIngredient.setRecipes(recipes);
+        return savedIngredient;
+    }
+
+    // Retrieve recipes that use a specific ingredient
+    @GetMapping("/ingredient/{ingredientId}/recipes")
+    List<Recipe> getRecipesUsingIngredient(@PathVariable Long ingredientId) {
+        Ingredient ingredient = ingredientRepository.findById(ingredientId).orElse(null);
+        if (ingredient != null) {
+            return new ArrayList<>(ingredient.getRecipes());
+        } else {
+            // Handle the case where the ingredient does not exist
+            return null;
+        }
     }
 
 }

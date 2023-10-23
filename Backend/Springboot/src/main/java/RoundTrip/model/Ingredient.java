@@ -1,9 +1,8 @@
 package RoundTrip.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Ingredient {
@@ -16,8 +15,10 @@ public class Ingredient {
 
     private int quantity; // Added quantity variable
 
-    // Constructors
+    @ManyToMany(mappedBy = "ingredients")
+    private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
 
+    // Constructors
     public Ingredient() {
         // Default constructor
     }
@@ -60,5 +61,15 @@ public class Ingredient {
                 ", ingredientName='" + ingredientName + '\'' +
                 ", quantity=" + quantity +
                 '}';
+    }
+
+    // Getter for the 'recipes' field
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    // Setter for the 'recipes' field
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

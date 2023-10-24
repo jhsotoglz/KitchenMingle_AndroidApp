@@ -107,5 +107,4 @@ public class RecipeController {
         return recipeRepository.findRecipesByIngredientName(ingredientName.toLowerCase());
     }
 
-
 }

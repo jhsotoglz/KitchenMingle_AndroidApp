@@ -13,6 +13,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT r FROM Recipe r WHERE LOWER(r.recipeName) LIKE %:name%")
     List<Recipe> findRecipesByNameStartingWith(@Param("name") String name);
 
-    @Query("SELECT r FROM Recipe r WHERE r.ingredients IS NOT EMPTY AND LOWER(r.ingredients.name) LIKE %:ingredientName%")
+    @Query("SELECT DISTINCT r FROM Recipe r JOIN r.ingredients i WHERE LOWER(i.ingredientName) LIKE %:ingredientName%")
     List<Recipe> findRecipesByIngredientName(@Param("ingredientName") String ingredientName);
+
 }

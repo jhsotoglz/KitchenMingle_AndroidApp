@@ -78,6 +78,10 @@ public class RecipeController {
         }
     }
     //Link existing ingredients to an existing recipe in a many-to-many relationship
+    /*
+    In the request body, provide a JSON array containing the IDs of the existing ingredients you want to associate with the recipe. For example:
+        [1, 2, 3]
+    */
     @PostMapping("/recipe/{recipeId}/associateIngredients")
     Recipe associateIngredientsWithRecipe(@PathVariable Long recipeId, @RequestBody List<Long> ingredientIds) {
         Recipe recipe = recipeRepository.findById(recipeId).orElse(null);
@@ -91,9 +95,17 @@ public class RecipeController {
         return recipe;
     }
 
-    /*
-    In the request body, provide a JSON array containing the IDs of the existing ingredients you want to associate with the recipe. For example:
-        [1, 2, 3]
-     */
+    // To search recipes by name
+    @GetMapping("/recipe/searchByName")
+    List<Recipe> searchRecipesByName(@RequestParam String name) {
+        return recipeRepository.findRecipesByNameStartingWith(name.toLowerCase());
+    }
+
+    // To search recipes by ingredients
+    @GetMapping("/recipe/searchByIngredient")
+    List<Recipe> searchRecipesByIngredient(@RequestParam String ingredientName) {
+        return recipeRepository.findRecipesByIngredientName(ingredientName.toLowerCase());
+    }
+
 
 }

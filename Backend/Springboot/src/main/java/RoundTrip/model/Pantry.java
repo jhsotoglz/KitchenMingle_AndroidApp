@@ -22,9 +22,9 @@ public class Pantry {
     private Set<Ingredient> ingredients = new HashSet<>();
     private int quantity;
 
-    // Pantry has many-to-one relationship with the User entity
+    // Pantry has one-to-one relationship with the User entity
     // i.e. each pantry belongs to one user
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "users_id")
     private Users user;
 

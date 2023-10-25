@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -22,10 +23,10 @@ public class Pantry {
     private Set<Ingredient> ingredients = new HashSet<>();
     private int quantity;
 
-    // Pantry has many-to-one relationship with the User entity
+    // Pantry has one-to-one relationship with the User entity
     // i.e. each pantry belongs to one user
-    @ManyToOne
-    @JoinColumn(name = "users_id")
+    @OneToOne
+    @JsonIgnore // to assure that there is no infinite loop while returning either user/pantry objects
     private Users user;
 
     public Pantry() {

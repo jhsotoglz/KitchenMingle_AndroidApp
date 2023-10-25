@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class PantryController {
@@ -17,15 +18,20 @@ public class PantryController {
     PantryRepository pantryRepository;
 
     @GetMapping("pantry/{userId}")
-    public List<Pantry> getPantryForUser(@PathVariable Long userId) {
+    public Pantry getPantryForUser(@PathVariable Long userId) {
         // Retrieve pantry items for a specific user
-        return pantryRepository.findByUser(new Users(userId));
+        Pantry p = pantryRepository.findByUser(new Users(userId));
+        return p;
     }
 
-    @PostMapping("pantry/add")
-    public Pantry addItemToPantry(@RequestBody Pantry pantryItem) {
+    @PostMapping("pantry/add/{userId}")
+    public Pantry addItemToPantry(@PathVariable Long userId, @RequestBody Ingredient ingredient) {
         // Save a new pantry item
-        return pantryRepository.save(pantryItem);
+        Pantry pantry = pantryRepository.findByUser(new Users(userId));
+        Set<Ingredient> pantryIngredient = pantry.getIngredients();
+        pantryIngredient.add(ingredient);
+        pantryRepository.save(pantry);
+        return pantry;
     }
 
     @DeleteMapping("pantry/delete/{pantryItemId}")

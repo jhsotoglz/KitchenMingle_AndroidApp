@@ -13,6 +13,10 @@ public class Users {
     private String email;
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pantry_id")
+    private Pantry pantry;
+
     public Users() {
     }
 
@@ -50,6 +54,14 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Pantry getPantry() {
+        return pantry;
+    }
+
+    public void setPantry(Pantry pantry) {
+        this.pantry = pantry;
     }
 
     public String toString(){

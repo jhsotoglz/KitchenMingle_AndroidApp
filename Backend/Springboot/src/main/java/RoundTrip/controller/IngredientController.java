@@ -58,17 +58,17 @@ public class IngredientController {
         return savedIngredient;
     }
 
-    // Retrieve recipes that use a specific ingredient
-    @GetMapping("/ingredient/{ingredientId}/recipes")
-    List<Recipe> getRecipesUsingIngredient(@PathVariable Long ingredientId) {
-        Ingredient ingredient = ingredientRepository.findById(ingredientId).orElse(null);
-        if (ingredient != null) {
-            return new ArrayList<>(ingredient.getRecipes());
-        } else {
-            // Handle the case where the ingredient does not exist
-            return null;
-        }
-    }
+//    // Retrieve recipes that use a specific ingredient
+//    @GetMapping("/ingredient/{ingredientId}/recipes")
+//    List<Recipe> getRecipesUsingIngredient(@PathVariable Long ingredientId) {
+//        Ingredient ingredient = ingredientRepository.findById(ingredientId).orElse(null);
+//        if (ingredient != null) {
+//            return new ArrayList<>(ingredient.getRecipes());
+//        } else {
+//            // Handle the case where the ingredient does not exist
+//            return null;
+//        }
+//    }
 
 }
 

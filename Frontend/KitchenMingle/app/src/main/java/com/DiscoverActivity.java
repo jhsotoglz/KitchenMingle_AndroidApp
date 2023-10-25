@@ -1,4 +1,4 @@
-package com.example.as1;
+package com;
 
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

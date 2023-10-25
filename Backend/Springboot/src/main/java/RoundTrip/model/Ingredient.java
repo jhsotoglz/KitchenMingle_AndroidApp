@@ -13,8 +13,6 @@ public class Ingredient {
 
     private String ingredientName;
 
-    private int quantity; // Added quantity variable
-
     @ManyToMany(mappedBy = "ingredients")
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
 
@@ -23,9 +21,8 @@ public class Ingredient {
         // Default constructor
     }
 
-    public Ingredient(String ingredientName, int quantity) {
+    public Ingredient(String ingredientName) {
         this.ingredientName = ingredientName;
-        this.quantity = quantity;
     }
 
     // Getters and setters
@@ -46,20 +43,11 @@ public class Ingredient {
         this.ingredientName = ingredientName;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     @Override
     public String toString() {
         return "Ingredient{" +
                 "id=" + id +
                 ", ingredientName='" + ingredientName + '\'' +
-                ", quantity=" + quantity +
                 '}';
     }
 

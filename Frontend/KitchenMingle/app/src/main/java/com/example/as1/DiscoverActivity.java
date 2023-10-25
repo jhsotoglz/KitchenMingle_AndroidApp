@@ -22,14 +22,14 @@ public class DiscoverActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // Handle Home page navigation
-                        // Example: startActivity(new Intent(com.DiscoverActivity.this, HomeActivity.class));
+                        // Example: startActivity(new Intent(DiscoverActivity.this, HomeActivity.class));
                         return true;
                     case R.id.navigation_discover:
                         // Handle Discover page navigation (you're already on this page)
                         return true;
                     case R.id.navigation_profile:
                         // Handle Profile page navigation
-                        // Example: startActivity(new Intent(com.DiscoverActivity.this, ProfileActivity.class));
+                        // Example: startActivity(new Intent(DiscoverActivity.this, ProfileActivity.class));
                         return true;
                 }
                 return false;

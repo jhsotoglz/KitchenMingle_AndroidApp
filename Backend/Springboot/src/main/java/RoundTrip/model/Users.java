@@ -18,6 +18,8 @@ public class Users {
     private Pantry pantry;
 
     public Users() {
+        this.pantry = new Pantry();
+        this.pantry.setUser(this);
     }
 
     public Users(Long id) {

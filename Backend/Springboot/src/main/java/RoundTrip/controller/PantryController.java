@@ -5,9 +5,11 @@ import RoundTrip.model.Ingredient;
 import RoundTrip.model.Pantry;
 import RoundTrip.model.Users;
 import RoundTrip.repository.PantryRepository;
+import RoundTrip.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -17,21 +19,43 @@ public class PantryController {
     @Autowired
     PantryRepository pantryRepository;
 
+    @Autowired
+    UsersRepository usersRepository;
+
     @GetMapping("pantry/{userId}")
     public Pantry getPantryForUser(@PathVariable Long userId) {
         // Retrieve pantry items for a specific user
-        Pantry p = pantryRepository.findByUser(new Users(userId));
-        return p;
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Users existingUser = user.get();
+            Pantry p = pantryRepository.findByUser(existingUser);
+            return p;
+        }else{
+            return null;
+        }
     }
 
     @PostMapping("pantry/add/{userId}")
     public Pantry addItemToPantry(@PathVariable Long userId, @RequestBody Ingredient ingredient) {
         // Save a new pantry item
-        Pantry pantry = pantryRepository.findByUser(new Users(userId));
-        Set<Ingredient> pantryIngredient = pantry.getIngredients();
-        pantryIngredient.add(ingredient);
-        pantryRepository.save(pantry);
-        return pantry;
+//        Pantry pantry = pantryRepository.findByUser(new Users(userId));
+//        Set<Ingredient> pantryIngredient = pantry.getIngredients();
+//        pantryIngredient.add(ingredient);
+//        pantryRepository.save(pantry);
+//        return pantry;
+
+        // TODO: add ingredient not working
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Users existingUser = user.get();
+            Pantry p = existingUser.getPantry();
+            Set<Ingredient> ingredientSet = p.getIngredients();
+            ingredientSet.add(ingredient);
+            pantryRepository.save(p);
+            return p;
+        }else{
+            return null;
+        }
     }
 
     @DeleteMapping("pantry/delete/{pantryItemId}")

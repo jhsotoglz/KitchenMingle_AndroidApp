@@ -12,9 +12,13 @@ public class Ingredient {
     private Long id;
 
     private String ingredientName;
+    private int quantity;
 
     @ManyToMany(mappedBy = "ingredients")
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
+
+    @ManyToMany(mappedBy = "ingredients")
+    private Set<Pantry> pantry;
 
     // Constructors
     public Ingredient() {
@@ -23,6 +27,7 @@ public class Ingredient {
 
     public Ingredient(String ingredientName) {
         this.ingredientName = ingredientName;
+        this.quantity = 1;  // everytime a new ingredient is added, starting quantity is 1
     }
 
     // Getters and setters
@@ -43,6 +48,14 @@ public class Ingredient {
         this.ingredientName = ingredientName;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "Ingredient{" +
@@ -59,5 +72,13 @@ public class Ingredient {
     // Setter for the 'recipes' field
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public Set<Pantry> getPantry() {
+        return pantry;
+    }
+
+    public void setPantry(Set<Pantry> pantry) {
+        this.pantry = pantry;
     }
 }

@@ -21,11 +21,11 @@ public class Pantry {
             joinColumns = @JoinColumn(name = "pantry_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredients = new HashSet<>();
-    private int quantity;
+//    private int quantity;
 
     // Pantry has one-to-one relationship with the User entity
     // i.e. each pantry belongs to one user
-    @OneToOne
+    @OneToOne(mappedBy = "pantry")
     @JsonIgnore // to assure that there is no infinite loop while returning either user/pantry objects
     private Users user;
 
@@ -47,14 +47,6 @@ public class Pantry {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public Users getUser() {

@@ -14,20 +14,24 @@ public class Pantry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Pantry has many-to-many relationship with the Ingredient
-    // i.e. a pantry contains multiple ingredients and an ingredient to be used in multiple pantries
-    @ManyToMany
-    @JoinTable(name = "pantry_ingredients",
-            joinColumns = @JoinColumn(name = "pantry_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-    private Set<Ingredient> ingredients = new HashSet<>();
-//    private int quantity;
-
     // Pantry has one-to-one relationship with the User entity
     // i.e. each pantry belongs to one user
     @OneToOne(mappedBy = "pantry")
     @JsonIgnore // to assure that there is no infinite loop while returning either user/pantry objects
     private Users user;
+
+    // Pantry has many-to-many relationship with the Ingredient
+    // i.e. a pantry contains multiple ingredients and an ingredient to be used in multiple pantries
+//    @ManyToMany
+//    @JoinTable(name = "pantry_ingredients",
+//            joinColumns = @JoinColumn(name = "pantry_id"),
+//            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+//    private Set<Ingredient> ingredients = new HashSet<>();
+
+    // One pantry can store many items
+    @OneToMany(mappedBy = "pantry", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PantryIngredient> pantryIngredient = new HashSet<>();
+
 
     public Pantry() {
         // Default constructor
@@ -41,19 +45,19 @@ public class Pantry {
         this.id = id;
     }
 
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public Users getUser() {
         return user;
     }
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public Set<PantryIngredient> getPantryIngredient() {
+        return pantryIngredient;
+    }
+
+    public void setPantryIngredient(Set<PantryIngredient> pantryIngredient) {
+        this.pantryIngredient = pantryIngredient;
     }
 }

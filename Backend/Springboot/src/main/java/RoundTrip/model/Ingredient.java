@@ -2,6 +2,7 @@ package RoundTrip.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,8 +18,11 @@ public class Ingredient {
     @ManyToMany(mappedBy = "ingredients")
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
 
-    @ManyToMany(mappedBy = "ingredients")
-    private Set<Pantry> pantry;
+//    @ManyToMany(mappedBy = "ingredients")
+//    private Set<Pantry> pantry;
+
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
     // Constructors
     public Ingredient() {
@@ -74,11 +78,11 @@ public class Ingredient {
         this.recipes = recipes;
     }
 
-    public Set<Pantry> getPantry() {
-        return pantry;
+    public Set<PantryIngredient> getPantryIngredient() {
+        return pantryIngredient;
     }
 
-    public void setPantry(Set<Pantry> pantry) {
-        this.pantry = pantry;
+    public void setPantryIngredient(Set<PantryIngredient> pantryIngredient) {
+        this.pantryIngredient = pantryIngredient;
     }
 }

@@ -64,58 +64,59 @@ public class PantryController {
         pantryRepository.deleteById(pantryItemId);
     }
 
-    @PutMapping("pantry/updateQuantity/{pantryItemId}")
-    public Pantry updatePantryItemQuantity(@PathVariable Long pantryItemId, @RequestParam int newQuantity) {
-        // Find the pantry item by ID
-        Optional<Pantry> pItem = pantryRepository.findById(pantryItemId);
-        if(pItem.isPresent()){
-            // Update the quantity
-            Pantry pantryItem = pItem.get();
-            pantryItem.setQuantity(newQuantity);
-
-            // Save the updated pantry item
-            return pantryRepository.save(pItem.get());
-        }else{
-            throw new NotFoundException("Ingredient " + pantryItemId + " not found.");
-        }
-    }
-
-    // Increment the quantity of an ingredient by 1
-    @PostMapping("pantry/increment/{pantryItemId}")
-    Pantry incrementIngredientQuantity(@PathVariable Long pantryItemId) {
-        Optional<Pantry> pItem = pantryRepository.findById(pantryItemId);
-        if(pItem.isPresent()){
-            // Update the quantity
-            Pantry pantryItem = pItem.get();
-            int incr = pantryItem.getQuantity() + 1;
-            pantryItem.setQuantity(incr);
-
-            // Save the updated pantry item
-            return pantryRepository.save(pItem.get());
-        }else{
-            throw new NotFoundException("Ingredient " + pantryItemId + " not found.");
-        }
-    }
-
-    // Decrement the quantity of an ingredient by 1 and delete if quantity reaches 0
-    @PostMapping("pantry/decrement/{pantryItemId}")
-    Pantry decrementIngredientQuantity(@PathVariable Long pantryItemId) {
-        Optional<Pantry> pItem = pantryRepository.findById(pantryItemId);
-        if(pItem.isPresent()){
-            Pantry pantryItem = pItem.get();
-            int quantity = pantryItem.getQuantity();
-            if (quantity <= 1){
-                pantryRepository.delete(pantryItem);
-                return null;
-            }else{
-                int decr = quantity - 1;
-                pantryItem.setQuantity(decr);
-                return pantryRepository.save(pItem.get());
-            }
-        }else{
-            throw new NotFoundException("Ingredient " + pantryItemId + " not found.");
-        }
-    }
+    // TODO: Set, increment, decrement quantity of specific ingredient
+//    @PutMapping("pantry/updateQuantity/{pantryItemId}")
+//    public Pantry updatePantryItemQuantity(@PathVariable Long pantryItemId, @RequestParam int newQuantity) {
+//        // Find the pantry item by ID
+//        Optional<Pantry> pItem = pantryRepository.findById(pantryItemId);
+//        if(pItem.isPresent()){
+//            // Update the quantity
+//            Pantry pantryItem = pItem.get();
+//            pantryItem.setQuantity(newQuantity);
+//
+//            // Save the updated pantry item
+//            return pantryRepository.save(pItem.get());
+//        }else{
+//            throw new NotFoundException("Ingredient " + pantryItemId + " not found.");
+//        }
+//    }
+//
+//    // Increment the quantity of an ingredient by 1
+//    @PostMapping("pantry/increment/{pantryItemId}")
+//    Pantry incrementIngredientQuantity(@PathVariable Long pantryItemId) {
+//        Optional<Pantry> pItem = pantryRepository.findById(pantryItemId);
+//        if(pItem.isPresent()){
+//            // Update the quantity
+//            Pantry pantryItem = pItem.get();
+//            int incr = pantryItem.getQuantity() + 1;
+//            pantryItem.setQuantity(incr);
+//
+//            // Save the updated pantry item
+//            return pantryRepository.save(pItem.get());
+//        }else{
+//            throw new NotFoundException("Ingredient " + pantryItemId + " not found.");
+//        }
+//    }
+//
+//    // Decrement the quantity of an ingredient by 1 and delete if quantity reaches 0
+//    @PostMapping("pantry/decrement/{pantryItemId}")
+//    Pantry decrementIngredientQuantity(@PathVariable Long pantryItemId) {
+//        Optional<Pantry> pItem = pantryRepository.findById(pantryItemId);
+//        if(pItem.isPresent()){
+//            Pantry pantryItem = pItem.get();
+//            int quantity = pantryItem.getQuantity();
+//            if (quantity <= 1){
+//                pantryRepository.delete(pantryItem);
+//                return null;
+//            }else{
+//                int decr = quantity - 1;
+//                pantryItem.setQuantity(decr);
+//                return pantryRepository.save(pItem.get());
+//            }
+//        }else{
+//            throw new NotFoundException("Ingredient " + pantryItemId + " not found.");
+//        }
+//    }
 
     // TODO: Search recipes based on ingredients in pantry
 }

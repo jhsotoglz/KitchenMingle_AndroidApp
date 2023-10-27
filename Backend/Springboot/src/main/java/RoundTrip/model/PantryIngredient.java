@@ -22,6 +22,12 @@ public class PantryIngredient {
     public PantryIngredient() {
     }
 
+    // Constructor that sets new ingredient quantity to 1 by default
+    public PantryIngredient(Ingredient ingredient){
+        this.ingredient = ingredient;
+        this.quantity = 1;
+    }
+
     public Long getId() {
         return id;
     }

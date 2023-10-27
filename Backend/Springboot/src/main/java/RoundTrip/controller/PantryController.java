@@ -35,8 +35,8 @@ public class PantryController {
         }
     }
 
-    @PostMapping("pantry/add/{userId}")
-    public Pantry addItemToPantry(@PathVariable Long userId, @RequestBody Ingredient ingredient) {
+//    @PostMapping("pantry/add/{userId}")
+//    public Pantry addItemToPantry(@PathVariable Long userId, @RequestBody Ingredient ingredient) {
         // Save a new pantry item
 //        Pantry pantry = pantryRepository.findByUser(new Users(userId));
 //        Set<Ingredient> pantryIngredient = pantry.getIngredients();
@@ -45,24 +45,24 @@ public class PantryController {
 //        return pantry;
 
         // TODO: add ingredient not working
-        Optional<Users> user = usersRepository.findById(userId);
-        if (user.isPresent()){
-            Users existingUser = user.get();
-            Pantry p = existingUser.getPantry();
-            Set<Ingredient> ingredientSet = p.getIngredients();
-            ingredientSet.add(ingredient);
-            pantryRepository.save(p);
-            return p;
-        }else{
-            return null;
-        }
-    }
+//        Optional<Users> user = usersRepository.findById(userId);
+//        if (user.isPresent()){
+//            Users existingUser = user.get();
+//            Pantry p = existingUser.getPantry();
+//            Set<Ingredient> ingredientSet = p.getIngredients();
+//            ingredientSet.add(ingredient);
+//            pantryRepository.save(p);
+//            return p;
+//        }else{
+//            return null;
+//        }
+//    }
 
-    @DeleteMapping("pantry/delete/{pantryItemId}")
-    public void deletePantryItem(@PathVariable Long pantryItemId) {
-        // Delete a pantry item by ID
-        pantryRepository.deleteById(pantryItemId);
-    }
+//    @DeleteMapping("pantry/delete/{pantryItemId}")
+//    public void deletePantryItem(@PathVariable Long pantryItemId) {
+//        // Delete a pantry item by ID
+//        pantryRepository.deleteById(pantryItemId);
+//    }
 
     // TODO: Set, increment, decrement quantity of specific ingredient
 //    @PutMapping("pantry/updateQuantity/{pantryItemId}")

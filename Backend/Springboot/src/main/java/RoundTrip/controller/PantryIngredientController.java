@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class PantryIngredientController {
@@ -32,20 +33,21 @@ public class PantryIngredientController {
     UsersRepository usersRepository;
 
     // Add ingredient to user pantry
-    // TODO: consider input ingredient name
     @PostMapping("pantryIng/add/{userId}/{ingredientId}")
-    public PantryIngredient addPantryIngredient(@PathVariable Long userId,
-                                                @PathVariable Long ingredientId){
+    public Set<PantryIngredient> addPantryIngredient(@PathVariable Long userId, @PathVariable Long ingredientId){
         Optional<Users> user = usersRepository.findById(userId);
         if (user.isPresent()){
             Users existingUser = user.get();
-            Pantry pantry = pantryRepository.findByUser(existingUser);
-
+            Pantry pantry = existingUser.getPantry();
             Optional<Ingredient> ingr = ingredientRepository.findById(ingredientId);
             if(ingr.isPresent()){
                 Ingredient ingredient = ingr.get();
                 PantryIngredient pantryIngredient = new PantryIngredient(ingredient);
-                return pantryIngredientRepository.save(pantryIngredient);
+                pantryIngredient.setPantry(pantry);
+                pantry.setPantryIngredient(pantryIngredient);
+                pantryIngredientRepository.save(pantryIngredient);
+                pantryRepository.save(pantry);
+                return pantry.getPantryIngredient();
             }else{
                 throw new NotFoundException("Ingredient "+ ingredientId + " not found");
             }

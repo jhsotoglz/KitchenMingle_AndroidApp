@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -13,7 +14,6 @@ public class Ingredient {
     private Long id;
 
     private String ingredientName;
-    private int quantity;
 
     @ManyToMany(mappedBy = "ingredients")
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
@@ -22,6 +22,7 @@ public class Ingredient {
 //    private Set<Pantry> pantry;
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
     // Constructors
@@ -31,7 +32,6 @@ public class Ingredient {
 
     public Ingredient(String ingredientName) {
         this.ingredientName = ingredientName;
-        this.quantity = 1;  // everytime a new ingredient is added, starting quantity is 1
     }
 
     // Getters and setters
@@ -50,14 +50,6 @@ public class Ingredient {
 
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     @Override

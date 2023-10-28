@@ -1,6 +1,7 @@
 package RoundTrip.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -30,6 +31,7 @@ public class Pantry {
 
     // One pantry can store many items
     @OneToMany(mappedBy = "pantry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
 
@@ -57,7 +59,11 @@ public class Pantry {
         return pantryIngredient;
     }
 
-    public void setPantryIngredient(Set<PantryIngredient> pantryIngredient) {
-        this.pantryIngredient = pantryIngredient;
+//    public void setPantryIngredient(Set<PantryIngredient> pantryIngredient) {
+//        this.pantryIngredient = pantryIngredient;
+//    }
+
+    public void setPantryIngredient(PantryIngredient pantryIngredient) {
+        this.pantryIngredient.add(pantryIngredient);
     }
 }

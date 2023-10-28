@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,16 +11,24 @@ public class PantryIngredient {
 
     @ManyToOne
     @JoinColumn(name = "pantry_id")
+    @JsonBackReference
     private Pantry pantry;
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
+    @JsonBackReference
     private Ingredient ingredient;
 
     private int quantity;
 
     // Default constructor
     public PantryIngredient() {
+    }
+
+    // Constructor that sets new ingredient quantity to 1 by default
+    public PantryIngredient(Ingredient ingredient){
+        this.ingredient = ingredient;
+        this.quantity = 1;
     }
 
     public Long getId() {

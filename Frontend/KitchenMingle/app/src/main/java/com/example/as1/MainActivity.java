@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient;
+    Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient, btnToDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         btnToSignUp = findViewById(R.id.btnToSignUp);
         btnToRecipe = findViewById(R.id.btnToRecipe);
         btnToIngredient = findViewById(R.id.btnToIngredient);
+        btnToDetails = findViewById(R.id.btnToDetails);
 
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this, IngredientActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnToDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                 startActivity(intent);
             }
         });

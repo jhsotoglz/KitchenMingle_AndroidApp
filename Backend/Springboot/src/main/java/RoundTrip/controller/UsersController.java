@@ -115,7 +115,7 @@ public class UsersController {
     }
 
     // Sets a favorite recipe for a specific user
-    @PostMapping("users/{userId}/favorite-recipes/{recipeId}")
+    @PostMapping("users/{userId}/favRecipe/{recipeId}")
     ResponseEntity<String> addFavoriteRecipe(
             @PathVariable Long userId,
             @PathVariable Long recipeId
@@ -129,8 +129,13 @@ public class UsersController {
         return ResponseEntity.ok("Recipe added to favorites.");
     }
 
-    // TODO: Remove favorite recipe
+    // Remove a recipe saved in favorites for a specific user
+    @DeleteMapping("users/{userId}/favRecipe/{recipeId}")
+    ResponseEntity<String> deleteFavoriteRecipe(@PathVariable Long userId, @PathVariable Long recipeId){
+        // TODO: Remove favorite recipe
 
+        return ResponseEntity.ok("Recepi removed from favorites.");
+    }
 
 
     // Gets the favorite (saved) recipes of a user

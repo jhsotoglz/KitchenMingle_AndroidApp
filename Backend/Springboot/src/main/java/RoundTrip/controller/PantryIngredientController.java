@@ -73,4 +73,8 @@ public class PantryIngredientController {
             throw new NotFoundException("User "+ userId + " not found");
         }
     }
+
+    // TODO: increment quantity by 1
+
+    // TODO: decrement quantity by 1
 }

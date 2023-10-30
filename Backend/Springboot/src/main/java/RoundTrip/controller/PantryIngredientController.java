@@ -10,10 +10,7 @@ import RoundTrip.repository.PantryIngredientRepository;
 import RoundTrip.repository.PantryRepository;
 import RoundTrip.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.Set;
@@ -54,7 +51,27 @@ public class PantryIngredientController {
         }else{
             throw new NotFoundException("User "+ userId + " not found");
         }
-
     }
 
+    @PutMapping("pantryIng/quantity/{userId}/{pantryIngId}")
+    public void setQuantity(@PathVariable Long userId, @PathVariable Long pantryIngId,
+                            @RequestBody int quantity){
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Users existingUser = user.get();
+            Pantry pantry = existingUser.getPantry();
+            Optional<PantryIngredient> pantryIngr = pantryIngredientRepository.findById(pantryIngId);
+            if (pantryIngr.isPresent()){
+                PantryIngredient pantryIngredient = pantryIngr.get();
+                pantryIngredient.setQuantity(quantity);
+                pantry.setPantryIngredient(pantryIngredient);
+                pantryIngredientRepository.save(pantryIngredient);
+                pantryRepository.save(pantry);
+            }else{
+                throw new NotFoundException("User "+ pantryIngId + " not found");
+            }
+        }else{
+            throw new NotFoundException("User "+ userId + " not found");
+        }
+    }
 }

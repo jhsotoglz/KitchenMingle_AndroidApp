@@ -77,4 +77,20 @@ public class PantryIngredientController {
     // TODO: increment quantity by 1
 
     // TODO: decrement quantity by 1
+
+    // Delete ingredient from pantry
+    @DeleteMapping("pantryIng/delete/{userId}/{pantryIngId}")
+    public void deleteIngredient(@PathVariable Long userId, @PathVariable Long pantryIngId){
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Optional<PantryIngredient> pantryIngr = pantryIngredientRepository.findById(pantryIngId);
+            if (pantryIngr.isPresent()){
+                pantryIngredientRepository.deleteById(pantryIngId);
+            }else{
+                throw new NotFoundException("User "+ pantryIngId + " not found");
+            }
+        }else{
+            throw new NotFoundException("User "+ userId + " not found");
+        }
+    }
 }

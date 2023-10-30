@@ -53,9 +53,10 @@ public class PantryIngredientController {
         }
     }
 
-    @PutMapping("pantryIng/quantity/{userId}/{pantryIngId}")
+    // Manually set quantity for an ingredient stored in Pantry
+    @PutMapping("pantryIng/quantity/{userId}/{pantryIngId}/{quantity}")
     public void setQuantity(@PathVariable Long userId, @PathVariable Long pantryIngId,
-                            @RequestBody int quantity){
+                            @PathVariable int quantity){
         Optional<Users> user = usersRepository.findById(userId);
         if (user.isPresent()){
             Users existingUser = user.get();
@@ -64,9 +65,7 @@ public class PantryIngredientController {
             if (pantryIngr.isPresent()){
                 PantryIngredient pantryIngredient = pantryIngr.get();
                 pantryIngredient.setQuantity(quantity);
-                pantry.setPantryIngredient(pantryIngredient);
                 pantryIngredientRepository.save(pantryIngredient);
-                pantryRepository.save(pantry);
             }else{
                 throw new NotFoundException("User "+ pantryIngId + " not found");
             }

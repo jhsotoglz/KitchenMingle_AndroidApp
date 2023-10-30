@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient, btnToDetails;
+
+    Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient, btnToDiscover, btnToDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnToDiscover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, DiscoverActivity.class);
                 startActivity(intent);
             }
         });

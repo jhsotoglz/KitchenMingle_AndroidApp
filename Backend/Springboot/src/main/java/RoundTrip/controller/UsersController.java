@@ -3,12 +3,15 @@ package RoundTrip.controller;
 
 import RoundTrip.NotFoundException;
 import RoundTrip.model.LoginRequest;
+import RoundTrip.model.Recipe;
 import RoundTrip.model.Users;
 import RoundTrip.repository.UsersRepository;
+import RoundTrip.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +20,9 @@ public class UsersController {
 
     @Autowired
     UsersRepository usersRepository;
+
+    @Autowired
+    RecipeRepository recipeRepository;
 
     // Show all users
 //    @GetMapping("users")
@@ -107,4 +113,31 @@ public class UsersController {
 
         return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
     }
+
+    // Sets a favorite recipe for a specific user
+    @PostMapping("users/{userId}/favorite-recipes/{recipeId}")
+    ResponseEntity<String> addFavoriteRecipe(
+            @PathVariable Long userId,
+            @PathVariable Long recipeId
+    ) {
+        Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new NotFoundException("Recipe not found"));
+
+        user.getFavoriteRecipes().add(recipe);
+        usersRepository.save(user);
+
+        return ResponseEntity.ok("Recipe added to favorites.");
+    }
+
+    // TODO: Remove favorite recipe
+
+
+
+    // Gets the favorite (saved) recipes of a user
+    @GetMapping("users/{userId}/favorite-recipes")
+    List<Recipe> getFavoriteRecipes(@PathVariable Long userId) {
+        Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
+        return new ArrayList<>(user.getFavoriteRecipes());
+    }
+
 }

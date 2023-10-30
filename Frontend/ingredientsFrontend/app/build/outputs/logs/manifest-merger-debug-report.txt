@@ -1,0 +1,188 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.android.material:material:1.4.0] /Users/katamundson/.gradle/caches/transforms-3/f5211ad54e9b7ac2b8778f5fde98d990/transformed/material-1.4.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/e75577856cfae9355f4e4a803b7f13a4/transformed/constraintlayout-2.1.0/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.3.1] /Users/katamundson/.gradle/caches/transforms-3/07441370f36484c89d75fe9903511729/transformed/appcompat-1.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/9e9e9e2a0ba2b916bf2a39eaac551cc8/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/katamundson/.gradle/caches/transforms-3/b7f0167245c0aded9eb5e8ce289bfc60/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.2.4] /Users/katamundson/.gradle/caches/transforms-3/1c52b7ae3fc7d4be56240ba570f8c9eb/transformed/jetified-activity-1.2.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] /Users/katamundson/.gradle/caches/transforms-3/3fc87a520f8a6b71e773f37eb0315f46/transformed/jetified-appcompat-resources-1.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/85d0172f03892b096a31435c7270a3a4/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/30fbb13b9202d7683473d86c70b54a76/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/8b2bcd492b2d752e015283db742ec34a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/katamundson/.gradle/caches/transforms-3/fce0de8ca47e80370fe89b150334d144/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/e68889bcaaea6f1ac7d321b247222a06/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/aa25470a51d16433c0b411c49aac7231/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/27e2ac6b42f3bf15072cb781630fa8c8/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/728f4d42276a99219c2e4c93c5434f35/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/27e8d6cbe64f2948ffba9340e5bd2a4a/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/97820d20f98ceedc4f0db74d3a1f860b/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/996c43cfbd5f1f94870053ca25db8717/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.5.0] /Users/katamundson/.gradle/caches/transforms-3/99079a68ff4aa5c29f973b8c3329e277/transformed/core-1.5.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/139bedd6f33bf8fd985502417b81e61a/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/326e86f0d9f7dac50f39eb64343ad1cf/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/de0cdc839489313a628b8cf64d62b69f/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/fada6103b01ef2b2d2e10287d55a36f6/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/47f61dcde053ac8c13b5f2dc7764fac3/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/0b208f3bd459fad21470518f1c553ed3/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/katamundson/.gradle/caches/transforms-3/91367f8276665d4e9eb7c44fa7b6f316/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/d9a11fee4fbf74cc8baeb481b1a842e4/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/katamundson/.gradle/caches/transforms-3/3f068c677b8ceb5a062de0bfb0914266/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/ec6ee5dbfcb065967163bd707d0682f4/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/a5f909d0bbf92062ff730c887e36f4d1/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/59097676843a52a472a83402d6dd0def/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/699c8e304c6929930d0138540a168b1b/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/f72483f43d3b103f8332ba8413c3769f/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/35300da7217e9d7d4bb167d6c87ca7be/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/3010837d74cd9256a73ca9732d7775ce/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+	package
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:3:5-41
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:1-26:12
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:5:5-66
+	android:name
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:5:22-64
+application
+ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:7:5-24:19
+MERGED from [com.google.android.material:material:1.4.0] /Users/katamundson/.gradle/caches/transforms-3/f5211ad54e9b7ac2b8778f5fde98d990/transformed/material-1.4.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.4.0] /Users/katamundson/.gradle/caches/transforms-3/f5211ad54e9b7ac2b8778f5fde98d990/transformed/material-1.4.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/e75577856cfae9355f4e4a803b7f13a4/transformed/constraintlayout-2.1.0/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/e75577856cfae9355f4e4a803b7f13a4/transformed/constraintlayout-2.1.0/AndroidManifest.xml:9:5-20
+MERGED from [androidx.core:core:1.5.0] /Users/katamundson/.gradle/caches/transforms-3/99079a68ff4aa5c29f973b8c3329e277/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.5.0] /Users/katamundson/.gradle/caches/transforms-3/99079a68ff4aa5c29f973b8c3329e277/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/katamundson/.gradle/caches/transforms-3/91367f8276665d4e9eb7c44fa7b6f316/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/katamundson/.gradle/caches/transforms-3/91367f8276665d4e9eb7c44fa7b6f316/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.5.0] /Users/katamundson/.gradle/caches/transforms-3/99079a68ff4aa5c29f973b8c3329e277/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:10:9-41
+	android:roundIcon
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:11:9-54
+	android:icon
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:9:9-43
+	android:allowBackup
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:13:9-51
+	android:usesCleartextTraffic
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:14:9-44
+activity#test.connect.myapplication.IngredientMainActivity
+ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:15:9-23:20
+	android:exported
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:17:13-36
+	android:name
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:16:13-51
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:18:13-22:29
+action#android.intent.action.MAIN
+ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:19:17-69
+	android:name
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml:21:27-74
+uses-sdk
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.4.0] /Users/katamundson/.gradle/caches/transforms-3/f5211ad54e9b7ac2b8778f5fde98d990/transformed/material-1.4.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.4.0] /Users/katamundson/.gradle/caches/transforms-3/f5211ad54e9b7ac2b8778f5fde98d990/transformed/material-1.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/e75577856cfae9355f4e4a803b7f13a4/transformed/constraintlayout-2.1.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/e75577856cfae9355f4e4a803b7f13a4/transformed/constraintlayout-2.1.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.3.1] /Users/katamundson/.gradle/caches/transforms-3/07441370f36484c89d75fe9903511729/transformed/appcompat-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.3.1] /Users/katamundson/.gradle/caches/transforms-3/07441370f36484c89d75fe9903511729/transformed/appcompat-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/9e9e9e2a0ba2b916bf2a39eaac551cc8/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/9e9e9e2a0ba2b916bf2a39eaac551cc8/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/katamundson/.gradle/caches/transforms-3/b7f0167245c0aded9eb5e8ce289bfc60/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/katamundson/.gradle/caches/transforms-3/b7f0167245c0aded9eb5e8ce289bfc60/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] /Users/katamundson/.gradle/caches/transforms-3/1c52b7ae3fc7d4be56240ba570f8c9eb/transformed/jetified-activity-1.2.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] /Users/katamundson/.gradle/caches/transforms-3/1c52b7ae3fc7d4be56240ba570f8c9eb/transformed/jetified-activity-1.2.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] /Users/katamundson/.gradle/caches/transforms-3/3fc87a520f8a6b71e773f37eb0315f46/transformed/jetified-appcompat-resources-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.1] /Users/katamundson/.gradle/caches/transforms-3/3fc87a520f8a6b71e773f37eb0315f46/transformed/jetified-appcompat-resources-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/85d0172f03892b096a31435c7270a3a4/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/85d0172f03892b096a31435c7270a3a4/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/30fbb13b9202d7683473d86c70b54a76/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/30fbb13b9202d7683473d86c70b54a76/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/8b2bcd492b2d752e015283db742ec34a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/8b2bcd492b2d752e015283db742ec34a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /Users/katamundson/.gradle/caches/transforms-3/fce0de8ca47e80370fe89b150334d144/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/katamundson/.gradle/caches/transforms-3/fce0de8ca47e80370fe89b150334d144/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/e68889bcaaea6f1ac7d321b247222a06/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/e68889bcaaea6f1ac7d321b247222a06/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/aa25470a51d16433c0b411c49aac7231/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/aa25470a51d16433c0b411c49aac7231/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/27e2ac6b42f3bf15072cb781630fa8c8/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/27e2ac6b42f3bf15072cb781630fa8c8/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/728f4d42276a99219c2e4c93c5434f35/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/728f4d42276a99219c2e4c93c5434f35/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/27e8d6cbe64f2948ffba9340e5bd2a4a/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/27e8d6cbe64f2948ffba9340e5bd2a4a/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/97820d20f98ceedc4f0db74d3a1f860b/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/97820d20f98ceedc4f0db74d3a1f860b/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/996c43cfbd5f1f94870053ca25db8717/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/996c43cfbd5f1f94870053ca25db8717/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.5.0] /Users/katamundson/.gradle/caches/transforms-3/99079a68ff4aa5c29f973b8c3329e277/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.5.0] /Users/katamundson/.gradle/caches/transforms-3/99079a68ff4aa5c29f973b8c3329e277/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/139bedd6f33bf8fd985502417b81e61a/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/139bedd6f33bf8fd985502417b81e61a/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/326e86f0d9f7dac50f39eb64343ad1cf/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/326e86f0d9f7dac50f39eb64343ad1cf/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/de0cdc839489313a628b8cf64d62b69f/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/katamundson/.gradle/caches/transforms-3/de0cdc839489313a628b8cf64d62b69f/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/fada6103b01ef2b2d2e10287d55a36f6/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/fada6103b01ef2b2d2e10287d55a36f6/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/47f61dcde053ac8c13b5f2dc7764fac3/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/47f61dcde053ac8c13b5f2dc7764fac3/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/0b208f3bd459fad21470518f1c553ed3/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/0b208f3bd459fad21470518f1c553ed3/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/katamundson/.gradle/caches/transforms-3/91367f8276665d4e9eb7c44fa7b6f316/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/katamundson/.gradle/caches/transforms-3/91367f8276665d4e9eb7c44fa7b6f316/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/d9a11fee4fbf74cc8baeb481b1a842e4/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/d9a11fee4fbf74cc8baeb481b1a842e4/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/katamundson/.gradle/caches/transforms-3/3f068c677b8ceb5a062de0bfb0914266/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/katamundson/.gradle/caches/transforms-3/3f068c677b8ceb5a062de0bfb0914266/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/ec6ee5dbfcb065967163bd707d0682f4/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/katamundson/.gradle/caches/transforms-3/ec6ee5dbfcb065967163bd707d0682f4/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/a5f909d0bbf92062ff730c887e36f4d1/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/katamundson/.gradle/caches/transforms-3/a5f909d0bbf92062ff730c887e36f4d1/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/59097676843a52a472a83402d6dd0def/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/59097676843a52a472a83402d6dd0def/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/699c8e304c6929930d0138540a168b1b/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/699c8e304c6929930d0138540a168b1b/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/f72483f43d3b103f8332ba8413c3769f/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/f72483f43d3b103f8332ba8413c3769f/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/35300da7217e9d7d4bb167d6c87ca7be/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/35300da7217e9d7d4bb167d6c87ca7be/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/3010837d74cd9256a73ca9732d7775ce/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/katamundson/.gradle/caches/transforms-3/3010837d74cd9256a73ca9732d7775ce/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+		ADDED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/katamundson/Desktop/coms309/lg_116/Frontend/ingredientsFrontend/app/src/main/AndroidManifest.xml

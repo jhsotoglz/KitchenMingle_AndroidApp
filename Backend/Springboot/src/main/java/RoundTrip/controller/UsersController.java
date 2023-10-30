@@ -132,9 +132,16 @@ public class UsersController {
     // Remove a recipe saved in favorites for a specific user
     @DeleteMapping("users/{userId}/favRecipe/{recipeId}")
     ResponseEntity<String> deleteFavoriteRecipe(@PathVariable Long userId, @PathVariable Long recipeId){
-        // TODO: Remove favorite recipe
+        Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new NotFoundException("Recipe not found"));
 
-        return ResponseEntity.ok("Recepi removed from favorites.");
+        if (user.getFavoriteRecipes().contains(recipe)){
+            user.getFavoriteRecipes().remove(recipe);
+            usersRepository.save(user);
+            return ResponseEntity.ok("Recipe removed from favorites.");
+        }else {
+            return ResponseEntity.badRequest().body("Recipe not found in user's favorites.");
+        }
     }
 
 

@@ -2,6 +2,8 @@ package RoundTrip.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Users {
 
@@ -16,6 +18,14 @@ public class Users {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pantry_id")
     private Pantry pantry;
+
+    @ManyToMany
+    @JoinTable(
+            name = "favorite_recipes",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id")
+    )
+    private Set<Recipe> favoriteRecipes;
 
     public Users() {
         this.pantry = new Pantry();
@@ -68,6 +78,10 @@ public class Users {
 
     public String toString(){
         return getUsername() +" | "+ getEmail() + " | "+ getPassword();
+    }
+
+    public Set<Recipe> getFavoriteRecipes() {
+        return favoriteRecipes;
     }
 }
 

@@ -14,7 +14,8 @@ public class ApiClientFactory {
 
         if (apiClientSeed == null) {
             apiClientSeed = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8080/") // emulator
+                  //  .baseUrl("http://10.0.2.2:8080/") // emulator
+                    .baseUrl("http://coms-309-033.class.las.iastate.edu:8080")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

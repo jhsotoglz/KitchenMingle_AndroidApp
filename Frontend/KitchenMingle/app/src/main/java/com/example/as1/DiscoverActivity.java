@@ -19,7 +19,7 @@ public class DiscoverActivity extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+                /*switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // Handle Home page navigation
                         // Example: startActivity(new Intent(DiscoverActivity.this, HomeActivity.class));
@@ -31,7 +31,7 @@ public class DiscoverActivity extends AppCompatActivity {
                         // Handle Profile page navigation
                         // Example: startActivity(new Intent(DiscoverActivity.this, ProfileActivity.class));
                         return true;
-                }
+                }*/
                 return false;
             }
         });

@@ -13,9 +13,4 @@
         android:id="@+id/nav_pantry"
         android:icon="@drawable/ic_pantry"
         android:title="Pantry" />
-
-    <item
-        android:id="@+id/nav_ingredient"
-        android:icon="@drawable/ic_ingredient"
-        android:title="Ingredients" />
 </menu>

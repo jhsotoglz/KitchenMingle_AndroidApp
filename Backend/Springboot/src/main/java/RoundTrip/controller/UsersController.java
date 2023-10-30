@@ -115,7 +115,7 @@ public class UsersController {
     }
 
     // Sets a favorite recipe for a specific user
-    @PostMapping("users/{userId}/favRecipe/{recipeId}")
+    @PostMapping("users/{userId}/addFavRecipe/{recipeId}")
     ResponseEntity<String> addFavoriteRecipe(
             @PathVariable Long userId,
             @PathVariable Long recipeId
@@ -130,7 +130,7 @@ public class UsersController {
     }
 
     // Remove a recipe saved in favorites for a specific user
-    @DeleteMapping("users/{userId}/favRecipe/{recipeId}")
+    @DeleteMapping("users/{userId}/removeFavRecipe/{recipeId}")
     ResponseEntity<String> deleteFavoriteRecipe(@PathVariable Long userId, @PathVariable Long recipeId){
         Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new NotFoundException("Recipe not found"));
@@ -144,9 +144,8 @@ public class UsersController {
         }
     }
 
-
     // Gets the favorite (saved) recipes of a user
-    @GetMapping("users/{userId}/favorite-recipes")
+    @GetMapping("users/{userId}/favRecipe")
     List<Recipe> getFavoriteRecipes(@PathVariable Long userId) {
         Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         return new ArrayList<>(user.getFavoriteRecipes());

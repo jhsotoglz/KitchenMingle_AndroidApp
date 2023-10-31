@@ -10,10 +10,7 @@ import RoundTrip.repository.PantryIngredientRepository;
 import RoundTrip.repository.PantryRepository;
 import RoundTrip.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.Set;
@@ -54,7 +51,46 @@ public class PantryIngredientController {
         }else{
             throw new NotFoundException("User "+ userId + " not found");
         }
-
     }
 
+    // Manually set quantity for an ingredient stored in Pantry
+    @PutMapping("pantryIng/quantity/{userId}/{pantryIngId}/{quantity}")
+    public void setQuantity(@PathVariable Long userId, @PathVariable Long pantryIngId,
+                            @PathVariable int quantity){
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Users existingUser = user.get();
+            Pantry pantry = existingUser.getPantry();
+            Optional<PantryIngredient> pantryIngr = pantryIngredientRepository.findById(pantryIngId);
+            if (pantryIngr.isPresent()){
+                PantryIngredient pantryIngredient = pantryIngr.get();
+                pantryIngredient.setQuantity(quantity);
+                pantryIngredientRepository.save(pantryIngredient);
+            }else{
+                throw new NotFoundException("User "+ pantryIngId + " not found");
+            }
+        }else{
+            throw new NotFoundException("User "+ userId + " not found");
+        }
+    }
+
+    // TODO: increment quantity by 1
+
+    // TODO: decrement quantity by 1
+
+    // Delete ingredient from pantry
+    @DeleteMapping("pantryIng/delete/{userId}/{pantryIngId}")
+    public void deleteIngredient(@PathVariable Long userId, @PathVariable Long pantryIngId){
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Optional<PantryIngredient> pantryIngr = pantryIngredientRepository.findById(pantryIngId);
+            if (pantryIngr.isPresent()){
+                pantryIngredientRepository.deleteById(pantryIngId);
+            }else{
+                throw new NotFoundException("User "+ pantryIngId + " not found");
+            }
+        }else{
+            throw new NotFoundException("User "+ userId + " not found");
+        }
+    }
 }

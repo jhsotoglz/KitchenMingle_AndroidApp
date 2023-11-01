@@ -20,6 +20,9 @@ public interface RecipeApi {
     @POST("recipe/post")
     Call<Recipe> PostRecipeByBody(@Body Recipe newRecipe);
 
+    @GET("recipe/get/{name}")
+    Call<Recipe> getRecipeByName(@Path("name") String name);
+
     @GET("/recipe/searchByName")
     Call<List<Recipe>> searchRecipesByName(@Query("name") String name);
 

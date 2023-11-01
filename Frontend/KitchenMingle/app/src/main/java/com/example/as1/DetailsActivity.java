@@ -16,7 +16,7 @@ import android.view.View;
 
 public class DetailsActivity extends AppCompatActivity {
     private LinearLayout ingredientListLayout;
-
+    private LinearLayout directionsListLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         ingredientListLayout = findViewById(R.id.ingredientListLayout);
+        directionsListLayout = findViewById(R.id.directionsListLayout);
 
         // Retrofit code to fetch ingredients from the backend
         Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
@@ -43,6 +44,9 @@ public class DetailsActivity extends AppCompatActivity {
                 // Handle network or other errors
             }
         });
+
+
+
     }
 
     private void displayIngredients(List<Ingredient> ingredients) {

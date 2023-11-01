@@ -1,12 +1,14 @@
 package com.example.as1.api;
 
 import java.util.List;
+import java.util.jar.Attributes;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import com.example.as1.model.Ingredient;
 
@@ -21,8 +23,20 @@ public interface IngredientApi {
     @POST("ingredient/post")
     Call<Ingredient> PostIngredientByBody(@Body Ingredient newIngredient);
 
-    @DELETE("ingredient/delete/{id}")
+//    @DELETE("ingredient/delete/{id}")
+//    Call<Void> deleteIngredientById(@Path("id") Long id);
+
+    @DELETE("pantryIng/delete/{userId}/{pantryIngId}")
     Call<Void> deleteIngredientById(@Path("id") Long id);
+
     @GET("/recipe/{recipeId}/ingredients")
     Call<List<Ingredient>> getIngredientsForRecipe();
+
+    @PUT("pantryIng/quantity/{userId}/{pantryIngId}/{quantity}")
+    Call<Ingredient> setQuantity(
+            @Path("userId") Long userId,
+            @Path("pantryIngId") Long pantryIngId,
+            @Path("quantity") int quantity
+    );
+
 }

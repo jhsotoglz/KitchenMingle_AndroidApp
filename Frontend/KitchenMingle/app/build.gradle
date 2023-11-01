@@ -41,4 +41,6 @@ dependencies {
     implementation 'jakarta.persistence:jakarta.persistence-api:3.0.0' // Jakarta Persistence API
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
 }

@@ -10,6 +10,8 @@ import com.example.as1.model.Ingredient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 
 public class DetailsActivity extends AppCompatActivity {

@@ -26,6 +26,14 @@ public class Comment {
     @Column
     private Integer rating;
 
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users users;
+
 
     public Comment() {};
 
@@ -71,5 +79,29 @@ public class Comment {
 
     public void setSent(Date sent) {
         this.sent = sent;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

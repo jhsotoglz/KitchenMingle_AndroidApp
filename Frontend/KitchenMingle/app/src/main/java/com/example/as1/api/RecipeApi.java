@@ -6,6 +6,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import com.example.as1.model.Recipe;
 
 public interface RecipeApi {
@@ -18,5 +19,11 @@ public interface RecipeApi {
 
     @POST("recipe/post")
     Call<Recipe> PostRecipeByBody(@Body Recipe newRecipe);
+
+    @GET("/recipe/searchByName")
+    Call<List<Recipe>> searchRecipesByName(@Query("name") String name);
+
+    @GET("/recipe/searchByIngredient")
+    Call<List<Recipe>> searchRecipesByIngredient(@Query("ingredientName") String ingredientName);
 
 }

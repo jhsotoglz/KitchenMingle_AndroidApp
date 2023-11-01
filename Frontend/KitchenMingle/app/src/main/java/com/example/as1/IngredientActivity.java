@@ -45,7 +45,6 @@ public class IngredientActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Get the ingredient name from the EditText field
                 String ingredientName = ingredientNameIn.getText().toString().trim();
-
                 // Get the quantity from the EditText field
                 String quantityString = quantityEditText.getText().toString();
 
@@ -53,19 +52,22 @@ public class IngredientActivity extends AppCompatActivity {
                     int quantity = Integer.parseInt(quantityString);
 
                     // Add the row to the table
-                    addDataRow(ingredientName, quantity);
-
-                    // Clear the input fields
-                    ingredientNameIn.setText("");
-                    quantityEditText.setText("");
+                    //addDataRow(ingredientName, quantity);
 
                     // Create a new Ingredient and send it to the server
                     Ingredient newIngredient = new Ingredient();
                     newIngredient.setIngredientName(ingredientName);
+                    newIngredient.setQuantity(quantity);
+
 
                     GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
-                        RegenerateAllIngredientsOnScreen(apiText1);
+                        addDataRow(ingredient.getIngredientName(), ingredient.getQuantity());
+                        //RegenerateAllIngredientsOnScreen(apiText1);
                     }));
+
+                    // Clear the input fields
+                    ingredientNameIn.setText("");
+                    quantityEditText.setText("");
                 }
             }
         });

@@ -23,6 +23,9 @@ public class Comment {
     @Column(name = "sent")
     private Date sent = new Date();
 
+    @Column
+    private Integer rating;
+
 
     public Comment() {};
 
@@ -30,6 +33,13 @@ public class Comment {
         this.userName = userName;
         this.content = content;
     }
+
+    public Comment(String userName, String content, Integer rating) {
+        this.userName = userName;
+        this.content = content;
+        this.rating = rating;
+    }
+
 
     public Long getId() {
         return id;

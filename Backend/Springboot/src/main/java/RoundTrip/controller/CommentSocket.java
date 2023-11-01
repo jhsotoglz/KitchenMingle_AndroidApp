@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,27 @@ public class CommentSocket {
 
     private final Logger logger = LoggerFactory.getLogger(CommentSocket.class);
 
+//    @OnMessage
+//    public void onRatingMessage(Session session, String message) throws IOException {
+//        // Handle new comments
+//        logger.info("Entered into Comment: Got Comment:" + message);
+//        String username = sessionUsernameMap.get(session);
+//
+//        // Check if the user has already submitted a rating
+//        if (usernameHasSubmittedRating(username)) {
+//            // No rating required for subsequent comments
+//            saveComment(username, message, null);
+//        } else {
+//            // Extract rating and comment text from the message
+//            String[] messageParts = message.split(" ");
+//            int rating = Integer.parseInt(messageParts[0]); // Assumes that the rating is the first part
+//            String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
+//
+//            // Save the comment and the rating
+//            saveComment(username, commentText, rating);
+//        }
+//    }
+
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username)
             throws IOException {
@@ -54,34 +76,64 @@ public class CommentSocket {
         sendMessageToPArticularUser(username, getCommentHistory());
 
         // broadcast that new user joined
-        String message = "User:" + username + " has Joined the Comment Section.";
+        String message = "User:" + username + " Welcome to this recipe's comment section. " +
+                "\nPlease provide a rating for this recipe from 1 to 10 before commenting!";
         broadcast(message);
     }
 
 
+//    @OnMessage
+//    public void onMessage(Session session, String message) throws IOException {
+//
+//        // Handle new comments
+//        logger.info("Entered into Comment: Got Comment:" + message);
+//        String username = sessionUsernameMap.get(session);
+//
+//        // Direct message to a user using the format "@username <message>"
+//        if (message.startsWith("@")) {
+//            String destUsername = message.split(" ")[0].substring(1);
+//
+//            // send the message to the sender and receiver
+//            sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
+//            sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
+//
+//        }
+//        else { // broadcast
+//            broadcast(username + ": " + message);
+//        }
+//
+//        // Saving chat history to repository
+//        commentRepo.save(new Comment(username, message));
+//    }
+
     @OnMessage
     public void onMessage(Session session, String message) throws IOException {
-
-        // Handle new comments
-        logger.info("Entered into Comment: Got Comment:" + message);
+        logger.info("Entered into Comment: Got Comment: " + message);
         String username = sessionUsernameMap.get(session);
 
-        // Direct message to a user using the format "@username <message>"
         if (message.startsWith("@")) {
+            // Handle direct messages
             String destUsername = message.split(" ")[0].substring(1);
-
-            // send the message to the sender and receiver
             sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
             sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
-
-        }
-        else { // broadcast
+        } else if (message.matches("\\d+ .*")) {
+            // Handle messages that include ratings
+            if (usernameHasSubmittedRating(username)) {
+                // No rating required for subsequent comments
+                saveComment(username, message, null);
+            } else {
+                String[] messageParts = message.split(" ");
+                int rating = Integer.parseInt(messageParts[0]);
+                String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
+                saveComment(username, commentText, rating);
+            }
+        } else {
+            // Handle regular chat messages
             broadcast(username + ": " + message);
+            commentRepo.save(new Comment(username, message));
         }
-
-        // Saving chat history to repository
-        commentRepo.save(new Comment(username, message));
     }
+
 
 
     @OnClose
@@ -146,4 +198,24 @@ public class CommentSocket {
         }
         return sb.toString();
     }
+
+    private void saveComment(String username, String content, Integer rating) {
+        // Direct message to a user using the format "@username <message>"
+        if (content.startsWith("@")) {
+            // ...
+        } else { // broadcast
+            broadcast(username + ": " + content);
+        }
+
+        // Saving chat history to repository
+        commentRepo.save(new Comment(username, content, rating));
+    }
+
+    private boolean usernameHasSubmittedRating(String username) {
+        List<Comment> userComments = commentRepo.findByUserName(username);
+
+        // Check if any of the user's comments have a rating
+        return userComments.stream().anyMatch(comment -> comment.getRating() != null);
+    }
+
 }

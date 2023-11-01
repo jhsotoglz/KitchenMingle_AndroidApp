@@ -1,28 +1,36 @@
 package com.example.as1;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import java.util.List;
-import android.widget.LinearLayout;
 import static com.example.as1.api.ApiClientFactory.GetIngredientAPI;
+import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
+
+import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.as1.model.Ingredient;
+import com.example.as1.model.Recipe;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import android.view.View;
-
+import retrofit2.http.Path;
 
 
 public class DetailsActivity extends AppCompatActivity {
     private LinearLayout ingredientListLayout;
     private LinearLayout directionsListLayout;
+    private TextView recipeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        recipeName = findViewById(R.id.recipeName);
         ingredientListLayout = findViewById(R.id.ingredientListLayout);
         directionsListLayout = findViewById(R.id.directionsListLayout);
 
@@ -46,9 +54,26 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
 
+        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("yourRecipeName"); // Replace "yourRecipeName" with the actual recipe name you want to retrieve.
 
+        call1.enqueue(new Callback<Recipe>() {
+            @Override
+            public void onResponse(Call<Recipe> call1, Response<Recipe> response) {
+                if (response.isSuccessful()) {
+                    Recipe recipe = response.body();
+//                    String recipeName = recipe.getName(); // Get the recipe name
+                    // Use the recipe details, including the name, as needed.
+                } else {
+                    // Handle API error
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Recipe> call, Throwable t) {
+                // Handle network or other errors
+            }
+        });
     }
-
     private void displayIngredients(List<Ingredient> ingredients) {
         for (Ingredient ingredient : ingredients) {
             // Create a TextView for each ingredient and add it to the layout

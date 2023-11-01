@@ -4,6 +4,17 @@ public class Ingredient {
 
     private int id;
     private String ingredientName;
+    private int quantity;
+
+    // Constructor, other fields, getters, and other methods...
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Ingredient() {
     }

@@ -115,7 +115,7 @@ public class UsersController {
     }
 
     // Sets a favorite recipe for a specific user
-    @PostMapping("users/{userId}/favorite-recipes/{recipeId}")
+    @PostMapping("users/{userId}/addFavRecipe/{recipeId}")
     ResponseEntity<String> addFavoriteRecipe(
             @PathVariable Long userId,
             @PathVariable Long recipeId
@@ -129,12 +129,23 @@ public class UsersController {
         return ResponseEntity.ok("Recipe added to favorites.");
     }
 
-    // TODO: Remove favorite recipe
+    // Remove a recipe saved in favorites for a specific user
+    @DeleteMapping("users/{userId}/removeFavRecipe/{recipeId}")
+    ResponseEntity<String> deleteFavoriteRecipe(@PathVariable Long userId, @PathVariable Long recipeId){
+        Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
+        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new NotFoundException("Recipe not found"));
 
-
+        if (user.getFavoriteRecipes().contains(recipe)){
+            user.getFavoriteRecipes().remove(recipe);
+            usersRepository.save(user);
+            return ResponseEntity.ok("Recipe removed from favorites.");
+        }else {
+            return ResponseEntity.badRequest().body("Recipe not found in user's favorites.");
+        }
+    }
 
     // Gets the favorite (saved) recipes of a user
-    @GetMapping("users/{userId}/favorite-recipes")
+    @GetMapping("users/{userId}/favRecipe")
     List<Recipe> getFavoriteRecipes(@PathVariable Long userId) {
         Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         return new ArrayList<>(user.getFavoriteRecipes());

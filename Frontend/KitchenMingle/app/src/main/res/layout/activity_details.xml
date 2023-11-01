@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
+    <!-- This is the container for dynamic ingredients -->
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="2076dp"
-        android:layout_height="762dp"
+        android:layout_width="277dp"
+        android:layout_height="70dp"
         android:layout_marginTop="56dp"
         android:text="Kitchen Mingle"
-        android:textSize="300sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,6 +23,59 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/ingredientsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:text="Ingredients"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:id="@+id/ingredientListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Placeholder TextView -->
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Dynamic Ingredients Will Appear Here"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/directionsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:text="Directions"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:id="@+id/directionsListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Placeholder TextView -->
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Dynamic Directions Will Appear Here"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
+
 
 
 </LinearLayout>
+

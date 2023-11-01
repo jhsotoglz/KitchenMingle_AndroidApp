@@ -23,4 +23,6 @@ public interface IngredientApi {
 
     @DELETE("ingredient/delete/{id}")
     Call<Void> deleteIngredientById(@Path("id") Long id);
+    @GET("/recipe/{recipeId}/ingredients")
+    Call<List<Ingredient>> getIngredientsForRecipe();
 }

@@ -10,10 +10,13 @@ import com.example.as1.model.Ingredient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.view.View;
+
 
 
 public class DetailsActivity extends AppCompatActivity {
     private LinearLayout ingredientListLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
         ingredientListLayout = findViewById(R.id.ingredientListLayout);
 
         // Retrofit code to fetch ingredients from the backend
-        // Replace this with your actual API endpoint and model
-        Call<List<Ingredient>> call = GetIngredientAPI().GetAllIngredients();;
+        Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
 
         call.enqueue(new Callback<List<Ingredient>>() {
             @Override

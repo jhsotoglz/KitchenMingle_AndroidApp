@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByUserName(String username);
-    List<Comment> findByUser(Users users);
+    List<Comment> findByUsers(Users users);
     List<Comment> findByRecipe(Recipe recipe);
     List<Comment> findByUsersAndRecipe(Users user, Recipe recipe);
 }

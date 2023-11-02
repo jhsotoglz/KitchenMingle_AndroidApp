@@ -123,6 +123,9 @@ public class UsersController {
         Users user = usersRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new NotFoundException("Recipe not found"));
 
+        if (user.getFavoriteRecipes().contains(recipe)){
+            return ResponseEntity.ok("Recipe already in Favorite");
+        }
         user.getFavoriteRecipes().add(recipe);
         usersRepository.save(user);
 

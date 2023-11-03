@@ -65,7 +65,8 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
 
-        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("yourRecipeName"); // Replace "yourRecipeName" with the actual recipe name you want to retrieve.
+        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
+        //Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("yourRecipeName"); // Replace "yourRecipeName" with the actual recipe name you want to retrieve.
 
         call1.enqueue(new Callback<Recipe>() {
             @Override

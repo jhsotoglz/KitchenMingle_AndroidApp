@@ -29,7 +29,22 @@ public class PickRecipeActivity extends AppCompatActivity {
         for (Recipe recipe : recipeList) {
             Button recipeButton = new Button(this);
             recipeButton.setText(recipe.getRecipeName()); // Set the button text to the recipe name
-            recipeButton.setOnClickListener(new RecipeButtonClickListener(recipe)); // Set a click listener
+            recipeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Handle the button click for this recipe
+                    int recipeId = recipe.getId(); // Replace with your logic to get the recipe ID
+                    String recipeName = recipe.getRecipeName();
+
+                    // Add the recipe information to an Intent
+                    Intent intent = new Intent(PickRecipeActivity.this, DetailsActivity.class);
+                    intent.putExtra("recipe_id", recipeId);
+                    intent.putExtra("recipe_name", recipeName);
+
+                    // Start the Recipe Details Activity
+                    startActivity(intent);
+                }
+            });
 
             // Add the button to the layout
             recipeButtonContainer.addView(recipeButton);
@@ -46,25 +61,5 @@ public class PickRecipeActivity extends AppCompatActivity {
         // ...
 
         return recipes;
-    }
-
-    // OnClickListener for recipe buttons
-    private class RecipeButtonClickListener implements View.OnClickListener {
-        private final Recipe recipe;
-
-        RecipeButtonClickListener(Recipe recipe) {
-            this.recipe = recipe;
-        }
-
-        @Override
-        public void onClick(View v) {
-            // Add the recipe information to an Intent
-            Intent intent = new Intent(PickRecipeActivity.this, DetailsActivity.class);
-            intent.putExtra("recipe_id", recipe.getId());
-            intent.putExtra("recipe_name", recipe.getRecipeName());
-
-            // Start the Recipe Details Activity
-            startActivity(intent);
-        }
     }
 }

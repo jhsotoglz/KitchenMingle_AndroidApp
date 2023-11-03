@@ -19,7 +19,7 @@ public class IngredientActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
     private int rowNumber = 1;
-    private int quantity = 0;
+//    private int quantity = 0;
     private EditText quantityEditText;
 
     @Override
@@ -61,8 +61,8 @@ public class IngredientActivity extends AppCompatActivity {
 
 
                     GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
-                        addDataRow(ingredient.getIngredientName(), ingredient.getQuantity());
-                        //RegenerateAllIngredientsOnScreen(apiText1);
+                        //addDataRow(ingredient.getIngredientName(), ingredient.getQuantity());
+                        RegenerateAllIngredientsOnScreen(apiText1);
                     }));
 
                     // Clear the input fields
@@ -153,7 +153,20 @@ public class IngredientActivity extends AppCompatActivity {
             apiText1.setText("");
 
             for (int i = ingredients.size() - 1; i >= 0; i--) {
-                apiText1.append(ingredients.get(i).printable());
+                Ingredient ingredient = ingredients.get(i);
+                String ingredientName = ingredient.getIngredientName();
+                int quantity = ingredient.getQuantity();
+                String ingredientInfo = ingredientName + " Quantity: " + quantity;
+
+                // Add the existing ingredient to the table
+                addDataRow(ingredientName, quantity);
+                // Display the existing ingredients in the TextView
+                apiText1.append(ingredientInfo + "\n");
+
+//                Ingredient ingredient = ingredients.get(i); // new
+//                String ingredientInfo = ingredient.getIngredientName() + " Quantity: " + ingredient.getQuantity(); //new
+//                //apiText1.append(ingredients.get(i).printable());
+//                apiText1.append(ingredientInfo + "\n");
             }
         }, "GetAllIngredients"));
     }

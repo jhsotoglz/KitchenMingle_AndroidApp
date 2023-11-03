@@ -7,6 +7,8 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+
+import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
 
 public interface RecipeApi {
@@ -28,5 +30,9 @@ public interface RecipeApi {
 
     @GET("/recipe/searchByIngredient")
     Call<List<Recipe>> searchRecipesByIngredient(@Query("ingredientName") String ingredientName);
+
+//    @GET("/recipe/{recipeId}/ingredients")
+//    Call<List<Ingredient>> getIngredientsForRecipe();
+
 
 }

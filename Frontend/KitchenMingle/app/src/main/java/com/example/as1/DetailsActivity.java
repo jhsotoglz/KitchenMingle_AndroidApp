@@ -23,14 +23,14 @@ import retrofit2.Response;
 public class DetailsActivity extends AppCompatActivity {
     private LinearLayout ingredientListLayout;
     private LinearLayout directionsListLayout;
-    private TextView recipeName;
+    private TextView recipeNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        recipeName = findViewById(R.id.recipeName);
+        recipeNameTextView = findViewById(R.id.recipeName);
         ingredientListLayout = findViewById(R.id.ingredientListLayout);
         directionsListLayout = findViewById(R.id.directionsListLayout);
 
@@ -61,7 +61,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void onResponse(Call<Recipe> call1, Response<Recipe> response) {
                 if (response.isSuccessful()) {
                     Recipe recipe = response.body();
-//                    String recipeName = recipe.getName(); // Get the recipe name
+                    //String recipeName = recipe.getName(); // Get the recipe name
                     // Use the recipe details, including the name, as needed.
                 } else {
                     // Handle API error

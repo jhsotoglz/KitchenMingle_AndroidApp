@@ -7,20 +7,21 @@
     android:layout_height="match_parent"
     tools:context="com.example.as1.IngredientActivity">
 
-<!--    <EditText-->
-<!--        android:id="@+id/recipeName"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="48dp"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:layout_marginTop="96dp"-->
-<!--        android:hint="Recipe Name"-->
-<!--        android:padding="8dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.52"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.252" />-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/recipeName"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="48dp"-->
+    <!--        android:layout_margin="16dp"-->
+    <!--        android:layout_marginTop="96dp"-->
+    <!--        android:hint="Recipe Name"-->
+    <!--        android:padding="8dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.52"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.252" />-->
 
 
     <TextView
@@ -29,10 +30,12 @@
         android:layout_height="wrap_content"
         android:text="Ingredient!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.566" />
+
 
     <Button
         android:id="@+id/activity_main_post_by_body_button"
@@ -41,14 +44,15 @@
         android:layout_marginBottom="224dp"
         android:text="post by body"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.782" />
+
 
     <EditText
-        android:id="@+id/activity_main_ingredientname_editText"
+        android:id="@+id/activity_main_recipename_editText"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_margin="16dp"
@@ -57,11 +61,14 @@
         android:inputType="textPersonName"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.218" />
+
+
+
 
     <TextView
         android:id="@+id/textView"
@@ -75,6 +82,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.03" />
+
 
     <TextView
         android:id="@+id/textViewMyPantry"
@@ -91,6 +99,84 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.059" />
 
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="381dp"
+        android:layout_height="106dp"
+        android:stretchColumns="0,1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734">
+
+
+        <!-- Header Row -->
+        <TableRow>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Ingredient Name" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Quantity" />
+
+
+
+
+        </TableRow>
+
+
+        <!-- Data Rows (You can add more rows dynamically) -->
+        <TableRow>
+
+
+            <TextView
+                android:id="@+id/ingredientName1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp" />
+
+
+            <TextView
+                android:id="@+id/quantityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="0" />
+
+
+            <!--            <Button-->
+            <!--                android:id="@+id/increase1"-->
+            <!--                android:layout_width="60dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:onClick="increaseQuantity"-->
+            <!--                android:text="+" />-->
+
+
+            <!--            <Button-->
+            <!--                android:id="@+id/decrease1"-->
+            <!--                android:layout_width="60dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:onClick="decreaseQuantity"-->
+            <!--                android:text="-" />-->
+        </TableRow>
+
+
+
+
+    </TableLayout>
+
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -103,6 +189,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
+
     <EditText
         android:id="@+id/activity_main_quantity_editText"
         android:layout_width="189dp"
@@ -113,11 +200,14 @@
         android:inputType="number"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327" />
+        app:layout_constraintVertical_bias="0.323" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -5,16 +5,29 @@ import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
+import com.example.as1.model.SlimCallback;
+
+
+import org.w3c.dom.Text;
+
 
 import java.util.Collections;
 import java.util.List;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,15 +35,84 @@ import retrofit2.Response;
 
 
 
+
+
+
 public class DetailsActivity extends AppCompatActivity {
-    private LinearLayout ingredientListLayout;
-    private LinearLayout directionsListLayout;
-    private TextView recipeNameTextView;
+    //    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_details);
+//
+//        // Retrieve the recipe ID from the Intent
+//        int recipeId = getIntent().getIntExtra("recipe_id", -1); // -1 is a default value in case the extra is not found
+//
+//        TextView apiText1 = findViewById(R.id.textView1);
+//        TextView apiText2 = findViewById(R.id.textView2);
+//        TextView apiText3 = findViewById(R.id.textView3);
+//
+//        apiText1.setMovementMethod(new ScrollingMovementMethod());
+//        apiText1.setHeight(350);
+//
+//
+//        RegenerateAllRecipesOnScreen(apiText1);
+//
+//        PostByPathBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                GetRecipeAPI().PostRecipeByPath(recipeNameIn.getText().toString(), instructionIn.getText().toString()).enqueue(new SlimCallback<Recipe>(recipe -> {
+//                    RegenerateAllRecipesOnScreen(apiText1);
+//                    recipeNameIn.setText("");
+//                    instructionIn.setText("");
+//                }));
+//            }
+//        });
+//
+//        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Recipe newRecipe = new Recipe();
+//                newRecipe.setRecipeName(recipeNameIn.getText().toString());
+//                newRecipe.setRecipeInstructions(instructionIn.getText().toString());
+//                GetRecipeAPI().PostRecipeByBody(newRecipe).enqueue(new SlimCallback<Recipe>(recipe -> {
+//                    RegenerateAllRecipesOnScreen(apiText1);
+//                    recipeNameIn.setText("");
+//                    instructionIn.setText("");
+//                }));
+//            }
+//        });
+//    }
+//
+//    void RegenerateAllRecipesOnScreen(TextView apiText1) {
+//        GetRecipeAPI().GetAllRecipes().enqueue(new SlimCallback<List<Recipe>>(recipes -> {
+//            apiText1.setText("");
+//
+//            for (int i = recipes.size() - 1; i >= 0; i--) {
+//                apiText1.append(recipes.get(i).printable());
+//            }
+//        }, "GetAllRecipe"));
+//    }
+//
+//
+//
+//}
+//    private TextView ingredientListLayout;
+//    private TextView directionsListLayout;
+//    private TextView recipeNameTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+
+        TextView ingredientListLayout;
+        TextView directionsListLayout;
+        TextView recipeNameTextView;
+
+
+
 
         // Retrieve recipe information from the Intent
         Intent intent = getIntent();
@@ -38,15 +120,20 @@ public class DetailsActivity extends AppCompatActivity {
         String recipeName = intent.getStringExtra("recipe_name");
 
 
+
+
         recipeNameTextView = findViewById(R.id.recipeName);
-        ingredientListLayout = findViewById(R.id.ingredientListLayout);
-        directionsListLayout = findViewById(R.id.directionsListLayout);
+        ingredientListLayout = findViewById(R.id.textView1);
+        directionsListLayout = findViewById(R.id.textView2);
+
 
         // Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
 
+
         // Retrofit code to fetch ingredients from the backend
         Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
+
 
         call.enqueue(new Callback<List<Ingredient>>() {
             @Override
@@ -56,17 +143,28 @@ public class DetailsActivity extends AppCompatActivity {
                     displayIngredients(ingredients);
                 } else {
                     // Handle API error
+                    Log.e("API Error", "Failed to retrieve ingredients: " + response.message());
+
+
                 }
             }
+
+
             @Override
             public void onFailure(Call<List<Ingredient>> call, Throwable t) {
                 // Handle network or other errors
+                Log.e("API Error", "Failed to retrieve ingredients: " + t.getMessage());
+
+
             }
         });
 
 
+
+
         Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
         //Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("yourRecipeName"); // Replace "yourRecipeName" with the actual recipe name you want to retrieve.
+
 
         call1.enqueue(new Callback<Recipe>() {
             @Override
@@ -76,13 +174,18 @@ public class DetailsActivity extends AppCompatActivity {
                     // Check if the Recipe class has a getRecipeInstructions() method that returns a single String
                     if (recipe != null) {
                         String directions = recipe.getRecipeInstructions();
-                        List<String> directionsList = Collections.singletonList(directions);
-                        displayDirections(directionsList);
+//                        List<String> directionsList = Collections.singletonList(directions);
+//                        displayDirections(directionsList);
+
+
+
+
                     }
                 } else {
                     // Handle API error
                 }
             }
+
 
             @Override
             public void onFailure(Call<Recipe> call, Throwable t) {
@@ -90,23 +193,35 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void displayIngredients(List<Ingredient> ingredients) {
         for (Ingredient ingredient : ingredients) {
             // Create a TextView for each ingredient and add it to the layout
             TextView textView = new TextView(this);
             textView.setText(ingredient.getIngredientName());
-            ingredientListLayout.addView(textView);
+            // ingredientListLayout.addView(textView);
         }
     }
+
 
     private void displayDirections(List<String> directions) {
-        for (String direction : directions) {
-            // Create a TextView for each direction and add it to the layout
-            TextView textView = new TextView(this);
-            textView.setText(direction);
-            directionsListLayout.addView(textView);
-        }
-    }
+//        for (String direction : directions) {
+//            // Create a TextView for each direction and add it to the layout
+//            TextView textView = new TextView(this);
+//            textView.setText(direction);
+//           // directionsListLayout.addView(textView);
+//        }
 
+
+    }
 }
+
+
+
+
+
+
+
+
 

@@ -7,11 +7,15 @@
     android:layout_height="match_parent">
 
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <!-- This is the container for dynamic ingredients -->
+
 
         <TextView
             android:id="@+id/KitchenMingle"
@@ -28,6 +32,7 @@
             app:layout_constraintVertical_bias="0.0"
             android:layout_marginTop="16dp" />
 
+
         <TextView
             android:id="@+id/recipeName"
             android:textSize="20sp"
@@ -38,6 +43,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Recipe:"/>
 
+
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="237dp"
@@ -47,109 +53,185 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/KitchenMingle" />
 
+
         <TextView
             android:id="@+id/ingredientsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
+            android:layout_width="404dp"
+            android:layout_height="39dp"
             android:text="Ingredients"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
-        <LinearLayout
-            android:id="@+id/ingredientListLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <!-- Placeholder TextView -->
-        </LinearLayout>
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/ingredientListLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent">-->
+        <!--            &lt;!&ndash; Placeholder TextView &ndash;&gt;-->
+        <!--        </LinearLayout>-->
+
+
+
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="Directions Will Appear Here"-->
+        <!--            android:textColor="@android:color/black"-->
+        <!--            android:textSize="20sp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/directionsListLayout"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginTop="200dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="Ingredients Will Appear Here"-->
+        <!--            android:textColor="@android:color/black"-->
+        <!--            android:textSize="20sp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textView1" />-->
+
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Ingredients Will Appear Here"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/ingredientListLayout"
+            android:id="@+id/textView1"
+            android:layout_width="411dp"
+            android:layout_height="148dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="176dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle" />
+
+
+
 
         <TextView
             android:id="@+id/directionsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:layout_marginTop="76dp"
+            android:layout_width="407dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="4dp"
             android:text="Directions"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredientListLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/directionsListLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="68dp"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.0"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/directionsTitle">-->
+        <!--            &lt;!&ndash; Placeholder TextView &ndash;&gt;-->
+        <!--        </LinearLayout>-->
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="411dp"
+            android:layout_height="148dp"
+            android:layout_marginTop="180dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle" />
+
+
+        <TextView
+            android:id="@+id/commentsTitle"
+            android:layout_width="407dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="4dp"
+            android:text="Comments"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/commentsListLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/commentsTitle"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent">-->
+        <!--            &lt;!&ndash; Placeholder TextView &ndash;&gt;-->
+        <!--        </LinearLayout>-->
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="411dp"
+            android:layout_height="148dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="176dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commentsTitle" />
+
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="Comments Will Appear Here"-->
+        <!--            android:textColor="@android:color/black"-->
+        <!--            android:textSize="20sp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/commentsListLayout"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <LinearLayout
+            android:id="@+id/ingredientListLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/textView1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        >
+        <!-- Ingredient views will be added dynamically here -->
+
 
         <LinearLayout
             android:id="@+id/directionsListLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <!-- Placeholder TextView -->
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Directions Will Appear Here"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/directionsListLayout"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/commentsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:layout_marginTop="108dp"
-            android:text="Comments"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/directionsListLayout" />
 
-        <LinearLayout
-            android:id="@+id/commentsListLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/commentsTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <!-- Placeholder TextView -->
-        </LinearLayout>
+        <!-- Direction views will be added dynamically here -->
+        <!--        </LinearLayout>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Comments Will Appear Here"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/commentsListLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
+
 

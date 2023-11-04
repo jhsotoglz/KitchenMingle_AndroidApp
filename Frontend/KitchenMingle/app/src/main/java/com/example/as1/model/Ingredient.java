@@ -36,6 +36,6 @@ public class Ingredient {
     }
 
     public String printable(){
-        return "\n Ingredient name: " + getIngredientName() + "\n";
+        return "\n" + getIngredientName() + " " + getQuantity() + "\n";
     }
 }

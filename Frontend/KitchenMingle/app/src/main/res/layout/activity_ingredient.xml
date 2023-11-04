@@ -44,12 +44,11 @@
         android:layout_marginBottom="224dp"
         android:text="post by body"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782" />
-
+        app:layout_constraintVertical_bias="0.448" />
 
     <EditText
         android:id="@+id/activity_main_recipename_editText"
@@ -61,14 +60,11 @@
         android:inputType="textPersonName"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
-
-
-
+        app:layout_constraintVertical_bias="0.231" />
 
     <TextView
         android:id="@+id/textView"
@@ -100,81 +96,8 @@
         app:layout_constraintVertical_bias="0.059" />
 
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="381dp"
-        android:layout_height="106dp"
-        android:stretchColumns="0,1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734">
 
 
-        <!-- Header Row -->
-        <TableRow>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Ingredient Name" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Quantity" />
-
-
-
-
-        </TableRow>
-
-
-        <!-- Data Rows (You can add more rows dynamically) -->
-        <TableRow>
-
-
-            <TextView
-                android:id="@+id/ingredientName1"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp" />
-
-
-            <TextView
-                android:id="@+id/quantityTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="0" />
-
-
-            <!--            <Button-->
-            <!--                android:id="@+id/increase1"-->
-            <!--                android:layout_width="60dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:onClick="increaseQuantity"-->
-            <!--                android:text="+" />-->
-
-
-            <!--            <Button-->
-            <!--                android:id="@+id/decrease1"-->
-            <!--                android:layout_width="60dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:onClick="decreaseQuantity"-->
-            <!--                android:text="-" />-->
-        </TableRow>
-
-
-
-
-    </TableLayout>
 
 
     <Button
@@ -200,13 +123,11 @@
         android:inputType="number"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.323" />
-
-
+        app:layout_constraintVertical_bias="0.327" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

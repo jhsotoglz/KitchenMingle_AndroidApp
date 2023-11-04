@@ -22,8 +22,6 @@ public class IngredientActivity extends AppCompatActivity {
 
 
     private TableLayout tableLayout;
-    private int rowNumber = 1;
-    //    private int quantity = 0;
     private EditText quantityEditText;
 
 
@@ -43,10 +41,6 @@ public class IngredientActivity extends AppCompatActivity {
         Button PostByBodyBtn = findViewById(R.id.activity_main_post_by_body_button);
         EditText ingredientNameIn = findViewById(R.id.activity_main_recipename_editText);
         quantityEditText = findViewById(R.id.activity_main_quantity_editText);
-        tableLayout = findViewById(R.id.tableLayout); // Initialize TableLayout
-
-
-
 
         RegenerateAllIngredientsOnScreen(apiText1);
 
@@ -62,18 +56,10 @@ public class IngredientActivity extends AppCompatActivity {
 
                 if (!ingredientName.isEmpty() && !quantityString.isEmpty()) {
                     int quantity = Integer.parseInt(quantityString);
-
-
-                    // Add the row to the table
-                    //addDataRow(ingredientName, quantity);
-
-
                     // Create a new Ingredient and send it to the server
                     Ingredient newIngredient = new Ingredient();
                     newIngredient.setIngredientName(ingredientName);
                     newIngredient.setQuantity(quantity);
-
-
 
 
                     GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
@@ -120,64 +106,6 @@ public class IngredientActivity extends AppCompatActivity {
     }
 
 
-    private void addDataRow (String ingredientName,int quantity){
-        TableRow row = new TableRow(this);
-
-
-        TextView ingredientNameTextView = new TextView(this);
-        ingredientNameTextView.setText(ingredientName);
-
-
-        TextView quantityTextView = new TextView(this);
-        quantityTextView.setText(String.valueOf(quantity));
-
-
-        row.addView(ingredientNameTextView);
-        row.addView(quantityTextView);
-
-
-        tableLayout.addView(row, rowNumber++);
-
-
-
-
-//                TableRow row = new TableRow(this);
-//                row.setId(rowNumber); // Set a unique ID for the row
-//                TextView ingredientNameTextView = new TextView(this);
-//                ingredientNameTextView.setText(ingredientName);
-//
-//                TextView quantityTextView = new TextView(this);
-//                quantityTextView.setText(String.valueOf(quantity));
-//
-//                row.addView(ingredientNameTextView);
-//                row.addView(quantityTextView);
-//
-//                tableLayout.addView(row);
-//                rowNumber++; // Increment the row number
-//
-//                // Set the text of apiText1 to match the ID of the new row
-//                TextView apiText1 = findViewById(R.id.activity_main_textView1);
-//                apiText1.setText("Row ID: " + row.getId());
-
-
-
-
-//            TableRow row = new TableRow(this);
-//
-//            TextView ingredientNameTextView = new TextView(this);
-//            ingredientNameTextView.setText(ingredientName);
-//
-//            TextView quantityTextView = new TextView(this);
-//            quantityTextView.setText(String.valueOf(quantity));
-//
-//            row.addView(ingredientNameTextView);
-//            row.addView(quantityTextView);
-//
-//            tableLayout.addView(row, rowNumber++);
-    }
-
-
-
 
     void RegenerateAllIngredientsOnScreen(TextView apiText1) {
         GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
@@ -190,9 +118,6 @@ public class IngredientActivity extends AppCompatActivity {
                 int quantity = ingredient.getQuantity();
                 String ingredientInfo = ingredientName + " Quantity: " + quantity;
 
-
-                // Add the existing ingredient to the table
-                addDataRow(ingredientName, quantity);
                 // Display the existing ingredients in the TextView
                 apiText1.append(ingredientInfo + "\n");
 

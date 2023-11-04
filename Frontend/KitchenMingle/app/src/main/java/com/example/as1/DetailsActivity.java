@@ -33,9 +33,12 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         // Retrieve recipe information from the Intent
-        Intent intent = getIntent();
-        int recipeId = intent.getIntExtra("recipe_id", -1);
-        String recipeName = intent.getStringExtra("recipe_name");
+//        Intent intent = getIntent();
+//        int recipeId = intent.getIntExtra("recipe_id", -1);
+//        String recipeName = intent.getStringExtra("recipe_name");
+            //String recipe_Name = "Spaghetti Carbonara";
+            //int recipeId;
+            //recipeId.setId(1);
 
 
         recipeNameTextView = findViewById(R.id.recipeName);
@@ -43,7 +46,7 @@ public class DetailsActivity extends AppCompatActivity {
         directionsListLayout = findViewById(R.id.directionsListLayout);
 
         // Set the recipe name in the TextView
-        recipeNameTextView.setText(recipeName);
+        recipeNameTextView.setText("Spaghetti Carbonara");
 
         // Retrofit code to fetch ingredients from the backend
         Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
@@ -65,7 +68,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
 
-        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
+        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("Spaghetti Carbonara");
         //Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("yourRecipeName"); // Replace "yourRecipeName" with the actual recipe name you want to retrieve.
 
         call1.enqueue(new Callback<Recipe>() {
@@ -78,6 +81,7 @@ public class DetailsActivity extends AppCompatActivity {
                         String directions = recipe.getRecipeInstructions();
                         List<String> directionsList = Collections.singletonList(directions);
                         displayDirections(directionsList);
+                        System.out.println(directions);
                     }
                 } else {
                     // Handle API error
@@ -105,8 +109,10 @@ public class DetailsActivity extends AppCompatActivity {
             TextView textView = new TextView(this);
             textView.setText(direction);
             directionsListLayout.addView(textView);
+
         }
     }
+
 
 }
 

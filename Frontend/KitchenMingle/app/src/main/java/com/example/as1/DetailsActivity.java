@@ -33,10 +33,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-
-
-
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
 
 public class DetailsActivity extends AppCompatActivity {
     //    @Override
@@ -100,40 +100,32 @@ public class DetailsActivity extends AppCompatActivity {
 //    private TextView directionsListLayout;
 //    private TextView recipeNameTextView;
 
+    private OkHttpClient client;
+    private WebSocket webSocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-
         TextView ingredientListLayout;
         TextView directionsListLayout;
         TextView recipeNameTextView;
-
-
-
 
         // Retrieve recipe information from the Intent
         Intent intent = getIntent();
         int recipeId = intent.getIntExtra("recipe_id", -1);
         String recipeName = intent.getStringExtra("recipe_name");
 
-
-
-
         recipeNameTextView = findViewById(R.id.recipeName);
         ingredientListLayout = findViewById(R.id.textView1);
         directionsListLayout = findViewById(R.id.textView2);
 
-
         // Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
 
-
         // Retrofit code to fetch ingredients from the backend
         Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
-
 
         call.enqueue(new Callback<List<Ingredient>>() {
             @Override
@@ -144,8 +136,6 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     // Handle API error
                     Log.e("API Error", "Failed to retrieve ingredients: " + response.message());
-
-
                 }
             }
 
@@ -154,17 +144,11 @@ public class DetailsActivity extends AppCompatActivity {
             public void onFailure(Call<List<Ingredient>> call, Throwable t) {
                 // Handle network or other errors
                 Log.e("API Error", "Failed to retrieve ingredients: " + t.getMessage());
-
-
             }
         });
 
-
-
-
         Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
         //Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("yourRecipeName"); // Replace "yourRecipeName" with the actual recipe name you want to retrieve.
-
 
         call1.enqueue(new Callback<Recipe>() {
             @Override
@@ -176,9 +160,6 @@ public class DetailsActivity extends AppCompatActivity {
                         String directions = recipe.getRecipeInstructions();
 //                        List<String> directionsList = Collections.singletonList(directions);
 //                        displayDirections(directionsList);
-
-
-
 
                     }
                 } else {
@@ -192,6 +173,31 @@ public class DetailsActivity extends AppCompatActivity {
                 // Handle network or other errors
             }
         });
+
+        // Create a WebSocket client
+        client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("") // Replace with your WebSocket server URL
+                .build();
+
+        webSocket = client.newWebSocket(request, new WebSocketListener() {
+            public void onMessage(WebSocket webSocket, String text) {
+                super.onMessage(webSocket, text);
+                // Handle incoming WebSocket messages (ratings) here
+                runOnUiThread(() -> {
+                    // Update the UI with the received rating information
+                    // For example, update a TextView or a rating widget.
+                    // Example: textView.setText("New Rating: " + text);
+                });
+            }
+
+            @Override
+            public void onClosed(WebSocket webSocket, int code, String reason) {
+                super.onClosed(webSocket, code, reason);
+                // WebSocket connection is closed
+            }
+        });
+
     }
 
 
@@ -205,16 +211,6 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
 
-    private void displayDirections(List<String> directions) {
-//        for (String direction : directions) {
-//            // Create a TextView for each direction and add it to the layout
-//            TextView textView = new TextView(this);
-//            textView.setText(direction);
-//           // directionsListLayout.addView(textView);
-//        }
-
-
-    }
 }
 
 

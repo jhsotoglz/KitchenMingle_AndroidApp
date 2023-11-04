@@ -84,7 +84,6 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
         Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
-        //Call<Recipe> call1 = GetRecipeAPI().getRecipeByName("yourRecipeName"); // Replace "yourRecipeName" with the actual recipe name you want to retrieve.
 
         call1.enqueue(new Callback<Recipe>() {
             @Override
@@ -113,7 +112,7 @@ public class DetailsActivity extends AppCompatActivity {
         // Create a WebSocket client
         client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("")
+                .url("http://coms-309-033.class.las.iastate.edu:8080/comment/{username}")
                 .build();
 
         webSocket = client.newWebSocket(request, new WebSocketListener() {

@@ -2,111 +2,41 @@ package com.example.as1;
 
 import static com.example.as1.api.ApiClientFactory.GetIngredientAPI;
 import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
-import com.example.as1.model.SlimCallback;
-
-
-import org.w3c.dom.Text;
-
-
-import java.util.Collections;
 import java.util.List;
-
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
+import android.widget.EditText;
+import android.widget.Button;
+import okio.ByteString;
 
 public class DetailsActivity extends AppCompatActivity {
-    //    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_details);
-//
-//        // Retrieve the recipe ID from the Intent
-//        int recipeId = getIntent().getIntExtra("recipe_id", -1); // -1 is a default value in case the extra is not found
-//
-//        TextView apiText1 = findViewById(R.id.textView1);
-//        TextView apiText2 = findViewById(R.id.textView2);
-//        TextView apiText3 = findViewById(R.id.textView3);
-//
-//        apiText1.setMovementMethod(new ScrollingMovementMethod());
-//        apiText1.setHeight(350);
-//
-//
-//        RegenerateAllRecipesOnScreen(apiText1);
-//
-//        PostByPathBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                GetRecipeAPI().PostRecipeByPath(recipeNameIn.getText().toString(), instructionIn.getText().toString()).enqueue(new SlimCallback<Recipe>(recipe -> {
-//                    RegenerateAllRecipesOnScreen(apiText1);
-//                    recipeNameIn.setText("");
-//                    instructionIn.setText("");
-//                }));
-//            }
-//        });
-//
-//        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Recipe newRecipe = new Recipe();
-//                newRecipe.setRecipeName(recipeNameIn.getText().toString());
-//                newRecipe.setRecipeInstructions(instructionIn.getText().toString());
-//                GetRecipeAPI().PostRecipeByBody(newRecipe).enqueue(new SlimCallback<Recipe>(recipe -> {
-//                    RegenerateAllRecipesOnScreen(apiText1);
-//                    recipeNameIn.setText("");
-//                    instructionIn.setText("");
-//                }));
-//            }
-//        });
-//    }
-//
-//    void RegenerateAllRecipesOnScreen(TextView apiText1) {
-//        GetRecipeAPI().GetAllRecipes().enqueue(new SlimCallback<List<Recipe>>(recipes -> {
-//            apiText1.setText("");
-//
-//            for (int i = recipes.size() - 1; i >= 0; i--) {
-//                apiText1.append(recipes.get(i).printable());
-//            }
-//        }, "GetAllRecipe"));
-//    }
-//
-//
-//
-//}
-//    private TextView ingredientListLayout;
-//    private TextView directionsListLayout;
-//    private TextView recipeNameTextView;
-
     private OkHttpClient client;
     private WebSocket webSocket;
+    private TextView commentsTextView;
+    private EditText commentEditText;
+    private Button sendCommentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        // Initialize views
+        commentsTextView = findViewById(R.id.commentsRecyclerView);
+        commentEditText = findViewById(R.id.commentEditText);
+        sendCommentButton = findViewById(R.id.sendCommentButton);
 
         TextView ingredientListLayout;
         TextView directionsListLayout;
@@ -118,11 +48,17 @@ public class DetailsActivity extends AppCompatActivity {
         String recipeName = intent.getStringExtra("recipe_name");
 
         recipeNameTextView = findViewById(R.id.recipeName);
-        ingredientListLayout = findViewById(R.id.textView1);
-        directionsListLayout = findViewById(R.id.textView2);
 
         // Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
+
+        sendCommentButton.setOnClickListener(v -> {
+            String comment = commentEditText.getText().toString();
+            if (!comment.isEmpty()) {
+                sendComment(comment);
+            }
+        });
+
 
         // Retrofit code to fetch ingredients from the backend
         Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
@@ -177,7 +113,7 @@ public class DetailsActivity extends AppCompatActivity {
         // Create a WebSocket client
         client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("") // Replace with your WebSocket server URL
+                .url("")
                 .build();
 
         webSocket = client.newWebSocket(request, new WebSocketListener() {
@@ -186,8 +122,8 @@ public class DetailsActivity extends AppCompatActivity {
                 // Handle incoming WebSocket messages (ratings) here
                 runOnUiThread(() -> {
                     // Update the UI with the received rating information
-                    // For example, update a TextView or a rating widget.
-                    // Example: textView.setText("New Rating: " + text);
+                    // Update the UI with the received comment
+                    commentsTextView.append("\n" + text);
                 });
             }
 
@@ -199,7 +135,12 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
     }
-
+    private void sendComment(String comment) {
+        // Send the comment through the WebSocket
+        if (webSocket != null) {
+            webSocket.send(comment);
+        }
+    }
 
     private void displayIngredients(List<Ingredient> ingredients) {
         for (Ingredient ingredient : ingredients) {
@@ -209,8 +150,6 @@ public class DetailsActivity extends AppCompatActivity {
             // ingredientListLayout.addView(textView);
         }
     }
-
-
 }
 
 

@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         btnToRecipe = findViewById(R.id.btnToRecipe);
         btnToIngredient = findViewById(R.id.btnToIngredient);
         btnToDetails = findViewById(R.id.btnToDetails);
+        btnToDiscover = findViewById(R.id.btnToDiscover);
 
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override

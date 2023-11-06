@@ -1,7 +1,6 @@
 package com.example.as1.api;
 
-import com.example.as1.model.LoginRequest;
-import com.example.as1.model.Users;
+import com.example.as1.model.*;
 
 import java.util.List;
 import retrofit2.Call;

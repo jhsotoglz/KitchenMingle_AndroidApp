@@ -42,6 +42,7 @@ public class DetailsActivity extends AppCompatActivity {
         TextView directionsListLayout;
         TextView recipeNameTextView;
 
+
         // Retrieve recipe information from the Intent
         Intent intent = getIntent();
         int recipeId = intent.getIntExtra("recipe_id", -1);

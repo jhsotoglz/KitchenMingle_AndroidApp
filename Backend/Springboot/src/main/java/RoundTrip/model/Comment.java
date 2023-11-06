@@ -48,6 +48,13 @@ public class Comment {
         this.rating = rating;
     }
 
+    public Comment(String username, String content, Integer rating, Recipe recipe) {
+        this.userName = username;
+        this.content = content;
+        this.rating = rating;
+        this.recipe = recipe;
+    }
+
 
     public Long getId() {
         return id;

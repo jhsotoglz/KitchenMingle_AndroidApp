@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
 import java.util.List;
@@ -38,8 +41,8 @@ public class DetailsActivity extends AppCompatActivity {
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
 
-        TextView ingredientListLayout;
-        TextView directionsListLayout;
+        TextView ingredientsListTextView = findViewById(R.id.ingredientsListTextView);
+        TextView directionsTextView = findViewById(R.id.directionsTextView);
         TextView recipeNameTextView;
 
 
@@ -47,11 +50,19 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int recipeId = intent.getIntExtra("recipe_id", -1);
         String recipeName = intent.getStringExtra("recipe_name");
+        String ingredients = intent.getStringExtra("ingredients");
+        String directions = intent.getStringExtra("directions");
 
         recipeNameTextView = findViewById(R.id.recipeName);
 
         // Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
+
+        // Set the ingredients in the ingredientsListTextView
+        ingredientsListTextView.setText(ingredients);
+
+        // Set the directions in the directionsTextView
+        directionsTextView.setText(directions);
 
         sendCommentButton.setOnClickListener(v -> {
             String comment = commentEditText.getText().toString();
@@ -147,7 +158,7 @@ public class DetailsActivity extends AppCompatActivity {
             // Create a TextView for each ingredient and add it to the layout
             TextView textView = new TextView(this);
             textView.setText(ingredient.getIngredientName());
-            // ingredientListLayout.addView(textView);
+             //ingredientListLayout.addView(textView);
         }
     }
 }

@@ -22,7 +22,6 @@ public class ApiClientFactory {
         return apiClientSeed;
     }
 
-
     public static PostApi GetPostApi(){
 
         return GetApiClientSeed().create(PostApi.class);

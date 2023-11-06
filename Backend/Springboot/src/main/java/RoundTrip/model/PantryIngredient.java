@@ -31,6 +31,12 @@ public class PantryIngredient {
         this.quantity = 1;
     }
 
+    // Constructor that adds ingredient and set quantity by user
+    public PantryIngredient(Ingredient ingredient, int quantity){
+        this.ingredient = ingredient;
+        this.quantity = quantity;
+    }
+
     public Long getId() {
         return id;
     }

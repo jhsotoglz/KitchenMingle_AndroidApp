@@ -84,6 +84,10 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setProgress(75);
                 if (response.isSuccessful()) {   // response status code is between 200-299
                     // login successful, handle success
+                    // below could be used to send userID to details once a getter is made
+//                    Intent intent = new Intent(LoginActivity, DetailsActivity.class);
+//                    intent.putExtra("USER_ID", loggedInUserId);
+//                    startActivcity(intent);
                     progressBar.setProgress(100);
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());

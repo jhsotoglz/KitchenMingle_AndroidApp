@@ -1,7 +1,7 @@
 package com.example.as1.api;
 
 import java.util.List;
-import java.util.jar.Attributes;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -11,6 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import com.example.as1.model.Ingredient;
+import com.example.as1.model.PantryIngredient;
 
 public interface IngredientApi {
 
@@ -38,5 +39,8 @@ public interface IngredientApi {
             @Path("pantryIngId") Long pantryIngId,
             @Path("quantity") int quantity
     );
+
+
+
 
 }

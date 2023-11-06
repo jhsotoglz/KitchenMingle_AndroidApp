@@ -42,4 +42,6 @@ public class ApiClientFactory {
         return GetApiClientSeed().create(RecipeApi.class);
     }
 
+    public static PantryIngredientApi GetPantryIngredientAPI() { return GetApiClientSeed().create(PantryIngredientApi.class);}
+
 }

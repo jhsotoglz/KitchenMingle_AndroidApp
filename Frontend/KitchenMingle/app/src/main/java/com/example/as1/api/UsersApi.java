@@ -28,9 +28,19 @@ public interface UsersApi {
     @POST("users/login")
     Call<String> login(@Body LoginRequest loginRequest);
 
+    @POST("users/{userId}/addFavRecipe/{recipeId}")
+    Call<Void> addFavoriteRecipe(@Path("userId") Long userId, @Path("recipeId") Long recipeId);
+
+    @DELETE("users/{userId}/removeFavRecipe/{recipeId}")
+    Call<String> deleteFavoriteRecipe(@Path("userId") Long userId, @Path("recipeId") Long recipeId);
+
+    @GET("users/{userId}/favRecipe")
+    Call<List<Recipe>> getFavoriteRecipes(@Path("userId") Long userId);
     @POST("users/register")
     Call<String> RegisterUsers(@Body Users newUser);
 
     @GET("users/getEmail/{email}")
     Call<Users> GetUsersByEmail(@Path("email") String email);
+
+
 }

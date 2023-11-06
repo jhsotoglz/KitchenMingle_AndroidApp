@@ -1,28 +1,30 @@
 package RoundTrip.controller;
 
+import RoundTrip.NotFoundException;
 import RoundTrip.model.Comment;
+import RoundTrip.model.Users;
 import RoundTrip.repository.CommentRepository;
+import RoundTrip.repository.UsersRepository;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
-@ServerEndpoint(value = "/comment/{username}")
+@ServerEndpoint(value = "/comment/{userId}")
 public class CommentSocket {
     // cannot autowire static directly (instead we do it by the below
     // method
     private static CommentRepository commentRepo;
 
+    private static UsersRepository usersRepository;
     /*
      * Grabs the Comment Repository singleton from the Spring Application
      * Context.  This works because of the @Controller annotation on this
@@ -35,9 +37,14 @@ public class CommentSocket {
         commentRepo = repo;  // we are setting the static variable
     }
 
+    @Autowired
+    public void setUsersRepository(UsersRepository repo) {
+        usersRepository = repo;  // we are setting the static variable
+    }
+
     // Store all socket session and their corresponding username.
-    private static Map<Session, String> sessionUsernameMap = new Hashtable<>();
-    private static Map<String, Session> usernameSessionMap = new Hashtable<>();
+    private static Map<Session, Users> sessionUsernameMap = new Hashtable<>();
+    private static Map<Users, Session> usernameSessionMap = new Hashtable<>();
 
     private final Logger logger = LoggerFactory.getLogger(CommentSocket.class);
 
@@ -63,22 +70,30 @@ public class CommentSocket {
 //    }
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("username") String username)
+    public void onOpen(Session session, @PathParam("userId") Long userId)
             throws IOException {
 
-        logger.info("Entered into Open");
+        Optional<Users> findUser = usersRepository.findById(userId);
+        if(findUser.isPresent()){
+            Users user = findUser.get();
 
-        // store connecting user information
-        sessionUsernameMap.put(session, username);
-        usernameSessionMap.put(username, session);
+            logger.info("Entered into Open");
 
-        //Send chat history to the newly connected user
-        sendMessageToPArticularUser(username, getCommentHistory());
+            // store connecting user information
+            sessionUsernameMap.put(session, user);
+            usernameSessionMap.put(user, session);
 
-        // broadcast that new user joined
-        String message = "User:" + username + " Welcome to this recipe's comment section. " +
-                "\nPlease provide a rating for this recipe from 1 to 10 before commenting!";
-        broadcast(message);
+            //Send chat history to the newly connected user
+            sendMessageToParticularUser(user, getCommentHistory());
+
+            // broadcast that new user joined
+            String message = "User:" + user.getUsername() + " Welcome to this recipe's comment section. " +
+                    "\nPlease provide a rating for this recipe from 1 to 10 before commenting!";
+            broadcast(message);
+        }else{
+            throw new NotFoundException("User " + userId + " not found.");
+        }
+
     }
 
 
@@ -109,23 +124,19 @@ public class CommentSocket {
     @OnMessage
     public void onMessage(Session session, String message) throws IOException {
         logger.info("Entered into Comment: Got Comment: " + message);
-        String username = sessionUsernameMap.get(session);
+        Users user = sessionUsernameMap.get(session);
+        String username = user.getUsername();
 
-        if (message.startsWith("@")) {
-            // Handle direct messages
-            String destUsername = message.split(" ")[0].substring(1);
-            sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
-            sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
-        } else if (message.matches("\\d+ .*")) {
+         if (message.matches("\\d+ .*")) {
             // Handle messages that include ratings
-            if (usernameHasSubmittedRating(username)) {
+            if (usernameHasSubmittedRating(user)) {
                 // No rating required for subsequent comments
-                saveComment(username, message, null);
+                saveComment(user, message, null);
             } else {
                 String[] messageParts = message.split(" ");
                 int rating = Integer.parseInt(messageParts[0]);
                 String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
-                saveComment(username, commentText, rating);
+                saveComment(user, commentText, rating);
             }
         } else {
             // Handle regular chat messages
@@ -141,12 +152,13 @@ public class CommentSocket {
         logger.info("Entered into Close");
 
         // remove the user connection information
-        String username = sessionUsernameMap.get(session);
+        Users user = sessionUsernameMap.get(session);
+        String username = user.getUsername();
         sessionUsernameMap.remove(session);
-        usernameSessionMap.remove(username);
+        usernameSessionMap.remove(user);
 
         // broadcase that the user disconnected
-        String message = username + " disconnected";
+        String message = user.getUsername() + " disconnected";
         broadcast(message);
     }
 
@@ -159,9 +171,10 @@ public class CommentSocket {
     }
 
 
-    private void sendMessageToPArticularUser(String username, String message) {
+    private void sendMessageToParticularUser(Users user, String message) {
+
         try {
-            usernameSessionMap.get(username).getBasicRemote().sendText(message);
+            usernameSessionMap.get(user).getBasicRemote().sendText(message);
         }
         catch (IOException e) {
             logger.info("Exception: " + e.getMessage().toString());
@@ -199,20 +212,20 @@ public class CommentSocket {
         return sb.toString();
     }
 
-    private void saveComment(String username, String content, Integer rating) {
+    private void saveComment(Users user, String content, Integer rating) {
         // Direct message to a user using the format "@username <message>"
         if (content.startsWith("@")) {
             // ...
         } else { // broadcast
-            broadcast(username + ": " + content);
+            broadcast(user.getUsername() + ": " + content);
         }
 
         // Saving chat history to repository
-        commentRepo.save(new Comment(username, content, rating));
+        commentRepo.save(new Comment(user.getUsername(), content, rating));
     }
 
-    private boolean usernameHasSubmittedRating(String username) {
-        List<Comment> userComments = commentRepo.findByUserName(username);
+    private boolean usernameHasSubmittedRating(Users user) {
+        List<Comment> userComments = commentRepo.findByUsers(user);
 
         // Check if any of the user's comments have a rating
         return userComments.stream().anyMatch(comment -> comment.getRating() != null);

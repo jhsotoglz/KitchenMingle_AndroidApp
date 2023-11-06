@@ -30,8 +30,11 @@ public interface IngredientApi {
     @DELETE("pantryIng/delete/{userId}/{pantryIngId}")
     Call<Void> deleteIngredientById(@Path("id") Long id);
 
+//    @GET("/recipe/{recipeId}/ingredients")
+//    Call<List<Ingredient>> getIngredientsForRecipe();
+
     @GET("/recipe/{recipeId}/ingredients")
-    Call<List<Ingredient>> getIngredientsForRecipe();
+    Call<List<Ingredient>> getIngredientsForRecipe(@Path("recipeId") int recipeId);
 
     @PUT("pantryIng/quantity/{userId}/{pantryIngId}/{quantity}")
     Call<Ingredient> setQuantity(

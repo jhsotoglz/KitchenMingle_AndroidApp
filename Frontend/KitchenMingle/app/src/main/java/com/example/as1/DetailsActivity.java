@@ -40,10 +40,9 @@ public class DetailsActivity extends AppCompatActivity {
         commentsTextView = findViewById(R.id.commentsRecyclerView);
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
-
         TextView ingredientsListTextView = findViewById(R.id.ingredientsListTextView);
         TextView directionsTextView = findViewById(R.id.directionsTextView);
-        TextView recipeNameTextView;
+        TextView recipeNameTextView = findViewById(R.id.recipeName);
 
 
         // Retrieve recipe information from the Intent
@@ -71,22 +70,21 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-
         // Retrofit code to fetch ingredients from the backend
-        Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
+        Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe(recipeId); // Pass the recipe ID
 
         call.enqueue(new Callback<List<Ingredient>>() {
             @Override
             public void onResponse(Call<List<Ingredient>> call, Response<List<Ingredient>> response) {
                 if (response.isSuccessful()) {
                     List<Ingredient> ingredients = response.body();
-                    displayIngredients(ingredients);
+                    String ingredientsText = formatIngredients(ingredients);
+                    ingredientsListTextView.setText(ingredientsText);
                 } else {
                     // Handle API error
                     Log.e("API Error", "Failed to retrieve ingredients: " + response.message());
                 }
             }
-
 
             @Override
             public void onFailure(Call<List<Ingredient>> call, Throwable t) {
@@ -95,31 +93,55 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
 
-        call1.enqueue(new Callback<Recipe>() {
-            @Override
-            public void onResponse(Call<Recipe> call1, Response<Recipe> response) {
-                if (response.isSuccessful()) {
-                    Recipe recipe = response.body();
-                    // Check if the Recipe class has a getRecipeInstructions() method that returns a single String
-                    if (recipe != null) {
-                        String directions = recipe.getRecipeInstructions();
-//                        List<String> directionsList = Collections.singletonList(directions);
-//                        displayDirections(directionsList);
-
-                    }
-                } else {
-                    // Handle API error
-                }
-            }
-
-
-            @Override
-            public void onFailure(Call<Recipe> call, Throwable t) {
-                // Handle network or other errors
-            }
-        });
+//        // Retrofit code to fetch ingredients from the backend
+//        Call<List<Ingredient>> call = GetIngredientAPI().getIngredientsForRecipe();
+//
+//        call.enqueue(new Callback<List<Ingredient>>() {
+//            @Override
+//            public void onResponse(Call<List<Ingredient>> call, Response<List<Ingredient>> response) {
+//                if (response.isSuccessful()) {
+//                    List<Ingredient> ingredients = response.body();
+//                    displayIngredients(ingredients);
+//                } else {
+//                    // Handle API error
+//                    Log.e("API Error", "Failed to retrieve ingredients: " + response.message());
+//                }
+//            }
+//
+//
+//            @Override
+//            public void onFailure(Call<List<Ingredient>> call, Throwable t) {
+//                // Handle network or other errors
+//                Log.e("API Error", "Failed to retrieve ingredients: " + t.getMessage());
+//            }
+//        });
+//
+//        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
+//
+//        call1.enqueue(new Callback<Recipe>() {
+//            @Override
+//            public void onResponse(Call<Recipe> call1, Response<Recipe> response) {
+//                if (response.isSuccessful()) {
+//                    Recipe recipe = response.body();
+//                    // Check if the Recipe class has a getRecipeInstructions() method that returns a single String
+//                    if (recipe != null) {
+//                        String directions = recipe.getRecipeInstructions();
+////                        List<String> directionsList = Collections.singletonList(directions);
+////                        displayDirections(directionsList);
+//
+//                    }
+//                } else {
+//                    // Handle API error
+//                }
+//            }
+//
+//
+//            @Override
+//            public void onFailure(Call<Recipe> call, Throwable t) {
+//                // Handle network or other errors
+//            }
+//        });
 
         // Create a WebSocket client
         client = new OkHttpClient();
@@ -161,6 +183,17 @@ public class DetailsActivity extends AppCompatActivity {
              //ingredientListLayout.addView(textView);
         }
     }
+
+    private String formatIngredients(List<Ingredient> ingredients) {
+        StringBuilder formattedIngredients = new StringBuilder();
+
+        for (Ingredient ingredient : ingredients) {
+            formattedIngredients.append(ingredient.getIngredientName()).append("\n");
+        }
+
+        return formattedIngredients.toString();
+    }
+
 }
 
 

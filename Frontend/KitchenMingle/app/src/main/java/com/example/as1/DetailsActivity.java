@@ -42,7 +42,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         recipeNameTextView = findViewById(R.id.recipeName);
         userIdEditText = findViewById(R.id.userIdEditText);
         recipeIdEditText = findViewById(R.id.recipeIdEditText);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        ratingBar = findViewById(R.id.ratingBar);
         connectBtn = findViewById(R.id.connectBtn);
         commentsRecyclerView = findViewById(R.id.commentsRecyclerView);
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -185,6 +185,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //            String closedBy = remote ? "server" : "local";
 //            msgTv.setText(String.format("%s---\nConnection closed by %s\nReason: %s", currentText, closedBy, reason));
 //        });
+
     }
 
     @Override
@@ -194,7 +195,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
     @Override
     public void onWebSocketError(Exception ex) {
-        // logic to handle web socket errors
     }
 
     @Override
@@ -202,14 +202,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         // logic to handle messages
         // FIXME: send messages to recycler thing
     }
-
-
-//    private void sendComment(String comment) {
-//        // Send the comment through the WebSocket
-//        if (webSocket != null) {
-//            webSocket.send(comment);
-//        }
-//    }
 
 //    private void displayIngredients(List<Ingredient> ingredients) {
 //        for (Ingredient ingredient : ingredients) {

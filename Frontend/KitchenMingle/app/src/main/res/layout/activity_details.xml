@@ -95,10 +95,10 @@
         android:id="@+id/commentEditText"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="136dp"
         android:hint="Your comment..."
         app:layout_constraintEnd_toStartOf="@+id/sendCommentButton"
-        app:layout_constraintHorizontal_bias="0.901"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle" />
 
@@ -106,7 +106,7 @@
         android:id="@+id/sendCommentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="80dp"
         android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/directionsTitle" />
@@ -130,8 +130,8 @@
         android:layout_height="51dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Recipe ID"
         android:inputType="text"
-        android:text="Recipe ID"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toStartOf="@+id/userIdEditText"
         app:layout_constraintTop_toBottomOf="@+id/directionsTitle" />
@@ -142,8 +142,8 @@
         android:layout_height="49dp"
         android:layout_marginEnd="160dp"
         android:ems="10"
+        android:hint="UserID"
         android:inputType="text"
-        android:text="User ID"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/directionsTitle"

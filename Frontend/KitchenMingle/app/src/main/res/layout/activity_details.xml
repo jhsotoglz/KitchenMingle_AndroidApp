@@ -187,4 +187,16 @@
         app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="@+id/headerTitle" />
 
+    <Button
+        android:id="@+id/btnToPickRecipe1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:text="List"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="@+id/headerTitle" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

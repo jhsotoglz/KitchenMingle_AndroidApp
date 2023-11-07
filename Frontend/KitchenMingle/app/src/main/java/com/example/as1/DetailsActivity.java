@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RatingBar;
-
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import java.util.ArrayList;
+import com.example.as1.model.Comment;
 import com.example.as1.api.WebSocketListener;
-
+import java.util.List;
 import org.java_websocket.handshake.ServerHandshake;
 
 
@@ -22,6 +24,9 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     private EditText commentEditText, userIdEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
     private RatingBar ratingBar;
+    private RecyclerView commentsRecyclerView;
+    private CommentAdapter commentAdapter;
+    private List<Comment> commentList = new ArrayList<>();
 
     private String BASE_URL = "http://coms-309-033.class.las.iastate.edu:8080/comment/";
 
@@ -39,6 +44,13 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         recipeIdEditText = findViewById(R.id.recipeIdEditText);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         connectBtn = findViewById(R.id.connectBtn);
+        commentsRecyclerView = findViewById(R.id.commentsRecyclerView);
+        commentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        commentAdapter = new CommentAdapter(commentList);
+        commentsRecyclerView.setAdapter(commentAdapter);
+
+        // Fetch comments and update the RecyclerView
+        loadComments();
 
         // Retrieve recipe information from the Intent
         Intent intent = getIntent();
@@ -214,6 +226,12 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //            // ingredientListLayout.addView(textView);
 //        }
 //    }
+private void loadComments() {
+    // TODO: actually get the real comments
+    commentList.add(new Comment("User1", "This is a great recipe!", 5));
+    commentList.add(new Comment("User2", "Thanks for sharing!", 4));
+    commentAdapter.notifyDataSetChanged();
+}
 }
 
 

@@ -20,10 +20,10 @@ import org.java_websocket.handshake.ServerHandshake;
 
 
 public class DetailsActivity extends AppCompatActivity implements WebSocketListener {
-    private TextView commentsText, ingredientListLayout, directionsListLayout, recipeNameTextView;
+    private TextView commentText, ingredientListLayout, directionsListLayout, recipeNameTextView, commentUserName;
     private EditText commentEditText, userIdEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
-    private RatingBar ratingBar;
+    private RatingBar ratingBar, commentRatingBar;
     private RecyclerView commentsRecyclerView;
     private CommentAdapter commentAdapter;
     private List<Comment> commentList = new ArrayList<>();
@@ -36,6 +36,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         setContentView(R.layout.activity_details);
 
         // Initialize views
+        // commentText = findViewById(R.id.commentText);
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
         recipeNameTextView = findViewById(R.id.recipeName);
@@ -161,8 +162,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     }
 
     /*
-    * On page start, WebSocket begins listening
-    */
+     * On page start, WebSocket begins listening
+     */
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
@@ -175,8 +176,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //    }
 
     /*
-    * On page close, WebSocket stops listening
-    */
+     * On page close, WebSocket stops listening
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -203,11 +204,10 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     }
 
     @Override
-    public void onWebSocketMessage(String message){
+    public void onWebSocketMessage(String message) {
         // logic to handle messages
         // FIXME: send messages to recycler thing
     }
-
 
 
 //    private void sendComment(String comment) {
@@ -229,9 +229,16 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
     private void loadComments() {
         // TODO: actually get the real comments
-        commentList.add(new Comment("User1", "This is a great recipe!", 5));
-        commentList.add(new Comment("User2", "Thanks for sharing!", 4));
-        commentAdapter.notifyDataSetChanged();
+//        setContentView(R.layout.comment_item);
+//        commentText = findViewById(R.id.commentText);
+//        commentRatingBar = findViewById(R.id.commentRatingBar);
+//        commentUserName = findViewById(R.id.commentUserName);
+
+        runOnUiThread(() -> {
+            commentList.add(new Comment("User1", "This is a great recipe!", 5));
+            commentList.add(new Comment("User2", "Thanks for sharing!", 4));
+            commentAdapter.notifyDataSetChanged();
+        });
     }
 }
 

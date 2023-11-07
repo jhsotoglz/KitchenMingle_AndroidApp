@@ -7,6 +7,20 @@
     tools:context=".DetailsActivity">
 
     <!-- Kitchen Mingle Header -->
+
+
+    <TextView
+        android:id="@+id/directionsTextView"
+        android:layout_width="408dp"
+        android:layout_height="60dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
+        app:layout_constraintVertical_bias="0.003" />
+
     <TextView
         android:id="@+id/headerTitle"
         android:layout_width="0dp"
@@ -59,11 +73,11 @@
         android:id="@+id/ingredientsTitle"
         android:layout_width="404dp"
         android:layout_height="39dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="4dp"
         android:text="Ingredients"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeName" />
 
@@ -118,11 +132,23 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commentEditText"
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/comment_item" />
+
+    <TextView
+        android:id="@+id/ingredientsListTextView"
+        android:layout_width="408dp"
+        android:layout_height="60dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/recipeIdEditText"

@@ -19,13 +19,13 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        TextView apiText1 = findViewById(R.id.activity_main_textView1);
+        TextView apiText1 = findViewById(R.id.txtView_IngList);
 
         apiText1.setMovementMethod(new ScrollingMovementMethod());
         apiText1.setHeight(350);
 
         Button PostByPathBtn = findViewById(R.id.activity_main_post_by_path_button);
-        Button PostByBodyBtn = findViewById(R.id.activity_main_post_by_body_button);
+        Button PostByBodyBtn = findViewById(R.id.post_btn);
         EditText recipeNameIn = findViewById(R.id.activity_main_recipename_editText);
         EditText instructionIn = findViewById(R.id.activity_main_instruction_editText);
 

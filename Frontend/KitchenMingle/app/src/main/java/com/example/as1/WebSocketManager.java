@@ -1,5 +1,8 @@
-package com.example.as1.api;
+package com.example.as1;
+
 import android.util.Log;
+
+import com.example.as1.api.WebSocketListener;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -19,7 +22,8 @@ public class WebSocketManager {
     private MyWebSocketClient webSocketClient;
     private WebSocketListener webSocketListener;
 
-    private WebSocketManager() {}
+    private WebSocketManager() {
+    }
 
     /**
      * Retrieves a synchronized instance of the WebSocketManager, ensuring that
@@ -169,6 +173,5 @@ public class WebSocketManager {
                 webSocketListener.onWebSocketError(ex);
             }
         }
-
     }
 }

@@ -20,7 +20,7 @@ import org.java_websocket.handshake.ServerHandshake;
 
 
 public class DetailsActivity extends AppCompatActivity implements WebSocketListener {
-    private TextView commentsTextView, ingredientListLayout, directionsListLayout, recipeNameTextView;
+    private TextView commentsText, ingredientListLayout, directionsListLayout, recipeNameTextView;
     private EditText commentEditText, userIdEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
     private RatingBar ratingBar;
@@ -36,7 +36,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         setContentView(R.layout.activity_details);
 
         // Initialize views
-        commentsTextView = findViewById(R.id.commentsRecyclerView);
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
         recipeNameTextView = findViewById(R.id.recipeName);
@@ -226,12 +225,14 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //            // ingredientListLayout.addView(textView);
 //        }
 //    }
-private void loadComments() {
-    // TODO: actually get the real comments
-    commentList.add(new Comment("User1", "This is a great recipe!", 5));
-    commentList.add(new Comment("User2", "Thanks for sharing!", 4));
-    commentAdapter.notifyDataSetChanged();
-}
+
+
+    private void loadComments() {
+        // TODO: actually get the real comments
+        commentList.add(new Comment("User1", "This is a great recipe!", 5));
+        commentList.add(new Comment("User2", "Thanks for sharing!", 4));
+        commentAdapter.notifyDataSetChanged();
+    }
 }
 
 

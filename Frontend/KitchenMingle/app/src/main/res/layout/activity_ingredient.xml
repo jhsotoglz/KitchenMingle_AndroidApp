@@ -25,20 +25,18 @@
 
 
     <TextView
-        android:id="@+id/activity_main_textView1"
+        android:id="@+id/txtView_IngList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingredient!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.566" />
-
+        app:layout_constraintVertical_bias="0.529" />
 
     <Button
-        android:id="@+id/activity_main_post_by_body_button"
+        android:id="@+id/post_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="224dp"
@@ -51,7 +49,7 @@
         app:layout_constraintVertical_bias="0.448" />
 
     <EditText
-        android:id="@+id/activity_main_ingredientname_editText"
+        android:id="@+id/eTxt_ingName"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_margin="16dp"
@@ -67,7 +65,7 @@
         app:layout_constraintVertical_bias="0.231" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtView_KM"
         android:layout_width="277dp"
         android:layout_height="70dp"
         android:text="Kitchen Mingle"
@@ -81,7 +79,7 @@
 
 
     <TextView
-        android:id="@+id/textViewMyPantry"
+        android:id="@+id/txtView_MPantry"
         android:layout_width="137dp"
         android:layout_height="41dp"
         android:layout_marginTop="56dp"
@@ -101,7 +99,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/listRec_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List Recipes"
@@ -114,7 +112,7 @@
 
 
     <EditText
-        android:id="@+id/activity_main_quantity_editText"
+        android:id="@+id/eTxt_quantity"
         android:layout_width="189dp"
         android:layout_height="53dp"
         android:layout_margin="16dp"

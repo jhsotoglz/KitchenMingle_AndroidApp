@@ -28,7 +28,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     private CommentAdapter commentAdapter;
     private List<Comment> commentList = new ArrayList<>();
 
-    private String BASE_URL = "http://coms-309-033.class.las.iastate.edu:8080/comment/";
+    private String BASE_URL = "ws://coms-309-033.class.las.iastate.edu:8080/comment/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,12 +135,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //            }
 //        });
 //
-//        // Create a WebSocket client
-//        client = new OkHttpClient();
-//        Request request = new Request.Builder()
-//                .url("http://coms-309-033.class.las.iastate.edu:8080/comment/{username}")
-//                .build();
-//
 //        webSocket = client.newWebSocket(request, new WebSocketListener() {
 //            public void onMessage(WebSocket webSocket, String text) {
 //                super.onMessage(webSocket, text);
@@ -228,7 +222,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
 
     private void loadComments() {
-        // TODO: actually get the real comments
+        // TODO: Load (real) previously commented variables
+        // FIXME: recycler view??
 //        setContentView(R.layout.comment_item);
 //        commentText = findViewById(R.id.commentText);
 //        commentRatingBar = findViewById(R.id.commentRatingBar);

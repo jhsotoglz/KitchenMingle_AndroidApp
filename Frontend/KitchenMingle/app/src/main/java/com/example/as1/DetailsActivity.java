@@ -79,7 +79,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             try {
                 float rating = ratingBar.getRating();
                 String message = commentEditText.getText().toString();
-                String review = "Rating: " + rating + ", Comment: " + message;
+                String review = rating + message;
                 WebSocketManager.getInstance().sendMessage(review);
             } catch (Exception e) {
                 Log.d("ExceptionSendMessage:", e.getMessage().toString());

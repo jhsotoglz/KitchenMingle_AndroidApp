@@ -7,6 +7,20 @@
     tools:context=".DetailsActivity">
 
     <!-- Kitchen Mingle Header -->
+
+
+    <TextView
+        android:id="@+id/directionsTextView"
+        android:layout_width="408dp"
+        android:layout_height="60dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
+        app:layout_constraintVertical_bias="0.003" />
+
     <TextView
         android:id="@+id/headerTitle"
         android:layout_width="0dp"
@@ -59,11 +73,11 @@
         android:id="@+id/ingredientsTitle"
         android:layout_width="404dp"
         android:layout_height="39dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="4dp"
         android:text="Ingredients"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeName" />
 
@@ -95,10 +109,10 @@
         android:id="@+id/commentEditText"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="216dp"
         android:hint="Your comment..."
         app:layout_constraintEnd_toStartOf="@+id/sendCommentButton"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle" />
 
@@ -106,7 +120,7 @@
         android:id="@+id/sendCommentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="120dp"
         android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/directionsTitle" />
@@ -118,36 +132,49 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commentEditText"
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/comment_item" />
 
+    <TextView
+        android:id="@+id/ingredientsListTextView"
+        android:layout_width="408dp"
+        android:layout_height="60dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsTitle"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/recipeIdEditText"
         android:layout_width="94dp"
         android:layout_height="51dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="12dp"
         android:ems="10"
         android:hint="Recipe ID"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toStartOf="@+id/userIdEditText"
-        app:layout_constraintTop_toBottomOf="@+id/directionsTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
+        app:layout_constraintVertical_bias="0.903" />
 
     <EditText
         android:id="@+id/userIdEditText"
         android:layout_width="142dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginEnd="156dp"
         android:ems="10"
         android:hint="UserID"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
-        app:layout_constraintVertical_bias="0.481" />
+        app:layout_constraintVertical_bias="0.89" />
 
     <Button
         android:id="@+id/connectBtn"

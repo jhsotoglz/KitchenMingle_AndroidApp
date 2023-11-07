@@ -20,7 +20,7 @@ import org.java_websocket.handshake.ServerHandshake;
 
 
 public class DetailsActivity extends AppCompatActivity implements WebSocketListener {
-    private TextView commentText, ingredientListLayout, directionsListLayout, recipeNameTextView, commentUserName;
+    private TextView commentText, ingredientsTextView, directionsTextView, recipeNameTextView, commentUserName;
     private EditText commentEditText, userIdEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
     private RatingBar ratingBar, commentRatingBar;
@@ -48,6 +48,10 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         commentAdapter = new CommentAdapter(commentList);
         commentsRecyclerView.setAdapter(commentAdapter);
+        directionsTextView = findViewById(R.id.directionsTextView);
+        ingredientsTextView = findViewById(R.id.ingredientsListTextView);
+
+
 
         // Fetch comments and update the RecyclerView
         loadComments();
@@ -55,10 +59,14 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         // Retrieve recipe information from the Intent
         Intent intent = getIntent();
         String recipeName = intent.getStringExtra("recipe_name");
+        String ingredients = intent.getStringExtra("ingredients");
+        String directions = intent.getStringExtra("directions");
 
 
         // Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
+        directionsTextView.setText(ingredients);
+        ingredientsTextView.setText(directions);
 
 
 

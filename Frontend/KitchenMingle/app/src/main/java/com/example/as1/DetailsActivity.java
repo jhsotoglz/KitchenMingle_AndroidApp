@@ -177,8 +177,12 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         int rating = (int) Math.round(ratingDouble);
         String text = matcher.group(3).trim();*/
 
+        float floatingRating = ratingBar.getRating();
+        int rating = Math.round(floatingRating);
+
+
         runOnUiThread(() -> {
-          commentList.add(new Comment(userIdEditText.getText().toString(), message, 4));
+          commentList.add(new Comment(userIdEditText.getText().toString(), message, rating ));
           //  commentList.add(new Comment(userID, text, rating));
                commentAdapter.notifyDataSetChanged();
         });

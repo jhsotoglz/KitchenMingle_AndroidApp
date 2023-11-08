@@ -285,27 +285,27 @@ public class IngredientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ingredient);
 
 
-        TextView apiText1 = findViewById(R.id.txtView_IngList);
+        TextView txtView_IngList = findViewById(R.id.txtView_IngList);
 
 
 //        apiText1.setMovementMethod(new ScrollingMovementMethod());
 //        apiText1.setHeight(350);
 
 
-        Button PostByBodyBtn = findViewById(R.id.post_btn);
-        EditText ingredientNameIn = findViewById(R.id.eTxt_ingName);
-        EditText quantityIn = findViewById(R.id.eTxt_quantity);
+        Button addIngrBtn = findViewById(R.id.addIngrBtn);
+        EditText eTxt_ingr = findViewById(R.id.eTxt_ingr);
+        EditText eTxt_quantity = findViewById(R.id.eTxt_quantity);
 
 
-        RegenerateAllIngredientOnScreen(apiText1);
+        RegenerateAllIngredientOnScreen(txtView_IngList);
 
 
-        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
+        addIngrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Get the text from the EditText fields
-                String ingredientName = ingredientNameIn.getText().toString();
-                String quantityText = quantityIn.getText().toString();
+                String ingredientName = eTxt_ingr.getText().toString();
+                String quantityText = eTxt_quantity.getText().toString();
 
                 try {
                     // Parse the text to an integer
@@ -316,18 +316,18 @@ public class IngredientActivity extends AppCompatActivity {
                     newIngredient.setIngredientName(ingredientName);
                     newIngredient.setQuantity(quantity);
                     // Clear the EditText fields after a successful post
-                    ingredientNameIn.setText("");
-                    quantityIn.setText("");
+                    eTxt_ingr.setText("");
+                    eTxt_quantity.setText("");
 
 
                     // Make a POST request to create the new Ingredient
                     GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
                         // Callback for success
-                        RegenerateAllIngredientOnScreen(apiText1);
+                        RegenerateAllIngredientOnScreen(txtView_IngList);
 
                         // Clear the EditText fields after a successful post
-                        ingredientNameIn.setText("");
-                        quantityIn.setText("");
+                        eTxt_ingr.setText("");
+                        eTxt_quantity.setText("");
                     }));
                 } catch (NumberFormatException e) {
                     // Handle the case where the input is not a valid integer
@@ -357,13 +357,13 @@ public class IngredientActivity extends AppCompatActivity {
     }
 
 
-    void RegenerateAllIngredientOnScreen(TextView apiText1){
+    void RegenerateAllIngredientOnScreen(TextView txtView_IngList){
         GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
-            apiText1.setText("");
+            txtView_IngList.setText("");
 
             for(int i = ingredients.size() - 1; i >= 0; i--){
 
-                apiText1.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
+                txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
             }
         }, "GetAllIngredient"));
     }

@@ -62,10 +62,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             }
          });
 
-
-
-
-                // Fetch comments and update the RecyclerView
+        // Fetch comments and update the RecyclerView
         loadComments();
 
         // Retrieve recipe information from the Intent
@@ -74,13 +71,10 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         String ingredients = intent.getStringExtra("ingredients");
         String directions = intent.getStringExtra("directions");
 
-
         // Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
         directionsTextView.setText(ingredients);
         ingredientsTextView.setText(directions);
-
-
 
         /* connect button listener */
         connectBtn.setOnClickListener(view -> {
@@ -92,7 +86,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             WebSocketManager.getInstance().connectWebSocket(serverUrl);
             WebSocketManager.getInstance().setWebSocketListener(this);
         });
-
 
         /* send button listener */
         sendCommentButton.setOnClickListener(v -> {
@@ -219,8 +212,13 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
     @Override
     public void onWebSocketMessage(String message) {
-        // logic to handle messages
         // FIXME: send messages to recycler thing
+        // TODO: parse string "Received message: user1: 4.5one"
+
+        runOnUiThread(() -> {
+            commentList.add(new Comment(message));
+            commentAdapter.notifyDataSetChanged();
+        });
     }
 
 //    private void displayIngredients(List<Ingredient> ingredients) {
@@ -240,11 +238,11 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //        commentText = findViewById(R.id.commentText);
 //        commentRatingBar = findViewById(R.id.commentRatingBar);
 //        commentUserName = findViewById(R.id.commentUserName);
+        // commentsTextView.append("\n" + text);
 
         runOnUiThread(() -> {
-            commentList.add(new Comment("User1", "This is a great recipe!", 5));
-            commentList.add(new Comment("User2", "Thanks for sharing!", 4));
-            commentAdapter.notifyDataSetChanged();
+         //   commentList.add(new Comment("User1", "This is a great recipe!", 5));
+        //    commentAdapter.notifyDataSetChanged();
         });
     }
 

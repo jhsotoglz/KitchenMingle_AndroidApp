@@ -1,4 +1,4 @@
-package RoundTrip.controller;
+package RoundTrip.websocket;
 
 import RoundTrip.NotFoundException;
 import RoundTrip.model.Comment;

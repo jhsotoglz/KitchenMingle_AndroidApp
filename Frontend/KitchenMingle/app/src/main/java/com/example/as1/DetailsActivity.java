@@ -60,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
                 Intent intent = new Intent(DetailsActivity.this, PickRecipeActivity.class);
                 startActivity(intent);
             }
-         });
+        });
 
         // Fetch comments and update the RecyclerView
         loadComments();
@@ -102,51 +102,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //
 //
 //
-//        call.enqueue(new Callback<List<Ingredient>>() {
-//            @Override
-//            public void onResponse(Call<List<Ingredient>> call, Response<List<Ingredient>> response) {
-//                if (response.isSuccessful()) {
-//                    List<Ingredient> ingredients = response.body();
-//                    displayIngredients(ingredients);
-//                } else {
-//                    // Handle API error
-//                    Log.e("API Error", "Failed to retrieve ingredients: " + response.message());
-//                }
-//            }
 //
-//
-//            @Override
-//            public void onFailure(Call<List<Ingredient>> call, Throwable t) {
-//                // Handle network or other errors
-//                Log.e("API Error", "Failed to retrieve ingredients: " + t.getMessage());
-//            }
-//        });
-//
-//        Call<Recipe> call1 = GetRecipeAPI().getRecipeByName(recipeName);
-//
-//        call1.enqueue(new Callback<Recipe>() {
-//            @Override
-//            public void onResponse(Call<Recipe> call1, Response<Recipe> response) {
-//                if (response.isSuccessful()) {
-//                    Recipe recipe = response.body();
-//                    // Check if the Recipe class has a getRecipeInstructions() method that returns a single String
-//                    if (recipe != null) {
-//                        String directions = recipe.getRecipeInstructions();
-////                        List<String> directionsList = Collections.singletonList(directions);
-////                        displayDirections(directionsList);
-//
-//                    }
-//                } else {
-//                    // Handle API error
-//                }
-//            }
-//
-//
-//            @Override
-//            public void onFailure(Call<Recipe> call, Throwable t) {
-//                // Handle network or other errors
-//            }
-//        });
 //
 //        webSocket = client.newWebSocket(request, new WebSocketListener() {
 //            public void onMessage(WebSocket webSocket, String text) {
@@ -221,14 +177,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         });
     }
 
-//    private void displayIngredients(List<Ingredient> ingredients) {
-//        for (Ingredient ingredient : ingredients) {
-//            // Create a TextView for each ingredient and add it to the layout
-//            TextView textView = new TextView(this);
-//            textView.setText(ingredient.getIngredientName());
-//            // ingredientListLayout.addView(textView);
-//        }
-//    }
 
 
     private void loadComments() {
@@ -247,12 +195,5 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     }
 
 }
-
-
-
-
-
-
-
 
 

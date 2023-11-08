@@ -12,20 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
-import com.example.as1.api.RecipeApi;
 import com.example.as1.model.Recipe;
 import com.example.as1.model.SlimCallback;
 
 
-import java.util.ArrayList;
 import java.util.List;
+import android.view.View;
+import android.widget.Button;
+
 
 
 public class PickRecipeActivity extends AppCompatActivity {
     private LinearLayout recipeButtonContainer;
+    private Button goToFavBtn;
 
 
     @Override
@@ -33,13 +34,23 @@ public class PickRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pickrecipe);
 
-
         recipeButtonContainer = findViewById(R.id.recipeButtonContainer);
+//        Button addToFavBtn = findViewById(R.id.goToFavBtn);
 
+//        goToFavBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent intent = new Intent(PickRecipeActivity.this, FavoritesActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         // Call the displayRecipeButtons method to fetch and display recipes
         displayRecipeButtons();
     }
+
+
     void displayRecipeButtons() {
         GetRecipeAPI().GetAllRecipes().enqueue(new SlimCallback<List<Recipe>>(recipes -> {
 
@@ -54,7 +65,7 @@ public class PickRecipeActivity extends AppCompatActivity {
 
 
                 // Set an ID for the button (you can use the recipe's ID here)
-                recipeButton.setId(recipe.getId());
+                recipeButton.setId(recipe.getRecipeId());
 
 
                 // Set an onClickListener to handle button click events
@@ -91,4 +102,5 @@ public class PickRecipeActivity extends AppCompatActivity {
 
 
 }
+
 

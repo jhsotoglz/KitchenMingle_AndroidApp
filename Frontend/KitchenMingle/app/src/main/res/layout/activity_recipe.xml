@@ -7,7 +7,7 @@
     tools:context="com.example.as1.RecipeActivity">
 
     <TextView
-        android:id="@+id/activity_main_textView1"
+        android:id="@+id/txtView_IngList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -22,17 +22,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:text="post by path"
-        app:layout_constraintBottom_toTopOf="@+id/activity_main_textView1"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_main_instruction_editText"
         app:layout_constraintVertical_bias="0.324" />
 
     <Button
-        android:id="@+id/activity_main_post_by_body_button"
+        android:id="@+id/post_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="post by body"
-        app:layout_constraintBottom_toTopOf="@+id/activity_main_textView1"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.719"
         app:layout_constraintStart_toEndOf="@+id/activity_main_post_by_path_button"
@@ -46,7 +46,7 @@
         android:ems="10"
         android:hint="Recipe Name:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/activity_main_textView1"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:ems="10"
         android:hint="Recipe Instructions:"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/activity_main_textView1"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_main_recipename_editText"

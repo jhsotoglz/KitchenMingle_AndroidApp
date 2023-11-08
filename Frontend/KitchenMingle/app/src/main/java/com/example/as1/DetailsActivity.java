@@ -3,6 +3,7 @@ package com.example.as1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ import org.java_websocket.handshake.ServerHandshake;
 
 
 public class DetailsActivity extends AppCompatActivity implements WebSocketListener {
-    private TextView commentText, ingredientListLayout, directionsListLayout, recipeNameTextView, commentUserName;
+    private TextView commentText, ingredientsTextView, directionsTextView, recipeNameTextView, commentUserName, btnToPickRecipe;
     private EditText commentEditText, userIdEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
     private RatingBar ratingBar, commentRatingBar;
@@ -48,17 +49,36 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         commentAdapter = new CommentAdapter(commentList);
         commentsRecyclerView.setAdapter(commentAdapter);
+        directionsTextView = findViewById(R.id.directionsTextView);
+        ingredientsTextView = findViewById(R.id.ingredientsListTextView);
+        btnToPickRecipe = findViewById(R.id.btnToPickRecipe1);
 
-        // Fetch comments and update the RecyclerView
+        btnToPickRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(DetailsActivity.this, PickRecipeActivity.class);
+                startActivity(intent);
+            }
+         });
+
+
+
+
+                // Fetch comments and update the RecyclerView
         loadComments();
 
         // Retrieve recipe information from the Intent
         Intent intent = getIntent();
         String recipeName = intent.getStringExtra("recipe_name");
+        String ingredients = intent.getStringExtra("ingredients");
+        String directions = intent.getStringExtra("directions");
 
 
         // Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
+        directionsTextView.setText(ingredients);
+        ingredientsTextView.setText(directions);
 
 
 
@@ -227,6 +247,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             commentAdapter.notifyDataSetChanged();
         });
     }
+
 }
 
 

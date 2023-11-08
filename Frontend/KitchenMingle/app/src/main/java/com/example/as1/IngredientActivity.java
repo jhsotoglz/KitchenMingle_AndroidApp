@@ -144,27 +144,18 @@ package com.example.as1;
 
 
 import static com.example.as1.api.ApiClientFactory.GetIngredientAPI;
-import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.TableRow;
+
 import com.example.as1.model.Ingredient;
-import com.example.as1.model.Recipe;
 import com.example.as1.model.SlimCallback;
 import java.util.List;
-
-
-import jakarta.persistence.criteria.CriteriaBuilder;
-
-
 
 
 public class IngredientActivity extends AppCompatActivity {
@@ -293,16 +284,16 @@ public class IngredientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ingredient);
 
 
-        TextView apiText1 = findViewById(R.id.activity_main_textView1);
+        TextView apiText1 = findViewById(R.id.txtView_IngList);
 
 
 //        apiText1.setMovementMethod(new ScrollingMovementMethod());
 //        apiText1.setHeight(350);
 
 
-        Button PostByBodyBtn = findViewById(R.id.activity_main_post_by_body_button);
-        EditText ingredientNameIn = findViewById(R.id.activity_main_ingredientname_editText);
-        EditText quantityIn = findViewById(R.id.activity_main_quantity_editText);
+        Button PostByBodyBtn = findViewById(R.id.post_btn);
+        EditText ingredientNameIn = findViewById(R.id.eTxt_ingName);
+        EditText quantityIn = findViewById(R.id.eTxt_quantity);
 
 
         RegenerateAllIngredientOnScreen(apiText1);

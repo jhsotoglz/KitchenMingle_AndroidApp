@@ -34,18 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Average Rating Section -->
-    <RatingBar
-        android:id="@+id/ratingBar"
-        style="?android:attr/ratingBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:numStars="5"
-        android:rating="4.5"
-        android:isIndicator="true"
-        app:layout_constraintTop_toBottomOf="@+id/headerTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Recipe Section -->
 
@@ -57,10 +45,24 @@
 
     <!-- Comments RecyclerView -->
 
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="?android:attr/ratingBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="4.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerTitle" />
+
     <TextView
         android:id="@+id/recipeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="278dp"
+        android:layout_height="30dp"
         android:text="Recipe:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,8 +73,8 @@
 
     <TextView
         android:id="@+id/ingredientsTitle"
-        android:layout_width="404dp"
-        android:layout_height="39dp"
+        android:layout_width="282dp"
+        android:layout_height="38dp"
         android:layout_marginTop="4dp"
         android:text="Ingredients"
         android:textSize="20sp"
@@ -197,6 +199,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="@+id/headerTitle" />
+
+<!--    <Button-->
+<!--        android:id="@+id/addToFavBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="4dp"-->
+<!--        android:text="Add"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.897"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/headerTitle" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/goToFavBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="84dp"-->
+<!--        android:text="Favorites"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/ingredientsListTextView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.979"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/headerTitle" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

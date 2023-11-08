@@ -16,6 +16,8 @@ import com.example.as1.model.Comment;
 import com.example.as1.api.WebSocketListener;
 import java.util.List;
 import org.java_websocket.handshake.ServerHandshake;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
@@ -168,12 +170,17 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
     @Override
     public void onWebSocketMessage(String message) {
-        // FIXME: send messages to recycler thing
-        // TODO: parse string "Received message: user1: 4.5one"
+/*      Pattern pattern = Pattern.compile("user(\\d+): (\\d+(?:\\.\\d+)?)(.*)");
+        Matcher matcher = pattern.matcher(message);
+        String userID = matcher.group(1);
+        double ratingDouble = Double.parseDouble(matcher.group(2));
+        int rating = (int) Math.round(ratingDouble);
+        String text = matcher.group(3).trim();*/
 
         runOnUiThread(() -> {
-            commentList.add(new Comment(message));
-            commentAdapter.notifyDataSetChanged();
+          commentList.add(new Comment(userIdEditText.getText().toString(), message, 4));
+          //  commentList.add(new Comment(userID, text, rating));
+               commentAdapter.notifyDataSetChanged();
         });
     }
 
@@ -189,8 +196,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         // commentsTextView.append("\n" + text);
 
         runOnUiThread(() -> {
-         //   commentList.add(new Comment("User1", "This is a great recipe!", 5));
-        //    commentAdapter.notifyDataSetChanged();
+           // commentList.add(new Comment("User1", "This is a great recipe!", 5));
+           // commentAdapter.notifyDataSetChanged();
         });
     }
 

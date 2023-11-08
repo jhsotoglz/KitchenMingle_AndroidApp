@@ -25,7 +25,7 @@ public class RecipeActivity extends AppCompatActivity {
         apiText1.setHeight(350);
 
         Button PostByPathBtn = findViewById(R.id.activity_main_post_by_path_button);
-        Button PostByBodyBtn = findViewById(R.id.post_btn);
+        Button PostByBodyBtn = findViewById(R.id.addIngrBtn);
         EditText recipeNameIn = findViewById(R.id.activity_main_recipename_editText);
         EditText instructionIn = findViewById(R.id.activity_main_instruction_editText);
 

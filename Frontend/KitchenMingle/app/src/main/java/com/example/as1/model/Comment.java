@@ -37,6 +37,10 @@ public class Comment {
 
     public Comment() {};
 
+    public Comment(String content) {
+        this.content = content;
+    }
+
     public Comment(String userName, String content) {
         this.userName = userName;
         this.content = content;

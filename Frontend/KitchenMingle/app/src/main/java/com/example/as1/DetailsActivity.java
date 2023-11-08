@@ -87,7 +87,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             WebSocketManager.getInstance().setWebSocketListener(this);
         });
 
-
         /* send button listener */
         sendCommentButton.setOnClickListener(v -> {
             try {
@@ -169,8 +168,13 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
     @Override
     public void onWebSocketMessage(String message) {
-        // logic to handle messages
         // FIXME: send messages to recycler thing
+        // TODO: parse string "Received message: user1: 4.5one"
+
+        runOnUiThread(() -> {
+            commentList.add(new Comment(message));
+            commentAdapter.notifyDataSetChanged();
+        });
     }
 
 
@@ -182,11 +186,11 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 //        commentText = findViewById(R.id.commentText);
 //        commentRatingBar = findViewById(R.id.commentRatingBar);
 //        commentUserName = findViewById(R.id.commentUserName);
+        // commentsTextView.append("\n" + text);
 
         runOnUiThread(() -> {
-            commentList.add(new Comment("User1", "This is a great recipe!", 5));
-            commentList.add(new Comment("User2", "Thanks for sharing!", 4));
-            commentAdapter.notifyDataSetChanged();
+         //   commentList.add(new Comment("User1", "This is a great recipe!", 5));
+        //    commentAdapter.notifyDataSetChanged();
         });
     }
 

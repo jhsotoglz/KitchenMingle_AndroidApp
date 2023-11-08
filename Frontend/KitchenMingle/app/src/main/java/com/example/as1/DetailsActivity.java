@@ -60,12 +60,12 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
                 Intent intent = new Intent(DetailsActivity.this, PickRecipeActivity.class);
                 startActivity(intent);
             }
-         });
+        });
 
 
 
 
-                // Fetch comments and update the RecyclerView
+        // Fetch comments and update the RecyclerView
         loadComments();
 
         // Retrieve recipe information from the Intent
@@ -249,12 +249,5 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     }
 
 }
-
-
-
-
-
-
-
 
 

@@ -8,6 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.DELETE;
 import com.example.as1.model.Ingredient;
 
 
@@ -40,6 +41,23 @@ public interface IngredientApi {
             @Path("pantryIngId") Long pantryIngId,
             @Path("quantity") int quantity
     );
+
+    @GET("ingredients")
+    Call<List<Ingredient>> getAllIngredients();
+
+    @GET("ingredient/{id}")
+    Call<Ingredient> getIngredient(@Path("id") Long id);
+
+    @POST("ingredients/create")
+    Call<Ingredient> createIngredient(@Body Ingredient newIngredient);
+
+    @PUT("ingredient/update/{id}")
+    Call<Ingredient> updateIngredient(@Path("id") Long id, @Body Ingredient updatedIngredient);
+
+    @DELETE("ingredient/delete/{id}")
+    Call<Void> deleteIngredient(@Path("id") Long id);
+
+
 
 
 

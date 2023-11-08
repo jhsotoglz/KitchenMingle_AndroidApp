@@ -9,11 +9,11 @@ public class Recipe {
     public Recipe() {
     }
 
-    public int getId() {
+    public int getRecipeId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setRecipeId(int id) {
         this.id = id;
     }
 
@@ -39,3 +39,4 @@ public class Recipe {
     }
 
 }
+

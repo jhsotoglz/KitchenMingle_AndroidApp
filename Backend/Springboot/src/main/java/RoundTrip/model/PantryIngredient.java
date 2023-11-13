@@ -11,12 +11,10 @@ public class PantryIngredient {
 
     @ManyToOne
     @JoinColumn(name = "pantry_id")
-    @JsonBackReference
     private Pantry pantry;
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
-    @JsonBackReference
     private Ingredient ingredient;
 
     private int quantity;

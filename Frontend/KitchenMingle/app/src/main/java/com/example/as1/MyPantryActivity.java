@@ -159,7 +159,7 @@ import com.example.as1.model.SlimCallback;
 import java.util.List;
 
 
-public class IngredientActivity extends AppCompatActivity {
+public class MyPantryActivity extends AppCompatActivity {
 
 
 
@@ -332,7 +332,7 @@ public class IngredientActivity extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     // Handle the case where the input is not a valid integer
                     // For example, display an error message to the user
-                    Toast.makeText(IngredientActivity.this, "Invalid quantity. Please enter a valid number.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyPantryActivity.this, "Invalid quantity. Please enter a valid number.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

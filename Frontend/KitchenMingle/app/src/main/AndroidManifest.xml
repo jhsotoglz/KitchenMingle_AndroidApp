@@ -29,7 +29,7 @@
             android:name=".RecipeActivity"
             android:exported="true" />
         <activity
-            android:name=".IngredientActivity"
+            android:name=".MyPantryActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

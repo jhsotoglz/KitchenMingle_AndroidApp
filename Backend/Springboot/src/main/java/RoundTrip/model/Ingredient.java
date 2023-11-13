@@ -22,7 +22,6 @@ public class Ingredient {
 //    private Set<Pantry> pantry;
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
     // Constructors

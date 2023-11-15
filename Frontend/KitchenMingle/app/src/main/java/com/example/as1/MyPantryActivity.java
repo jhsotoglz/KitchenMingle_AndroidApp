@@ -147,6 +147,8 @@ import static com.example.as1.api.ApiClientFactory.GetIngredientAPI;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -156,6 +158,8 @@ import android.widget.Toast;
 
 import com.example.as1.model.Ingredient;
 import com.example.as1.model.SlimCallback;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.List;
 
 /**
@@ -286,20 +290,30 @@ public class MyPantryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ingredient);
+        setContentView(R.layout.activity_mypantry);
 
 
         TextView txtView_IngList = findViewById(R.id.txtView_IngList);
-
-
-//        apiText1.setMovementMethod(new ScrollingMovementMethod());
-//        apiText1.setHeight(350);
-
-
         Button addIngrBtn = findViewById(R.id.addIngrBtn);
         EditText eTxt_ingr = findViewById(R.id.eTxt_ingr);
         EditText eTxt_quantity = findViewById(R.id.eTxt_quantity);
 
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setSelectedItemId(R.id.nav_pantry);
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_discover:
+                    startActivity(new Intent(MyPantryActivity.this, DiscoverActivity.class));
+                    return true;
+                case R.id.nav_favorites:
+                    startActivity(new Intent(MyPantryActivity.this, FavoritesActivity.class));
+                    return true;
+                case R.id.nav_pantry:
+                    return true;
+            }
+            return false;
+        });
 
         RegenerateAllIngredientOnScreen(txtView_IngList);
 

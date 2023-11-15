@@ -40,7 +40,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         setContentView(R.layout.activity_details);
 
         // Initialize views and UI elements
-        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
         recipeNameTextView = findViewById(R.id.recipeName);
@@ -55,6 +54,9 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         directionsTextView = findViewById(R.id.directionsTextView);
         ingredientsTextView = findViewById(R.id.ingredientsListTextView);
         btnToPickRecipe = findViewById(R.id.btnToPickRecipe1);
+
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setSelectedItemId(View.NO_ID);
 
         bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {

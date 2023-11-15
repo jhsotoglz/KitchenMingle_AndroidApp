@@ -19,11 +19,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * FavoritesActivity displays a list of the user's favorite recipes.
+ * Tapping on a recipe navigates the user to the recipe specific DetailsActivity page.
+ */
 public class FavoritesActivity extends AppCompatActivity {
 
     private LinearLayout recipeButtonContainer;
     private List<Recipe> favorites; // Use the correct data type for favorite recipes
-    private RecipeApi recipeApi; // Initialize your Retrofit API service
+    private RecipeApi recipeApi; // Initialize Retrofit API service
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,15 +1,16 @@
 package com.example.as1;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Initializes the MainActivity when it's created.
+ * Sets up UI and handles button clicks to navigate to different sections of the app upon startup.
+ */
 public class MainActivity extends AppCompatActivity {
-
-
     Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient, btnToDiscover, btnToPickRecipe;
 
     @Override
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         btnToPickRecipe = findViewById(R.id.btnToPickRecipe);
         btnToDiscover = findViewById(R.id.btnToDiscover);
 
+        // Set up a click listener for the "Login" button"
         btnToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Set up a click listener for the "Sign Up" button
         btnToSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Temporary button
         btnToDiscover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Temporary button
         btnToRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -60,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Temporary button
         btnToIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Temporary button
         btnToPickRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -78,6 +85,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

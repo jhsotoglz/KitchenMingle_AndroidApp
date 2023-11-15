@@ -10,12 +10,18 @@ import androidx.annotation.NonNull;
 import android.view.ViewGroup;
 
 
-
+/**
+ * CommentAdapter manages and displays a list of comments in the RecyclerView of DetailsActivity.
+ * It binds comment data to individual ViewHolder items and handles the creation and rendering of comment views.
+ */
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
 
     private List<Comment> commentList;
 
-    // Constructor
+    /**
+     * Constructor for CommentAdapter
+     * @param commentList The list of comments to be displayed in the RecyclerView
+     */
     public CommentAdapter(List<Comment> commentList) {
         this.commentList = commentList;
     }
@@ -40,6 +46,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         return commentList.size();
     }
 
+    /**
+     * ViewHolder class representing individual comment items in the RecyclerView
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView commentUserName, commentText;
         RatingBar commentRatingBar;

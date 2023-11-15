@@ -12,20 +12,25 @@ import android.graphics.drawable.shapes.RectShape;
 import com.example.as1.api.*;
 import com.example.as1.api.ApiClientFactory;
 import com.example.as1.model.LoginRequest;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * LoginActivity provides a user interface for users to log in with their email and password.
+ */
 public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin, btnToMain;
     EditText emailEditText, passwordEditText;
-
     ProgressBar progressBar;
 
+    /**
+     * Initializes LoginActivity when it's created.
+     * Sets up UI features such as button clicks, edit text, and a progress bar.
+     * @param savedInstanceState the saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         progressBar = findViewById(R.id.progressBar);
 
-
+        // Set up a click listener to go to main
         btnToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-// todo check for input of nulls
+
+        // Set up a click listener for the "Login" button
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                // create new user object
+                // Create new user object
                 LoginRequest loginRequest = new LoginRequest();
                 loginRequest.setEmail(email);
                 loginRequest.setPassword(password);
@@ -70,9 +76,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Sends a login request to the server and handles the response.
+     * @param loginRequest the login request object containing necessary user credentials.
+     */
     private void loginUser(LoginRequest loginRequest) {
-        UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
+        // Initializing retrofit service
+        UsersApi usersApi = ApiClientFactory.GetUsersApi();
 
         Call<String> call = usersApi.login(loginRequest);
 

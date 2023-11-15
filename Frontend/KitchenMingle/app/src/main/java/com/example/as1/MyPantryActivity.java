@@ -158,7 +158,11 @@ import com.example.as1.model.Ingredient;
 import com.example.as1.model.SlimCallback;
 import java.util.List;
 
-
+/**
+ *
+ * This class represents the activity for managing pantry ingredients.
+ * It allows users to view, add, and manage ingredients in their pantry.
+ */
 public class MyPantryActivity extends AppCompatActivity {
 
 
@@ -357,6 +361,11 @@ public class MyPantryActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Refreshes the UI by fetching and displaying all pantry ingredients.
+     *
+     * @param txtView_IngList The TextView where the ingredient list is displayed.
+     */
     void RegenerateAllIngredientOnScreen(TextView txtView_IngList){
         GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
             txtView_IngList.setText("");

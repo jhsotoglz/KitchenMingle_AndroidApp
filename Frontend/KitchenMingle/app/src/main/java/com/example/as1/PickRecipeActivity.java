@@ -23,12 +23,19 @@ import android.view.View;
 import android.widget.Button;
 
 
-
+/**
+ * This class represents the activity for picking a recipe from the available recipes.
+ * It displays a list of recipe buttons and allows the user to select a recipe.
+ */
 public class PickRecipeActivity extends AppCompatActivity {
     private LinearLayout recipeButtonContainer;
     private Button goToFavBtn;
 
-
+    /**
+     * Initializes the activity and sets up the layout.
+     *
+     * @param savedInstanceState A Bundle containing the saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +58,9 @@ public class PickRecipeActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Fetches and displays recipe buttons dynamically.
+     */
     void displayRecipeButtons() {
         GetRecipeAPI().GetAllRecipes().enqueue(new SlimCallback<List<Recipe>>(recipes -> {
 
@@ -85,6 +95,14 @@ public class PickRecipeActivity extends AppCompatActivity {
             }
         }, "GetAllRecipe"));
     }
+    /**
+     * Navigates to the details activity for the selected recipe.
+     *
+     * @param recipeId     The ID of the selected recipe.
+     * @param recipeName   The name of the selected recipe.
+     * @param ingredients  The ingredients of the selected recipe.
+     * @param directions   The cooking directions of the selected recipe.
+     */
     private void navigateToRecipeDetails(int recipeId, String recipeName, String ingredients, String directions) {
         // Create an Intent to start the RecipeDetailsActivity
         Intent intent = new Intent(this, DetailsActivity.class);

@@ -12,8 +12,17 @@ import java.util.List;
 import com.example.as1.model.SlimCallback;
 import com.example.as1.model.Recipe;
 
+/**
+ * This class represents the activity for managing recipes.
+ * It allows users to view, add, and manage recipes.
+ */
 public class RecipeActivity extends AppCompatActivity {
 
+    /**
+     * Initializes the activity and sets up the layout.
+     *
+     * @param savedInstanceState A Bundle containing the saved state of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +66,11 @@ public class RecipeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Refreshes the UI by fetching and displaying all recipes.
+     *
+     * @param apiText1 The TextView where the recipe list is displayed.
+     */
     void RegenerateAllRecipesOnScreen(TextView apiText1){
         GetRecipeAPI().GetAllRecipes().enqueue(new SlimCallback<List<Recipe>>(recipes ->{
             apiText1.setText("");

@@ -1,7 +1,6 @@
 package com.example.as1;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,13 +15,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * SignUpActivity provides a UI for users to register for KitchenMingle.
+ * User's enter in a username, password, and email and their input is validated.
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     Button btnToMain, btnSignUp;
     EditText passwordEditText, usernameEditText, emailEditText, confirmPasswordEditText;
-
     ProgressBar progressBar;
 
+    /**
+     * Initializes the SignUpActivity when it is created.
+     * Sets up UI elements such as buttons, edit text, and a progress bar.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         progressBar = findViewById(R.id.progressBar);
 
+        // Set up a click listener to go to main
         btnToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -45,11 +53,12 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        // Set up a click listener for the register button
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                // disable sign-up while validating
+                // Disable sign-up while validating
                 btnSignUp.setEnabled(false);
 
                 // Get user input from EditText
@@ -72,7 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
                     valid = false;
                 }
 
-                // PW matching & requirement indicators
+                // Password matching & requirement indicators
                 if(!password.equals(passwordConfirm)){
                     confirmPasswordEditText.setError("Passwords must be the same");
                     valid = false;
@@ -98,15 +107,20 @@ public class SignUpActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    // re-enable sign-up button
+                    // Re-enable sign-up button
                     btnSignUp.setEnabled(true);
                 }
             }
         });
     }
 
+    /**
+     * Sends a user registration request to the server and handles the response.
+     * @param newUser The user registration request object containing user details.
+     */
     private void registerUser(Users newUser){
-        UsersApi usersApi = ApiClientFactory.GetUsersApi(); // initializing retrofit service
+        // Initializing retrofit service
+        UsersApi usersApi = ApiClientFactory.GetUsersApi();
 
         Call<String> call = usersApi.RegisterUsers(newUser);
 

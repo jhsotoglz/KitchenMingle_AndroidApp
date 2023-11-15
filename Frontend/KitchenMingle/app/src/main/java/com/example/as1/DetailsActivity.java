@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import com.example.as1.model.Comment;
 import com.example.as1.api.WebSocketListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.List;
 import org.java_websocket.handshake.ServerHandshake;
 
@@ -24,10 +23,10 @@ import org.java_websocket.handshake.ServerHandshake;
  */
 public class DetailsActivity extends AppCompatActivity implements WebSocketListener {
     // Views and UI elements
-    private TextView commentText, ingredientsTextView, directionsTextView, recipeNameTextView, commentUserName, btnToPickRecipe;
+    private TextView ingredientsTextView, directionsTextView, recipeNameTextView, commentUserName, btnToPickRecipe;
     private EditText commentEditText, userIdEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
-    private RatingBar ratingBar, commentRatingBar;
+    private RatingBar ratingBar;
     private RecyclerView commentsRecyclerView;
     private CommentAdapter commentAdapter;
     private List<Comment> commentList = new ArrayList<>();
@@ -39,9 +38,9 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-      //  BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
 
         // Initialize views and UI elements
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
         recipeNameTextView = findViewById(R.id.recipeName);
@@ -56,6 +55,21 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         directionsTextView = findViewById(R.id.directionsTextView);
         ingredientsTextView = findViewById(R.id.ingredientsListTextView);
         btnToPickRecipe = findViewById(R.id.btnToPickRecipe1);
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_discover:
+                    startActivity(new Intent(DetailsActivity.this, DiscoverActivity.class));
+                    return true;
+                case R.id.nav_favorites:
+                    startActivity(new Intent(DetailsActivity.this, FavoritesActivity.class));
+                    return true;
+                case R.id.nav_pantry:
+                    startActivity(new Intent(DetailsActivity.this, MyPantryActivity.class));
+                    return true;
+            }
+            return false;
+        });
 
         // Set up click listener to go to the pick recipe button
         btnToPickRecipe.setOnClickListener(new View.OnClickListener() {

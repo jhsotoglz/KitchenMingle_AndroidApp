@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Initializes the MainActivity when it's created.
+ * Sets up UI and handles button clicks to navigate to different sections of the app upon startup.
+ */
 public class MainActivity extends AppCompatActivity {
     Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient, btnToDiscover, btnToPickRecipe;
 
-    /**
-     * Initializes the MainActivity when it's created.
-     * Sets up UI and handles button clicks to navigate to different sections of the app upon startup.
-     * @param savedInstanceState The saved instance state
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

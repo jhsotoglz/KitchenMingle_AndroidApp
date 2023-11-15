@@ -7,12 +7,11 @@ import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * DiscoverActivity serves allows users to discover and search for new recipes.
+ */
 public class DiscoverActivity extends AppCompatActivity {
 
-
-    /**
-     * DiscoverActivity serves allows users to discover and search for new recipes.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

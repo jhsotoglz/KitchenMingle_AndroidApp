@@ -16,13 +16,12 @@ import com.example.as1.model.Comment;
 import com.example.as1.api.WebSocketListener;
 import java.util.List;
 import org.java_websocket.handshake.ServerHandshake;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-
-
-
+/**
+ * DetailsActivity displays details of a recipe, allows users to add live comments and ratings through an established WebSocket connection.
+ */
 public class DetailsActivity extends AppCompatActivity implements WebSocketListener {
+    // Views and UI elements
     private TextView commentText, ingredientsTextView, directionsTextView, recipeNameTextView, commentUserName, btnToPickRecipe;
     private EditText commentEditText, userIdEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
@@ -31,6 +30,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     private CommentAdapter commentAdapter;
     private List<Comment> commentList = new ArrayList<>();
 
+    // WebSocket server URL
     private String BASE_URL = "ws://coms-309-033.class.las.iastate.edu:8080/comment/";
 
     @Override
@@ -38,8 +38,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        // Initialize views
-        // commentText = findViewById(R.id.commentText);
+        // Initialize views and UI elements
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
         recipeNameTextView = findViewById(R.id.recipeName);
@@ -55,6 +54,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         ingredientsTextView = findViewById(R.id.ingredientsListTextView);
         btnToPickRecipe = findViewById(R.id.btnToPickRecipe1);
 
+        // Set up click listener to go to the pick recipe button
         btnToPickRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -78,10 +78,13 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         directionsTextView.setText(ingredients);
         ingredientsTextView.setText(directions);
 
-        /* connect button listener */
+        // todo: onStart() make page start listening instead of when clicking button
+
+        // Set up click listener for connect button to establish WebSocket connection
         connectBtn.setOnClickListener(view -> {
             String userID = userIdEditText.getText().toString();
             String recipeID = recipeIdEditText.getText().toString();
+            // Appends server url with the rest of the endpoint (/{userID}/{recipeID}/)
             String serverUrl = BASE_URL + userID + "/" + recipeID; // TODO: Pull ID's instead of dummy variables
 
             // Establish WebSocket connection and set listener
@@ -89,7 +92,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             WebSocketManager.getInstance().setWebSocketListener(this);
         });
 
-        /* send button listener */
+        // Set up click listener for send comment button to send in a review
         sendCommentButton.setOnClickListener(v -> {
             try {
                 float rating = ratingBar.getRating();
@@ -100,45 +103,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
                 Log.d("ExceptionSendMessage:", e.getMessage().toString());
             }
         });
-
-//
-//
-//
-//
-//
-//        webSocket = client.newWebSocket(request, new WebSocketListener() {
-//            public void onMessage(WebSocket webSocket, String text) {
-//                super.onMessage(webSocket, text);
-//                // Handle incoming WebSocket messages (ratings) here
-//                runOnUiThread(() -> {
-//                    // Update the UI with the received rating information
-//                    // Update the UI with the received comment
-//                    commentsTextView.append("\n" + text);
-//                });
-//            }
-//
-//            @Override
-//            public void onClosed(WebSocket webSocket, int code, String reason) {
-//                super.onClosed(webSocket, code, reason);
-//                // WebSocket connection is closed
-//            }
-//        });
-
     }
-
-    /*
-     * On page start, WebSocket begins listening
-     */
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        String userID = userIdEditText.getText().toString();
-//        String recipeID = recipeIdEditText.getText().toString();
-//        String serverUrl = BASE_URL + userID + "/" + recipeID; // TODO: Pull ID's instead of dummy variables
-//
-//        WebSocketManager.getInstance().connectWebSocket(serverUrl);
-//        WebSocketManager.getInstance().setWebSocketListener(this);
-//    }
 
     /*
      * On page close, WebSocket stops listening
@@ -151,32 +116,22 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
     @Override
     public void onWebSocketClose(int code, String reason, boolean remote) {
-//        runOnUiThread(() -> {
-//            String currentText = msgTv.getText().toString();
-//            String closedBy = remote ? "server" : "local";
-//            msgTv.setText(String.format("%s---\nConnection closed by %s\nReason: %s", currentText, closedBy, reason));
-//        });
-
+        // Handle WebSocket close event
     }
 
     @Override
     public void onWebSocketOpen(ServerHandshake handshakedata) {
-        // logic for when the connection is opened
+        // Handle WebSocket open event
     }
 
     @Override
     public void onWebSocketError(Exception ex) {
+        // Handle WebSocket error
     }
 
     @Override
     public void onWebSocketMessage(String message) {
-/*      Pattern pattern = Pattern.compile("user(\\d+): (\\d+(?:\\.\\d+)?)(.*)");
-        Matcher matcher = pattern.matcher(message);
-        String userID = matcher.group(1);
-        double ratingDouble = Double.parseDouble(matcher.group(2));
-        int rating = (int) Math.round(ratingDouble);
-        String text = matcher.group(3).trim();*/
-
+        // Handle WebSocket message received event
         float floatingRating = ratingBar.getRating();
         int rating = Math.round(floatingRating);
 
@@ -188,7 +143,9 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     }
 
 
-
+    /**
+     * Method to load previous recipe reviews (not live).
+     */
     private void loadComments() {
         // TODO: Load (real) previously commented variables
         // FIXME: recycler view??
@@ -203,7 +160,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
            // commentAdapter.notifyDataSetChanged();
         });
     }
-
 }
 
 

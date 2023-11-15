@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import com.example.as1.model.Comment;
 import com.example.as1.api.WebSocketListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.List;
 import org.java_websocket.handshake.ServerHandshake;
 
@@ -37,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+      //  BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
 
         // Initialize views and UI elements
         commentEditText = findViewById(R.id.commentEditText);

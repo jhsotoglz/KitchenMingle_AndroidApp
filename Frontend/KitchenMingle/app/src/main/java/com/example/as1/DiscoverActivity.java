@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DiscoverActivity extends AppCompatActivity {
 
 
+    /**
+     * DiscoverActivity serves allows users to discover and search for new recipes.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

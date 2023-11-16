@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -17,6 +18,7 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"), // Specify the column name in the join table for the Recipe
             inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Specify the column name in the join table for the Ingredient
     )
+    @JsonIgnore
     private Set<Ingredient> ingredients;
 
     public Recipe() {

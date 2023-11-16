@@ -31,6 +31,7 @@ public class Pantry {
 
     // One pantry can store many items
     @OneToMany(mappedBy = "pantry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
 

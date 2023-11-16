@@ -13,4 +13,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByUsers(Users users);
     List<Comment> findByRecipe(Recipe recipe);
     List<Comment> findByUsersAndRecipe(Users user, Recipe recipe);
+    List<Comment> findByRecipeId(Long recipeId);
+
 }

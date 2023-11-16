@@ -65,4 +65,8 @@ public class Pantry {
     public void setPantryIngredient(PantryIngredient pantryIngredient) {
         this.pantryIngredient.add(pantryIngredient);
     }
+
+    public boolean findPantryIngredient(Ingredient ingredient){
+        return pantryIngredient.contains(ingredient);
+    }
 }

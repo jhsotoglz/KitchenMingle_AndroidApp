@@ -68,6 +68,12 @@ public class Pantry {
     }
 
     public boolean findPantryIngredient(Ingredient ingredient){
-        return pantryIngredient.contains(ingredient);
+        for (PantryIngredient pantryIng : pantryIngredient) {
+            Ingredient existingIngredient = pantryIng.getIngredient();
+            if(existingIngredient.equals(ingredient)){
+                return true;
+            }
+        }
+        return false;
     }
 }

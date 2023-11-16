@@ -99,7 +99,7 @@ public class CommentSocket {
             sessionRecipeMap.put(session, recipe);
 
             //Send chat history to the newly connected user
-            sendMessageToParticularUser(user, getCommentHistory());
+            sendMessageToParticularUser(user, getCommentHistory(recipeId));
 
             // broadcast that new user joined
             String message = "User:" + user.getUsername() + " Welcome to this recipe's comment section. " +
@@ -216,18 +216,18 @@ public class CommentSocket {
 
 
     // Gets the Chat history from the repository
-    private String getCommentHistory() {
-        List<Comment> comments = commentRepo.findAll();
+    private String getCommentHistory(Long recipeId) {
+        List<Comment> comments = commentRepo.findByRecipeId(recipeId);
 
-        // convert the list to a string
         StringBuilder sb = new StringBuilder();
-        if(comments != null && comments.size() != 0) {
+        if(comments != null && !comments.isEmpty()) {
             for (Comment comment : comments) {
-                sb.append(comment.getUserName() + ": " + comment.getContent() + "\n");
+                sb.append(comment.getUserName()).append(": ").append(comment.getContent()).append("\n");
             }
         }
         return sb.toString();
     }
+
 
     private void saveComment(Users user, Recipe recipe, String content, Integer rating) {
         // Direct message to a user using the format "@username <message>"

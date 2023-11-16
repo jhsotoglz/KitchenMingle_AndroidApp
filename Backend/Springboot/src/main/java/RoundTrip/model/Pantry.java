@@ -31,6 +31,7 @@ public class Pantry {
 
     // One pantry can store many items
     @OneToMany(mappedBy = "pantry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
 
@@ -64,5 +65,15 @@ public class Pantry {
 
     public void setPantryIngredient(PantryIngredient pantryIngredient) {
         this.pantryIngredient.add(pantryIngredient);
+    }
+
+    public boolean findPantryIngredient(Ingredient ingredient){
+        for (PantryIngredient pantryIng : pantryIngredient) {
+            Ingredient existingIngredient = pantryIng.getIngredient();
+            if(existingIngredient.equals(ingredient)){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -39,6 +39,10 @@ public class PantryIngredientController {
             Optional<Ingredient> ingr = ingredientRepository.findById(ingredientId);
             if(ingr.isPresent()){
                 Ingredient ingredient = ingr.get();
+                // If ingredient is already added to pantry
+                if (pantry.findPantryIngredient(ingredient)){
+                    return null;
+                }
                 PantryIngredient pantryIngredient = new PantryIngredient(ingredient);
                 pantryIngredient.setPantry(pantry);
                 pantry.setPantryIngredient(pantryIngredient);

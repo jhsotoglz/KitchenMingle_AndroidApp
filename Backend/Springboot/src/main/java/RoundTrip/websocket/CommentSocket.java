@@ -59,27 +59,6 @@ public class CommentSocket {
 
     private final Logger logger = LoggerFactory.getLogger(CommentSocket.class);
 
-//    @OnMessage
-//    public void onRatingMessage(Session session, String message) throws IOException {
-//        // Handle new comments
-//        logger.info("Entered into Comment: Got Comment:" + message);
-//        String username = sessionUsernameMap.get(session);
-//
-//        // Check if the user has already submitted a rating
-//        if (usernameHasSubmittedRating(username)) {
-//            // No rating required for subsequent comments
-//            saveComment(username, message, null);
-//        } else {
-//            // Extract rating and comment text from the message
-//            String[] messageParts = message.split(" ");
-//            int rating = Integer.parseInt(messageParts[0]); // Assumes that the rating is the first part
-//            String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
-//
-//            // Save the comment and the rating
-//            saveComment(username, commentText, rating);
-//        }
-//    }
-
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") Long userId, @PathParam("recipeId") Long recipeId)
             throws IOException {
@@ -111,31 +90,6 @@ public class CommentSocket {
 
     }
 
-
-//    @OnMessage
-//    public void onMessage(Session session, String message) throws IOException {
-//
-//        // Handle new comments
-//        logger.info("Entered into Comment: Got Comment:" + message);
-//        String username = sessionUsernameMap.get(session);
-//
-//        // Direct message to a user using the format "@username <message>"
-//        if (message.startsWith("@")) {
-//            String destUsername = message.split(" ")[0].substring(1);
-//
-//            // send the message to the sender and receiver
-//            sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
-//            sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
-//
-//        }
-//        else { // broadcast
-//            broadcast(username + ": " + message);
-//        }
-//
-//        // Saving chat history to repository
-//        commentRepo.save(new Comment(username, message));
-//    }
-
     @OnMessage
     public void onMessage(Session session, String message) throws IOException {
         logger.info("Entered into Comment: Got Comment: " + message);
@@ -155,8 +109,6 @@ public class CommentSocket {
             commentRepo.save(new Comment(user, username, message, null, recipe));
         }
     }
-
-
 
     @OnClose
     public void onClose(Session session) throws IOException {
@@ -234,12 +186,6 @@ public class CommentSocket {
 
         // Saving chat history to repository
         commentRepo.save(new Comment(user, user.getUsername(), content, rating, recipe));
-    }
-
-    private boolean usernameHasSubmittedRating(Users user, Recipe recipe) {
-        List<Comment> userComments = commentRepo.findByUsersAndRecipe(user, recipe);
-        // Check if any of the user's comments have a rating
-        return userComments.stream().anyMatch(comment -> comment.getRating() != null);
     }
 
 }

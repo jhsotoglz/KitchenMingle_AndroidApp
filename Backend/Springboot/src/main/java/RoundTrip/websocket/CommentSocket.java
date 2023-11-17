@@ -145,19 +145,14 @@ public class CommentSocket {
 
         if (message.matches("\\d+ .*")) {
             // Handle messages that include ratings
-            if (usernameHasSubmittedRating(user)) {
-                // No rating required for subsequent comments
-                saveComment(user, recipe, message, null);
-            } else {
-                String[] messageParts = message.split(" ");
-                int rating = Integer.parseInt(messageParts[0]);
-                String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
-                saveComment(user, recipe, commentText, rating);
-            }
+            String[] messageParts = message.split(" ");
+            int rating = Integer.parseInt(messageParts[0]);
+            String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
+            saveComment(user, recipe, commentText, rating);
         } else {
             // Handle regular chat messages
             broadcast(username + ": " + message);
-            commentRepo.save(new Comment(username, message));
+            commentRepo.save(new Comment(user, username, message, null, recipe));
         }
     }
 
@@ -174,7 +169,7 @@ public class CommentSocket {
         usernameSessionMap.remove(user);
         sessionRecipeMap.remove(session);
 
-        // broadcase that the user disconnected
+        // broadcast that the user disconnected
         String message = user.getUsername() + " disconnected";
         broadcast(message);
     }
@@ -238,12 +233,11 @@ public class CommentSocket {
         }
 
         // Saving chat history to repository
-        commentRepo.save(new Comment(user.getUsername(), content, rating, recipe));
+        commentRepo.save(new Comment(user, user.getUsername(), content, rating, recipe));
     }
 
-    private boolean usernameHasSubmittedRating(Users user) {
-        List<Comment> userComments = commentRepo.findByUsers(user);
-
+    private boolean usernameHasSubmittedRating(Users user, Recipe recipe) {
+        List<Comment> userComments = commentRepo.findByUsersAndRecipe(user, recipe);
         // Check if any of the user's comments have a rating
         return userComments.stream().anyMatch(comment -> comment.getRating() != null);
     }

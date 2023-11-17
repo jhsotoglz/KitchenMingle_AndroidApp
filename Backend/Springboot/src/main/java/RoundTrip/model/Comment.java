@@ -40,18 +40,9 @@ public class Comment {
 
     public Comment() {};
 
-    public Comment(String userName, String content) {
-        this.userName = userName;
-        this.content = content;
-    }
 
-    public Comment(String userName, String content, Integer rating) {
-        this.userName = userName;
-        this.content = content;
-        this.rating = rating;
-    }
-
-    public Comment(String username, String content, Integer rating, Recipe recipe) {
+    public Comment(Users users, String username, String content, Integer rating, Recipe recipe) {
+        this.users = users;
         this.userName = username;
         this.content = content;
         this.rating = rating;

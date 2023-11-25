@@ -20,12 +20,13 @@ public class Ingredient {
     @JsonIgnore
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
 
-//    @ManyToMany(mappedBy = "ingredients")
-//    private Set<Pantry> pantry;
-
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "editor_id")
+    private Editor editor;
 
     // Constructors
     public Ingredient() {

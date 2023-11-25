@@ -21,10 +21,6 @@ public class Recipe {
     @JsonIgnore
     private Set<Ingredient> ingredients;
 
-    @ManyToOne
-    @JoinColumn(name = "editor_id")
-    private Editor editor;
-
     public Recipe() {
     }
 

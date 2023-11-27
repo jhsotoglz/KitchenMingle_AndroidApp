@@ -277,5 +277,4 @@ public class EditorController {
 //                .orElseThrow(() -> new NotFoundException("Editor not found"));
 //        return new ArrayList<>(editor.getFavoriteRecipes());
 //    }
-
 }

@@ -11,7 +11,8 @@ maven-build:
     - springboot_tag    # change to your runner's tag
   script:               # what to execute for this job
     - cd Backend/Springboot        # change 'Backend' to to where you have the pom.xml (do not add / in the beginning)
-    - mvn package       # maven package
+    - mvn -B -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 package
+    #- mvn package       # maven package
   artifacts:            # where to output the packaged jar file, change 'Backend' to to where you have the pom.xml
     paths:
     - Backend/Springboot/target/*.jar
@@ -22,7 +23,8 @@ maven-test:
      - springboot_tag   # change to your runner's tag
    script:
      - cd Backend/Springboot        # change 'Backend' to to where you have the pom.xml (do not add / in the beginning)
-     - mvn test         # maven test
+     - mvn -B -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 test
+     # - mvn test         # maven test
 
 auto-deploy:
   stage: mavendeploy    # one of the stages listed above

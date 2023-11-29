@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AutoCompleteTextView;
+
+import com.example.as1.api.ApiClientFactory;
+import com.example.as1.api.UsersApi;
 import com.example.as1.model.PantryIngredient;
 import com.example.as1.model.SlimCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,6 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 import android.widget.LinearLayout;
 import android.view.LayoutInflater;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 /**
@@ -69,11 +75,23 @@ public class MyPantryActivity extends AppCompatActivity {
         updateIngredientList();
     }
 
+
     private void addIngredient(String ingredientName, int quantity) {
+      //  GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
+//        PantryIngredientApi pantryIngredientApi = ApiClientFactory.GetPantryIngredientAPI();
+//
+//            Call<String> call = pantryIngredientApi.addPantryIngredient(ingredientName);
+//            Call<String> call2 = pantryIngredientApi.setQuantity(quantity);
+
+       //     call.enqueue(new Callback<String>() {
+       // }
+
         if (pantry.containsKey(ingredientName)) {
             // If we already have this ingredient, just update the quantity
+            // todo: utilize setQuantity
             pantry.put(ingredientName, pantry.get(ingredientName) + quantity);
         } else {
+            // todo: utilize addPantryIngredient and setQuantity
             // If it's a new ingredient, add it to the pantry and create a new view for it
             pantry.put(ingredientName, quantity);
             View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
@@ -145,7 +163,7 @@ public class MyPantryActivity extends AppCompatActivity {
 //                String ingredientName = eTxt_ingr.getText().toString();
 //                String quantityText = eTxt_quantity.getText().toString();
 //
-//                try {
+//               try {
 //                    // Parse the text to an integer
 //                    int quantity = Integer.parseInt(quantityText);
 //

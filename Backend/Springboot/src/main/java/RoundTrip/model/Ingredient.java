@@ -80,4 +80,8 @@ public class Ingredient {
     public void setPantryIngredient(Set<PantryIngredient> pantryIngredient) {
         this.pantryIngredient = pantryIngredient;
     }
+
+    public void setEditor(Editor editor) {
+        this.editor = editor; // Assigns the passed Editor object to the editor field of this Ingredient instance.
+    }
 }

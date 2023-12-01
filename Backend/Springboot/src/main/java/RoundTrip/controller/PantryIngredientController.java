@@ -78,9 +78,51 @@ public class PantryIngredientController {
         }
     }
 
-    // TODO: increment quantity by 1
+    // Increment quantity by 1
+    @PutMapping("pantryIng/increment/{userId}/{pantryIngId}")
+    public void incrementQuantity(@PathVariable Long userId, @PathVariable Long pantryIngId){
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Users existingUser = user.get();
+            Pantry pantry = existingUser.getPantry();
+            Optional<PantryIngredient> pantryIngr = pantryIngredientRepository.findById(pantryIngId);
+            if (pantryIngr.isPresent()){
+                PantryIngredient pantryIngredient = pantryIngr.get();
+                int quantity = pantryIngredient.getQuantity();
+                pantryIngredient.setQuantity(quantity+1);
+                pantryIngredientRepository.save(pantryIngredient);
+            }else{
+                throw new NotFoundException("User "+ pantryIngId + " not found");
+            }
+        }else{
+            throw new NotFoundException("User "+ userId + " not found");
+        }
+    }
 
-    // TODO: decrement quantity by 1
+    // Decrement quantity by 1, delete if quantity reaches 0
+    @PutMapping("pantryIng/decrement/{userId}/{pantryIngId}")
+    public void decrementQuantity(@PathVariable Long userId, @PathVariable Long pantryIngId){
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()){
+            Users existingUser = user.get();
+            Pantry pantry = existingUser.getPantry();
+            Optional<PantryIngredient> pantryIngr = pantryIngredientRepository.findById(pantryIngId);
+            if (pantryIngr.isPresent()){
+                PantryIngredient pantryIngredient = pantryIngr.get();
+                int quantity = pantryIngredient.getQuantity();
+                if (quantity > 1){
+                    pantryIngredient.setQuantity(quantity-1);
+                    pantryIngredientRepository.save(pantryIngredient);
+                } else if (quantity == 1) {
+                    deleteIngredient(userId, pantryIngId);
+                }
+            }else{
+                throw new NotFoundException("User "+ pantryIngId + " not found");
+            }
+        }else{
+            throw new NotFoundException("User "+ userId + " not found");
+        }
+    }
 
     // Delete ingredient from pantry
     @DeleteMapping("pantryIng/delete/{userId}/{pantryIngId}")

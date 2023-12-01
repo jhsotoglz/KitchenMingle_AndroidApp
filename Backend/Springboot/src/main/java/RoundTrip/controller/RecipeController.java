@@ -107,4 +107,12 @@ public class RecipeController {
         return recipeRepository.findRecipesByIngredientName(ingredientName.toLowerCase());
     }
 
+    // Get the instructions for a specific recipe by ID
+    @GetMapping("/recipe/{recipeId}/instructions")
+    String getRecipeInstructions(@PathVariable Long recipeId) {
+        return recipeRepository.findById(recipeId)
+                .map(Recipe::getRecipeInstructions)
+                .orElse("Recipe not found");
+    }
+
 }

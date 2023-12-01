@@ -6,21 +6,17 @@ stages:             # these stages (jobs) forms the CICD pipeline
   - androidtest     # this is a JOB to run tests in your Android application (it's okay you don't have any test for now)
 
 maven-build:            
-  image: maven:3.8.4-openjdk-17
   stage: mavenbuild     # one of the stages listed above
   tags:                 # to specify which runner to execute this job
     - springboot_tag    # change to your runner's tag
   script:               # what to execute for this job
     - cd Backend/Springboot        # change 'Backend' to to where you have the pom.xml (do not add / in the beginning)
     - mvn package       # maven package
-    - cd Backend/Springboot
-    - mvn package
   artifacts:            # where to output the packaged jar file, change 'Backend' to to where you have the pom.xml
     paths:
     - Backend/Springboot/target/*.jar
 
 maven-test:             
-   image: maven:3.8.4-openjdk-17
    stage: maventest     # one of the stages listed above
    tags:
      - springboot_tag   # change to your runner's tag
@@ -29,7 +25,6 @@ maven-test:
      - mvn test         # maven test
 
 auto-deploy:
-  image: maven:3.8.4-openjdk-17
   stage: mavendeploy    # one of the stages listed above
   tags:
   - springboot_tag      # change to your runner's tag

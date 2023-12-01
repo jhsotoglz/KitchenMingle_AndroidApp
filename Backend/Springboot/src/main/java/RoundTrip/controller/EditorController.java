@@ -46,8 +46,7 @@ public class EditorController {
         Recipe newRecipe = new Recipe();
         newRecipe.setRecipeName(name);
         newRecipe.setRecipeInstructions(instructions);
-        // If we add a reference in the Recipe model to the Editor, set it like this
-        // newRecipe.setEditor(editor);
+        newRecipe.setEditor(editor);
 
         // Save the new recipe to the repository
         recipeRepository.save(newRecipe);
@@ -63,9 +62,7 @@ public class EditorController {
         // Verify that there is an editor with the provided id
         Editor editor = editorRepository.findById(editorId)
                 .orElseThrow(() -> new RuntimeException("Editor not found"));
-
-        // Optionally, if your Recipe model has a reference to the Editor, set it here
-        // newRecipe.setEditor(editor);
+        newRecipe.setEditor(editor);
 
         recipeRepository.save(newRecipe);
         return newRecipe;
@@ -91,8 +88,7 @@ public class EditorController {
         Editor editor = editorRepository.findById(editorId)
                 .orElseThrow(() -> new RuntimeException("Editor not found"));
 
-        // Optionally, if your Recipe model has a reference to the Editor, set it here
-        // newRecipe.setEditor(editor);
+        newRecipe.setEditor(editor);
 
         Recipe savedRecipe = recipeRepository.save(newRecipe);
 
@@ -144,6 +140,9 @@ public class EditorController {
                 .orElseThrow(() -> new RuntimeException("Editor not found"));
 
         Ingredient newIngredient = new Ingredient(name);
+
+        newIngredient.setEditor(editor);
+
         ingredientRepository.save(newIngredient);
         return newIngredient;
     }
@@ -154,6 +153,8 @@ public class EditorController {
         // Verify that there is an editor with the provided id
         Editor editor = editorRepository.findById(editorId)
                 .orElseThrow(() -> new RuntimeException("Editor not found"));
+
+        newIngredient.setEditor(editor);
 
         ingredientRepository.save(newIngredient);
         return newIngredient;

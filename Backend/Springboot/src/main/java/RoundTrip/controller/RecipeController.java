@@ -1,14 +1,19 @@
 package RoundTrip.controller;
 
+import RoundTrip.NotFoundException;
 import RoundTrip.model.Ingredient;
+import RoundTrip.model.Pantry;
 import RoundTrip.model.Recipe;
+import RoundTrip.model.Users;
 import RoundTrip.repository.IngredientRepository;
 import RoundTrip.repository.RecipeRepository;
+import RoundTrip.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashSet;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,6 +25,9 @@ public class RecipeController {
 
     @Autowired
     private IngredientRepository ingredientRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
     // Get the list containing all recipes/
     @GetMapping("recipe/all")
@@ -113,6 +121,25 @@ public class RecipeController {
         return recipeRepository.findById(recipeId)
                 .map(Recipe::getRecipeInstructions)
                 .orElse("Recipe not found");
+    }
+
+    // Search recipes based on ingredients in the user's pantry
+    @GetMapping("/recipe/searchByPantry/{userId}")
+    List<Recipe> searchRecipesByPantry(@PathVariable Long userId) {
+        Optional<Users> user = usersRepository.findById(userId);
+        if (user.isPresent()) {
+            Users existingUser = user.get();
+            Pantry pantry = existingUser.getPantry();
+
+            // Get the ingredients in the user's pantry
+            Set<Ingredient> pantryIngredients = pantry.getPantryIngredients();
+
+            // Search for recipes that can be made with the ingredients in the pantry
+            List<Recipe> recipes = recipeRepository.findRecipesByIngredientSet(pantryIngredients);
+            return recipes;
+        } else {
+            throw new NotFoundException("User " + userId + " not found");
+        }
     }
 
 }

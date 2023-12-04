@@ -3,13 +3,11 @@ package RoundTrip.controller;
 import RoundTrip.NotFoundException;
 import RoundTrip.model.Editor;
 import RoundTrip.model.Ingredient;
-import RoundTrip.model.LoginRequest;
 import RoundTrip.model.Recipe;
 import RoundTrip.repository.EditorRepository;
 import RoundTrip.repository.IngredientRepository;
 import RoundTrip.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -194,16 +192,17 @@ public class EditorController {
         }
     }
 
-    // Register new Editor
-    @PostMapping("editor/register")
-    public ResponseEntity<String> registerEditor(@RequestBody Editor newEditor) {
-        if (editorRepository.existsByEmail(newEditor.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already in use");
-        }
-
-        editorRepository.save(newEditor);
-        return ResponseEntity.ok("Editor registered successfully: " + newEditor.toString());
-    }
+    // This is implemented in the LoginController class.
+//    // Register new Editor
+//    @PostMapping("editor/register")
+//    public ResponseEntity<String> registerEditor(@RequestBody Editor newEditor) {
+//        if (editorRepository.existsByEmail(newEditor.getEmail())) {
+//            return ResponseEntity.badRequest().body("Email already in use");
+//        }
+//
+//        editorRepository.save(newEditor);
+//        return ResponseEntity.ok("Editor registered successfully: " + newEditor.toString());
+//    }
 
     // Update Editor information
     @PutMapping("editor/put/{id}")
@@ -218,22 +217,23 @@ public class EditorController {
         return editorRepository.save(editor);
     }
 
-    // Editor login
-    @PostMapping("editor/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
-
-        Editor dbEditor = editorRepository.findByEmail(email);
-
-        if (dbEditor != null) {
-            if (dbEditor.getPassword().equals(password)) {
-                return ResponseEntity.ok("Login successful. Welcome!");
-            }
-        }
-
-        return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
-    }
+    // This is implemented in the LoginController class.
+//    // Editor login
+//    @PostMapping("editor/login")
+//    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+//        String email = loginRequest.getEmail();
+//        String password = loginRequest.getPassword();
+//
+//        Editor dbEditor = editorRepository.findByEmail(email);
+//
+//        if (dbEditor != null) {
+//            if (dbEditor.getPassword().equals(password)) {
+//                return ResponseEntity.ok("Login successful. Welcome!");
+//            }
+//        }
+//
+//        return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
+//    }
 
     // Should editor be able to set favorite recipes??????
 

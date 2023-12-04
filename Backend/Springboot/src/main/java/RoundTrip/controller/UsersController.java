@@ -2,11 +2,10 @@ package RoundTrip.controller;
 
 
 import RoundTrip.NotFoundException;
-import RoundTrip.model.LoginRequest;
 import RoundTrip.model.Recipe;
 import RoundTrip.model.Users;
-import RoundTrip.repository.UsersRepository;
 import RoundTrip.repository.RecipeRepository;
+import RoundTrip.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,21 +52,22 @@ public class UsersController {
     }
 
 
-    // Register new user. Check if email exists
-    @PostMapping("users/register")
-    ResponseEntity<String> RegisterUsers(@RequestBody Users newUser) {
-        // Check if the user with the provided email already exists
-        if (usersRepository.existsByEmail(newUser.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already in use");
-        }
-        // Check if the username is already taken by other user
-        if (usersRepository.existsByUsername(newUser.getUsername())) {
-            return ResponseEntity.badRequest().body("Username already taken");
-        }
-        // Add the user to the database
-        usersRepository.save(newUser);
-        return ResponseEntity.ok("User registered successfully: " + newUser.toString());
-    }
+    // This is implemented in the LoginController class.
+//    // Register new user. Check if email exists
+//    @PostMapping("users/register")
+//    ResponseEntity<String> RegisterUsers(@RequestBody Users newUser) {
+//        // Check if the user with the provided email already exists
+//        if (usersRepository.existsByEmail(newUser.getEmail())) {
+//            return ResponseEntity.badRequest().body("Email already in use");
+//        }
+//        // Check if the username is already taken by other user
+//        if (usersRepository.existsByUsername(newUser.getUsername())) {
+//            return ResponseEntity.badRequest().body("Username already taken");
+//        }
+//        // Add the user to the database
+//        usersRepository.save(newUser);
+//        return ResponseEntity.ok("User registered successfully: " + newUser.toString());
+//    }
 
     // Change user info based on id
     @PutMapping("users/put/{id}")
@@ -98,21 +98,22 @@ public class UsersController {
 //        }
 //    }
 
-    @PostMapping("users/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
-
-        Users dbUser = usersRepository.findByEmail(email);
-
-        if (dbUser != null) {
-            if (dbUser.getPassword().equals(password)) {
-                return ResponseEntity.ok("Login successful. Welcome!");
-            }
-        }
-
-        return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
-    }
+    // This is implemented in the LoginController
+//    @PostMapping("users/login")
+//    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+//        String email = loginRequest.getEmail();
+//        String password = loginRequest.getPassword();
+//
+//        Users dbUser = usersRepository.findByEmail(email);
+//
+//        if (dbUser != null) {
+//            if (dbUser.getPassword().equals(password)) {
+//                return ResponseEntity.ok("Login successful. Welcome!");
+//            }
+//        }
+//
+//        return ResponseEntity.badRequest().body("Login failed. Check your email and password.");
+//    }
 
     // Sets a favorite recipe for a specific user
     @PostMapping("users/{userId}/addFavRecipe/{recipeId}")

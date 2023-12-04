@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -75,5 +76,12 @@ public class Pantry {
             }
         }
         return false;
+    }
+
+    // Retrieve ingredients from pantry ingredients
+    public Set<Ingredient> getPantryIngredients() {
+        return pantryIngredient.stream()
+                .map(PantryIngredient::getIngredient)
+                .collect(Collectors.toSet());
     }
 }

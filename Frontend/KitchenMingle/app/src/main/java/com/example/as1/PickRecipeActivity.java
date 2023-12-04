@@ -14,13 +14,18 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 
+import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
 import com.example.as1.model.SlimCallback;
 
 
 import java.util.List;
+import java.util.Set;
+
 import android.view.View;
 import android.widget.Button;
+
+import retrofit2.Call;
 
 
 /**
@@ -30,6 +35,8 @@ import android.widget.Button;
 public class PickRecipeActivity extends AppCompatActivity {
     private LinearLayout recipeButtonContainer;
     private Button goToFavBtn;
+    private long userIdLong;
+
 
     /**
      * Initializes the activity and sets up the layout.
@@ -42,6 +49,7 @@ public class PickRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pickrecipe);
 
         recipeButtonContainer = findViewById(R.id.recipeButtonContainer);
+        userIdLong = getIntent().getLongExtra("user_id", 0);
 //        Button addToFavBtn = findViewById(R.id.goToFavBtn);
 
 //        goToFavBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +64,7 @@ public class PickRecipeActivity extends AppCompatActivity {
         // Call the displayRecipeButtons method to fetch and display recipes
         displayRecipeButtons();
     }
+
 
 
     /**
@@ -85,9 +94,12 @@ public class PickRecipeActivity extends AppCompatActivity {
                         // Handle the button click, e.g., navigate to the recipe's details
                         int recipeId = view.getId();
                         String recipeName = recipe.getRecipeName();
-                        String ingredients = recipe.getRecipeInstructions();
+                        //String ingredients = recipe.getRecipeIngredients();
                         String directions = recipe.getRecipeInstructions();
-                        navigateToRecipeDetails(recipeId, recipeName, ingredients, directions);
+                        getIngredientsForRecipe(recipeId, recipeName, directions);
+
+
+                        //navigateToRecipeDetails(recipeId, recipeName, ingredients, directions);
                     }
                 });
                 // Add the button to the layout
@@ -110,13 +122,37 @@ public class PickRecipeActivity extends AppCompatActivity {
         intent.putExtra("recipe_name", recipeName);
         intent.putExtra("ingredients", ingredients);
         intent.putExtra("directions", directions);
-
+        intent.putExtra("user_id", userIdLong);
 
         // Start the DetailsActivity
         startActivity(intent);
 
 
     }
+
+    private void getIngredientsForRecipe(int recipeId, String recipeName, String directions) {
+        Call<List<Ingredient>> call = GetRecipeAPI().getIngredientsForRecipe((long) recipeId);
+
+        call.enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
+            // Handle the successful response, e.g., update UI or store the ingredients
+
+            // Now you can use the 'ingredients' list as needed
+            String ingredientsString = getIngredientsAsString(ingredients);
+
+            // Navigate to recipe details or update UI
+            navigateToRecipeDetails(recipeId, recipeName, ingredientsString, directions);
+        }, "GetIngredientsForRecipe"));
+    }
+
+    private String getIngredientsAsString(List<Ingredient> ingredients) {
+        StringBuilder ingredientsStringBuilder = new StringBuilder();
+        for (Ingredient ingredient : ingredients) {
+            ingredientsStringBuilder.append(ingredient.getIngredientName()).append("\n");
+        }
+        return ingredientsStringBuilder.toString();
+    }
+
+
 
 
 }

@@ -1,10 +1,15 @@
 package com.example.as1.model;
 
+import java.util.Set;
+
 public class Recipe {
 
     private int id;
     private String recipeName;
     private String recipeInstructions;
+    private String recipeIngredients;
+    private Set<Ingredient> ingredients;
+
 
     public Recipe() {
     }
@@ -32,6 +37,23 @@ public class Recipe {
     public void setRecipeInstructions(String recipeInstructions) {
         this.recipeInstructions = recipeInstructions;
     }
+
+    public String getRecipeIngredients() {
+        return recipeIngredients;
+    }
+
+    public void setRecipeIngredients(String recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
 
     public String printable(){
         return "\nRecipe Name:  " + getRecipeName()

@@ -185,7 +185,7 @@ public class MyPantryActivity extends AppCompatActivity {
 //
 //
 //        apiText1.setMovementMethod(new ScrollingMovementMethod());
-//        apiText1.setHeight(350);
+//       tentapiText1.setHeight(350);
 //
 //
 //        Button PostByBodyBtn = findViewById(R.id.activity_main_post_by_body_button);

@@ -147,7 +147,7 @@ public class EditorController {
 
     // Create and save a new ingredient by providing JSON data in the request body
     @PostMapping("/ingredient/post/{editorId}")
-    public Ingredient postIngredientByPath(@PathVariable Long editorId, @RequestBody Ingredient newIngredient) {
+    public Ingredient postIngredientByBody(@PathVariable Long editorId, @RequestBody Ingredient newIngredient) {
         // Verify that there is an editor with the provided id
         Editor editor = editorRepository.findById(editorId)
                 .orElseThrow(() -> new RuntimeException("Editor not found"));

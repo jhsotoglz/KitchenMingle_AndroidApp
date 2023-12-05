@@ -56,7 +56,7 @@ public class EditorController {
     // We can also do it by request param for editorId
     // Creates and saves a new recipe by providing JSON data in the request body
     @PostMapping("/recipe/post/{editorId}")
-    public Recipe postRecipeByPath(@PathVariable Long editorId, @RequestBody Recipe newRecipe) {
+    public Recipe postRecipeByBody(@PathVariable Long editorId, @RequestBody Recipe newRecipe) {
         // Verify that there is an editor with the provided id
         Editor editor = editorRepository.findById(editorId)
                 .orElseThrow(() -> new RuntimeException("Editor not found"));

@@ -103,28 +103,35 @@ public class EditorController {
         return savedRecipe;
     }
 
-    // We can also do it by request param for editorId
-    //Link existing ingredients to an existing recipe in a many-to-many relationship
-    /*
-    In the request body, provide a JSON array containing the IDs of the existing ingredients you want to associate with the recipe. For example:
-        [1, 2, 3]
-    */
-    @PostMapping("/recipe/{recipeId}/associateIngredients/{editorId}")
-    public Recipe associateIngredientsWithRecipe(@PathVariable Long recipeId,
-                                                 @PathVariable Long editorId,
-                                                 @RequestBody List<Long> ingredientIds) {
+    // Link existing ingredients to an existing recipe in a many-to-many relationship (By Path).
+    @PostMapping("/recipe/{recipeId}/associateIngredient/{editorId}/{ingredientId}")
+    public Recipe associateIngredientWithRecipe(@PathVariable Long recipeId,
+                                                @PathVariable Long editorId,
+                                                @PathVariable Long ingredientId) {
         // Verify that there is an editor with the provided id
-        Editor editor = editorRepository.findById(editorId)
-                .orElseThrow(() -> new RuntimeException("Editor not found"));
+        Optional<Editor> editorOptional = editorRepository.findById(editorId);
+        if (!editorOptional.isPresent()) {
+            throw new RuntimeException("Editor not found");
+        }
 
-        Recipe recipe = recipeRepository.findById(recipeId)
-                .orElseThrow(() -> new RuntimeException("Recipe not found"));
+        // Verify that there is a recipe with the provided id
+        Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
+        if (!recipeOptional.isPresent()) {
+            throw new RuntimeException("Recipe not found");
+        }
 
-        // Retrieve the existing ingredients by their IDs
-        Set<Ingredient> ingredients = new HashSet<>(ingredientRepository.findAllById(ingredientIds));
+        // Verify that there is an ingredient with the provided id
+        Optional<Ingredient> ingredientOptional = ingredientRepository.findById(ingredientId);
+        if (!ingredientOptional.isPresent()) {
+            throw new RuntimeException("Ingredient not found");
+        }
 
-        // Associate the ingredients with the recipe
-        recipe.getIngredients().addAll(ingredients);
+        // Get the Recipe and Ingredient from the optionals
+        Recipe recipe = recipeOptional.get();
+        Ingredient ingredient = ingredientOptional.get();
+
+        // Associate the ingredient with the recipe
+        recipe.getIngredients().add(ingredient);
         recipeRepository.save(recipe); // Save the updated recipe
 
         return recipe;

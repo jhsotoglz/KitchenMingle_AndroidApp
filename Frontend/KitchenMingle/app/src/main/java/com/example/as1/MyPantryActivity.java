@@ -34,11 +34,19 @@ import retrofit2.Callback;
 public class MyPantryActivity extends AppCompatActivity {
     private Map<String, Integer> pantry = new HashMap<>(); // Mock data structure for pantry items
     private LinearLayout ingredientsListLayout;
+    private String userId; // stores user ID from login
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypantry);
+
+        // Get intent from login
+        Intent intent = getIntent();
+
+        // Get user ID from intent
+        userId = intent.getStringExtra("USER_ID");
+
 
         AutoCompleteTextView autoCompleteIngredient = findViewById(R.id.autoCompleteIngredient);
         EditText eTxtQuantity = findViewById(R.id.eTxt_quantity);

@@ -58,10 +58,4 @@ public class IngredientTest {
         ingredient.setPantryIngredient(pantryIngredients);
         assertEquals(pantryIngredients, ingredient.getPantryIngredient());
     }
-
-    @Test
-    public void testEditorGetterAndSetter() {
-        ingredient.setEditor(editor);
-        assertEquals(editor, ingredient.getEditor());
-    }
 }

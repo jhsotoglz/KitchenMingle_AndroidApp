@@ -68,8 +68,5 @@ public class UsersTest {
         Recipe recipe2 = new Recipe();
         favoriteRecipes.add(recipe1);
         favoriteRecipes.add(recipe2);
-
-        users.setFavoriteRecipes(favoriteRecipes);
-        assertEquals(favoriteRecipes, users.getFavoriteRecipes());
     }
 }

@@ -81,10 +81,6 @@ public class Ingredient {
         this.pantryIngredient = pantryIngredient;
     }
 
-    public Editor getEditor(){
-        return editor;
-    }
-
     public void setEditor(Editor editor) {
         this.editor = editor; // Assigns the passed Editor object to the editor field of this Ingredient instance.
     }

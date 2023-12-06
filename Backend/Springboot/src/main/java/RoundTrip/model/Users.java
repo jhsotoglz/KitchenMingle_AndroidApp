@@ -86,10 +86,5 @@ public class Users {
     public Set<Recipe> getFavoriteRecipes() {
         return favoriteRecipes;
     }
-
-    public void setFavoriteRecipes(Set<Recipe> favoriteRecipes) {
-        this.favoriteRecipes = favoriteRecipes;
-    }
-
 }
 

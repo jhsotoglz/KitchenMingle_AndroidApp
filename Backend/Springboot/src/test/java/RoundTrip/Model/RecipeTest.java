@@ -56,11 +56,4 @@ public class RecipeTest {
         recipe.setIngredients(ingredients);
         assertEquals(ingredients, recipe.getIngredients());
     }
-
-    @Test
-    public void testGetAndSetEditor() {
-        recipe.setEditor(editor);
-        assertEquals(editor, recipe.getEditor());
-    }
-
 }

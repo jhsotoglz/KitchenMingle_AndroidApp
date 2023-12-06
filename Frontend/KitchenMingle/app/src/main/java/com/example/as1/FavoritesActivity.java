@@ -1,10 +1,5 @@
-
-
-
-
 package com.example.as1;
 
-import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
 import static com.example.as1.api.ApiClientFactory.GetUsersApi;
 
 import android.content.Intent;
@@ -12,22 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.as1.api.RecipeApi;
-import com.example.as1.api.UsersApi;
 import com.example.as1.model.Recipe;
 import com.example.as1.model.SlimCallback;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import com.example.as1.model.Users;
-
 
 public class FavoritesActivity extends AppCompatActivity {
     private LinearLayout recipeButtonContainer;
@@ -48,6 +32,26 @@ public class FavoritesActivity extends AppCompatActivity {
         userIdLong = getIntent().getLongExtra("user_id", 0);
 
         recipeButtonContainer = findViewById(R.id.recipeButtonContainer);
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setSelectedItemId(R.id.nav_favorites);
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_discover:
+                    Intent discoverIntent = new Intent(MyPantryActivity.this, DiscoverActivity.class);
+                    discoverIntent.putExtra("USER_ID", userId);
+                    startActivity(discoverIntent);                    return true;
+                case R.id.nav_favorites:
+                    Intent favoritesIntent = new Intent(MyPantryActivity.this, FavoritesActivity.class);
+                    favoritesIntent.putExtra("USER_ID", userId);
+                    startActivity(favoritesIntent);
+                    return true;
+                case R.id.nav_pantry:
+                    return true;
+            }
+            return false;
+        });
+
 
         // Call the displayRecipeButtons method to fetch and display recipes
         displayRecipeButtons();

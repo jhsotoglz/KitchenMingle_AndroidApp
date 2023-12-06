@@ -11,8 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AutoCompleteTextView;
 
-import com.example.as1.api.ApiClientFactory;
-import com.example.as1.api.UsersApi;
 import com.example.as1.model.PantryIngredient;
 import com.example.as1.model.SlimCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,10 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 import android.widget.LinearLayout;
 import android.view.LayoutInflater;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-
 
 /**
  *

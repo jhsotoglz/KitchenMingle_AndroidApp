@@ -162,7 +162,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Initializing retrofit service
         LoginApi loginApi = ApiClientFactory.GetLoginApi();
 
-        Call<String> call = loginApi.unifedRegister(newUser);
+        Call<String> call = loginApi.unifiedRegister(newUser);
 
         call.enqueue(new Callback<String>(){
             @Override

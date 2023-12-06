@@ -10,8 +10,8 @@ import retrofit2.http.Body;
 
 public interface LoginApi {
     @POST("/register")
-    Call<String> unifedRegister(@Body RegistrationRequest registrationRequest);
+    Call<String> unifiedRegister(@Body RegistrationRequest registrationRequest);
 
     @POST("/login")
-    Call<LoginRequest> unifedLogin(@Body LoginRequest loginRequest);
+    Call<String> unifiedLogin(@Body LoginRequest loginRequest);
 }

@@ -9,7 +9,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
-import com.example.as1.api.*;
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.example.as1.api.LoginApi;
 import com.example.as1.api.ApiClientFactory;
 import com.example.as1.model.LoginRequest;
 import com.example.as1.model.LoginResponse;
@@ -17,9 +20,7 @@ import com.example.as1.model.LoginResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Body;
-
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.gson.Gson;
 
 /**
  * LoginActivity provides a user interface for users to log in with their email and password.
@@ -64,15 +65,15 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 // Create new user object
-                LoginRequest loginRequest = new LoginRequest();
-                loginRequest.setEmail(email);
-                loginRequest.setPassword(password);
+                LoginRequest currentUser = new LoginRequest();
+                currentUser.setEmail(email);
+                currentUser.setPassword(password);
 
                 try {
                     progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(LoginActivity.this, "Trying to log in...", Toast.LENGTH_SHORT).show();
                     progressBar.setProgress(25);
-                    loginUser(loginRequest);
+                    loginUser(currentUser);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -80,24 +81,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-//    Call<LoginResponse> unifedLogin(@Body LoginRequest loginRequest);
-//    LoginApi loginApi = ApiClientFactory.GetLoginApi();
-//
-//    Call<String> call = loginApi.unifedRegister(newUser);
-//
-//        call.enqueue(new Callback<String>(){
     //   todo: it returns id and stuff, grab it and save intent for later
     /**
      * Sends a login request to the server and handles the response.
-     * @param loginRequest the login request object containing necessary user credentials.
+     * @param currentUser is the login request object containing necessary user credentials.
      */
-    private void loginUser(LoginRequest loginRequest) {
+    private void loginUser(LoginRequest currentUser) {
         // Initializing retrofit service
-//
-//        Call<String> call = usersApi.login(loginRequest);
         LoginApi loginApi = ApiClientFactory.GetLoginApi();
-        Call<String> call = loginApi.unifedLogin(loginRequest);
+
+        Call<String> call = loginApi.unifiedLogin(currentUser);
 
         call.enqueue(new Callback<String>() {
             @Override
@@ -107,10 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setProgress(75);
                 if (response.isSuccessful()) {   // response status code is between 200-299
                     // login successful, handle success
-                    // below could be used to send userID to details once a getter is made
-//                    Intent intent = new Intent(LoginActivity, DetailsActivity.class);
-//                    intent.putExtra("USER_ID", loggedInUserId);
-//                    startActivcity(intent);
                     progressBar.setProgress(100);
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     ShapeDrawable shapeDrawable = new ShapeDrawable(new RectShape());
@@ -118,7 +107,15 @@ public class LoginActivity extends AppCompatActivity {
                     shapeDrawable.getPaint().setStrokeWidth(5f); // border width
                     emailEditText.setBackground(shapeDrawable);
                     passwordEditText.setBackground(shapeDrawable);
-                    // Todo: take user to home page
+
+                    // get user ID from response
+                    LoginResponse loginResponse = new Gson().fromJson(response.body(), LoginResponse.class);
+                    Long userId = loginResponse.getUserId();
+
+                    // Take the user to their Pantry
+                    Intent intent = new Intent(LoginActivity.this, MyPantryActivity.class);
+                    intent.putExtra("USER_ID", userId);
+                    startActivity(intent);
                 } else {
                     // login failed, handle failure
                     progressBar.setVisibility(View.INVISIBLE);

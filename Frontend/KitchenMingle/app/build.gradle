@@ -79,5 +79,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'org.java-websocket:Java-WebSocket:1.5.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation "androidx.cardview:cardview:1.0.0"
+
+
 
 }

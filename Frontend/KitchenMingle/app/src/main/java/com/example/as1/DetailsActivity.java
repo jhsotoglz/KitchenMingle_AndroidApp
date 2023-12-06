@@ -1,3 +1,5 @@
+
+
 package com.example.as1;
 
 import android.content.Intent;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,6 +56,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        userIdLong = getIntent().getLongExtra("user_id", 0);
 
 
         // Initialize views and UI elements
@@ -74,6 +78,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         recipeId = getIntent().getLongExtra("recipe_id", 0);
         Button addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
         Button goToFavoritesButton = findViewById(R.id.goToFavoritesButton);
+        //ToggleButton addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
+
 
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -204,9 +210,9 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         int rating = Math.round(floatingRating);
 
         runOnUiThread(() -> {
-          commentList.add(new Comment(userIdEditText.getText().toString(), message, rating ));
-          //  commentList.add(new Comment(userID, text, rating));
-               commentAdapter.notifyDataSetChanged();
+            commentList.add(new Comment(userIdEditText.getText().toString(), message, rating ));
+            //  commentList.add(new Comment(userID, text, rating));
+            commentAdapter.notifyDataSetChanged();
         });
     }
 
@@ -224,8 +230,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         // commentsTextView.append("\n" + text);
 
         runOnUiThread(() -> {
-           // commentList.add(new Comment("User1", "This is a great recipe!", 5));
-           // commentAdapter.notifyDataSetChanged();
+            // commentList.add(new Comment("User1", "This is a great recipe!", 5));
+            // commentAdapter.notifyDataSetChanged();
         });
     }
 
@@ -246,8 +252,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                // Handle failure (e.g., show an error message)
                 Log.e("Add to Favorites", "Failed to add recipe to favorites: " + t.getMessage());
+                t.printStackTrace();  // Log the stack trace to get more details
             }
         });
     }
@@ -257,5 +263,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
 
 }
+
+
 
 

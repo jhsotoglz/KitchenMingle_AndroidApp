@@ -12,9 +12,13 @@ import android.graphics.drawable.shapes.RectShape;
 import com.example.as1.api.*;
 import com.example.as1.api.ApiClientFactory;
 import com.example.as1.model.LoginRequest;
+import com.example.as1.model.LoginResponse;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Body;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -76,15 +80,24 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+//    Call<LoginResponse> unifedLogin(@Body LoginRequest loginRequest);
+//    LoginApi loginApi = ApiClientFactory.GetLoginApi();
+//
+//    Call<String> call = loginApi.unifedRegister(newUser);
+//
+//        call.enqueue(new Callback<String>(){
+    //   todo: it returns id and stuff, grab it and save intent for later
     /**
      * Sends a login request to the server and handles the response.
      * @param loginRequest the login request object containing necessary user credentials.
      */
     private void loginUser(LoginRequest loginRequest) {
         // Initializing retrofit service
-        UsersApi usersApi = ApiClientFactory.GetUsersApi();
-
-        Call<String> call = usersApi.login(loginRequest);
+//
+//        Call<String> call = usersApi.login(loginRequest);
+        LoginApi loginApi = ApiClientFactory.GetLoginApi();
+        Call<String> call = loginApi.unifedLogin(loginRequest);
 
         call.enqueue(new Callback<String>() {
             @Override

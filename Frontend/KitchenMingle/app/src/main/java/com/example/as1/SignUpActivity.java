@@ -9,11 +9,15 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.as1.api.*;
+import com.example.as1.model.LoginRequest;
+import com.example.as1.model.LoginResponse;
 import com.example.as1.model.RegistrationRequest;
 import com.example.as1.api.ApiClientFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Body;
+
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 
@@ -51,8 +55,6 @@ public class SignUpActivity extends AppCompatActivity {
         radioButtonUser = findViewById(R.id.radioButtonUser);
         radioButtonAdmin = findViewById(R.id.radioButtonAdmin);
         radioButtonContributor = findViewById(R.id.radioButtonContributor);
-
-        // todo: send type (Editor, Admin, User) to backend
 
         radioGroupUserType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -127,6 +129,13 @@ public class SignUpActivity extends AppCompatActivity {
                     valid = false;
                 }
 
+                // Checks if user type was selected
+                int selectedUserTypeId = radioGroupUserType.getCheckedRadioButtonId();
+                if (selectedUserTypeId == -1) {
+                    radioGroupUserType.setBackgroundResource(R.drawable.ic_error);
+                    valid = false;
+                }
+
                 if(valid) {
                     try {
                         progressBar.setVisibility(View.VISIBLE);
@@ -148,6 +157,7 @@ public class SignUpActivity extends AppCompatActivity {
      * Sends a user registration request to the server and handles the response.
      * @param newUser The user registration request object containing user details.
      */
+
     private void registerUser(RegistrationRequest newUser){
         // Initializing retrofit service
         LoginApi loginApi = ApiClientFactory.GetLoginApi();

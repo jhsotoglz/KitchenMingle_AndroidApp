@@ -13,5 +13,5 @@ public interface LoginApi {
     Call<String> unifedRegister(@Body RegistrationRequest registrationRequest);
 
     @POST("/login")
-    Call<LoginResponse> unifedLogin(@Body LoginRequest loginRequest);
+    Call<LoginRequest> unifedLogin(@Body LoginRequest loginRequest);
 }

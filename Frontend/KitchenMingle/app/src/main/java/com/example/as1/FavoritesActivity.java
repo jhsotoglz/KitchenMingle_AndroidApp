@@ -32,7 +32,7 @@ import com.example.as1.model.Users;
 public class FavoritesActivity extends AppCompatActivity {
     private LinearLayout recipeButtonContainer;
     private Button allRecipes;
-
+    private long userIdLong;
 
     /**
      * Initializes the activity and sets up the layout.
@@ -53,10 +53,10 @@ public class FavoritesActivity extends AppCompatActivity {
         displayRecipeButtons();
     }
 
-    Users user = new Users();
-    int userId = user.getUserId();
-    long userIdLong = (long) userId;
-
+//    Users user = new Users();
+//    int userId = user.getUserId();
+//    long userIdLong = (long) userId;
+//
 
 
     /**
@@ -96,6 +96,8 @@ public class FavoritesActivity extends AppCompatActivity {
             }
         }, "GetAllRecipe"));
     }
+
+
     /**
      * Navigates to the details activity for the selected recipe.
      *
@@ -121,4 +123,8 @@ public class FavoritesActivity extends AppCompatActivity {
 
 
 }
+
+
+
+
 

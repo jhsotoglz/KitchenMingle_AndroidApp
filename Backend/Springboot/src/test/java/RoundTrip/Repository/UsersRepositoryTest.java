@@ -43,7 +43,6 @@ public class UsersRepositoryTest {
         Recipe recipe2 = new Recipe();
         favoriteRecipes.add(recipe1);
         favoriteRecipes.add(recipe2);
-        user1.setFavoriteRecipes(favoriteRecipes);
     }
 
     @Test

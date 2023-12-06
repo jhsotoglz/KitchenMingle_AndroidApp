@@ -200,6 +200,31 @@
         app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="@+id/headerTitle" />
 
+
+    <Button
+        android:id="@+id/addToFavoritesButton"
+        android:layout_width="106dp"
+        android:layout_height="52dp"
+        android:text="Add to Favorites"
+        tools:layout_editor_absoluteX="282dp"
+        tools:layout_editor_absoluteY="59dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="@+id/headerTitle" />
+
+
+    <Button
+        android:id="@+id/goToFavoritesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Go to Fav"
+        app:layout_constraintBottom_toBottomOf="@+id/ingredientsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="@+id/headerTitle" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

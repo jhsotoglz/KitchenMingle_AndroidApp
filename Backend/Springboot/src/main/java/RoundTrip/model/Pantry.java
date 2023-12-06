@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -31,6 +32,7 @@ public class Pantry {
 
     // One pantry can store many items
     @OneToMany(mappedBy = "pantry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
 
@@ -64,5 +66,22 @@ public class Pantry {
 
     public void setPantryIngredient(PantryIngredient pantryIngredient) {
         this.pantryIngredient.add(pantryIngredient);
+    }
+
+    public boolean findPantryIngredient(Ingredient ingredient){
+        for (PantryIngredient pantryIng : pantryIngredient) {
+            Ingredient existingIngredient = pantryIng.getIngredient();
+            if(existingIngredient.equals(ingredient)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Retrieve ingredients from pantry ingredients
+    public Set<Ingredient> getPantryIngredients() {
+        return pantryIngredient.stream()
+                .map(PantryIngredient::getIngredient)
+                .collect(Collectors.toSet());
     }
 }

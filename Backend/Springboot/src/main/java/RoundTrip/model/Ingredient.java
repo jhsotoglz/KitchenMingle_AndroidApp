@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -16,13 +17,16 @@ public class Ingredient {
     private String ingredientName;
 
     @ManyToMany(mappedBy = "ingredients")
+    @JsonIgnore
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
 
-//    @ManyToMany(mappedBy = "ingredients")
-//    private Set<Pantry> pantry;
-
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "editor_id")
+    private Editor editor;
 
     // Constructors
     public Ingredient() {
@@ -75,5 +79,9 @@ public class Ingredient {
 
     public void setPantryIngredient(Set<PantryIngredient> pantryIngredient) {
         this.pantryIngredient = pantryIngredient;
+    }
+
+    public void setEditor(Editor editor) {
+        this.editor = editor; // Assigns the passed Editor object to the editor field of this Ingredient instance.
     }
 }

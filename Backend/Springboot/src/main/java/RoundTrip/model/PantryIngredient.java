@@ -1,6 +1,7 @@
 package RoundTrip.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,10 +12,12 @@ public class PantryIngredient {
 
     @ManyToOne
     @JoinColumn(name = "pantry_id")
+    @JsonIgnore
     private Pantry pantry;
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
+    @JsonIgnore
     private Ingredient ingredient;
 
     private int quantity;

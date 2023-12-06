@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String recipeName;
     private String recipeInstructions;
 
@@ -17,16 +18,21 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"), // Specify the column name in the join table for the Recipe
             inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Specify the column name in the join table for the Ingredient
     )
+    @JsonIgnore
     private Set<Ingredient> ingredients;
+
+    @ManyToOne
+    @JoinColumn(name = "editor_id")
+    private Editor editor;
 
     public Recipe() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,5 +59,9 @@ public class Recipe {
     // Getter method for ingredients
     public Set<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public void setEditor(Editor editor) {
+        this.editor = editor; // Assigns the passed Editor object to the editor field of this Recipe instance.
     }
 }

@@ -9,14 +9,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
+
+import com.example.as1.api.UsersApi;
 import com.example.as1.model.Comment;
 import com.example.as1.api.WebSocketListener;
+import com.example.as1.model.Users;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 import org.java_websocket.handshake.ServerHandshake;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.as1.api.ApiClientFactory.GetUsersApi;
+
 
 /**
  * DetailsActivity displays details of a recipe, allows users to add live comments and ratings through an established WebSocket connection.
@@ -30,6 +42,9 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     private RecyclerView commentsRecyclerView;
     private CommentAdapter commentAdapter;
     private List<Comment> commentList = new ArrayList<>();
+    private long userIdLong;
+    private long recipeId;
+
 
     // WebSocket server URL
     private String BASE_URL = "ws://coms-309-033.class.las.iastate.edu:8080/comment/";
@@ -38,6 +53,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
 
         // Initialize views and UI elements
         commentEditText = findViewById(R.id.commentEditText);
@@ -54,6 +70,11 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         directionsTextView = findViewById(R.id.directionsTextView);
         ingredientsTextView = findViewById(R.id.ingredientsListTextView);
         btnToPickRecipe = findViewById(R.id.btnToPickRecipe1);
+        userIdLong = getIntent().getLongExtra("user_id", 0);
+        recipeId = getIntent().getLongExtra("recipe_id", 0);
+        Button addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
+        Button goToFavoritesButton = findViewById(R.id.goToFavoritesButton);
+
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setSelectedItemId(View.NO_ID);
@@ -73,6 +94,24 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             return false;
         });
 
+
+
+        addToFavoritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToFavorites(recipeId);
+            }
+        });
+
+        goToFavoritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start the FavoritesActivity
+                Intent intent = new Intent(DetailsActivity.this, FavoritesActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Set up click listener to go to the pick recipe button
         btnToPickRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,16 +125,25 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         // Fetch comments and update the RecyclerView
         loadComments();
 
-        // Retrieve recipe information from the Intent
         Intent intent = getIntent();
         String recipeName = intent.getStringExtra("recipe_name");
         String ingredients = intent.getStringExtra("ingredients");
         String directions = intent.getStringExtra("directions");
+        Log.d("DetailsActivity", "Ingredients: " + ingredients);
+        Log.d("DetailsActivity", "Directions: " + directions);
+//        if (directions != null) {
+//            directionsTextView.setText(directions);
+//        } else {
+//            directionsTextView.setText("No directions available");
+//        }
 
-        // Set the recipe name in the TextView
+
+
+// Set the recipe name in the TextView
         recipeNameTextView.setText(recipeName);
-        directionsTextView.setText(ingredients);
-        ingredientsTextView.setText(directions);
+        ingredientsTextView.setText(ingredients);
+        directionsTextView.setText(directions);
+
 
         // todo: onStart() make page start listening instead of when clicking button
 
@@ -123,6 +171,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             }
         });
     }
+
 
     /*
      * On page close, WebSocket stops listening
@@ -179,6 +228,34 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
            // commentAdapter.notifyDataSetChanged();
         });
     }
+
+
+    private void addToFavorites(long recipeId) {
+        UsersApi usersApi = GetUsersApi();
+        usersApi.addFavoriteRecipe(userIdLong, recipeId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    // Handle success (e.g., update UI)
+                    Toast.makeText(DetailsActivity.this, "Recipe added to Favorites", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Handle error (e.g., show an error message)
+                    Log.e("Add to Favorites", "Failed to add recipe to favorites. Code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Handle failure (e.g., show an error message)
+                Log.e("Add to Favorites", "Failed to add recipe to favorites: " + t.getMessage());
+            }
+        });
+    }
+
+
+
+
+
 }
 
 

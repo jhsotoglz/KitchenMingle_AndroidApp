@@ -59,27 +59,6 @@ public class CommentSocket {
 
     private final Logger logger = LoggerFactory.getLogger(CommentSocket.class);
 
-//    @OnMessage
-//    public void onRatingMessage(Session session, String message) throws IOException {
-//        // Handle new comments
-//        logger.info("Entered into Comment: Got Comment:" + message);
-//        String username = sessionUsernameMap.get(session);
-//
-//        // Check if the user has already submitted a rating
-//        if (usernameHasSubmittedRating(username)) {
-//            // No rating required for subsequent comments
-//            saveComment(username, message, null);
-//        } else {
-//            // Extract rating and comment text from the message
-//            String[] messageParts = message.split(" ");
-//            int rating = Integer.parseInt(messageParts[0]); // Assumes that the rating is the first part
-//            String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
-//
-//            // Save the comment and the rating
-//            saveComment(username, commentText, rating);
-//        }
-//    }
-
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") Long userId, @PathParam("recipeId") Long recipeId)
             throws IOException {
@@ -99,7 +78,7 @@ public class CommentSocket {
             sessionRecipeMap.put(session, recipe);
 
             //Send chat history to the newly connected user
-            sendMessageToParticularUser(user, getCommentHistory());
+            sendMessageToParticularUser(user, getCommentHistory(recipeId));
 
             // broadcast that new user joined
             String message = "User:" + user.getUsername() + " Welcome to this recipe's comment section. " +
@@ -111,31 +90,6 @@ public class CommentSocket {
 
     }
 
-
-//    @OnMessage
-//    public void onMessage(Session session, String message) throws IOException {
-//
-//        // Handle new comments
-//        logger.info("Entered into Comment: Got Comment:" + message);
-//        String username = sessionUsernameMap.get(session);
-//
-//        // Direct message to a user using the format "@username <message>"
-//        if (message.startsWith("@")) {
-//            String destUsername = message.split(" ")[0].substring(1);
-//
-//            // send the message to the sender and receiver
-//            sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
-//            sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
-//
-//        }
-//        else { // broadcast
-//            broadcast(username + ": " + message);
-//        }
-//
-//        // Saving chat history to repository
-//        commentRepo.save(new Comment(username, message));
-//    }
-
     @OnMessage
     public void onMessage(Session session, String message) throws IOException {
         logger.info("Entered into Comment: Got Comment: " + message);
@@ -145,23 +99,16 @@ public class CommentSocket {
 
         if (message.matches("\\d+ .*")) {
             // Handle messages that include ratings
-            if (usernameHasSubmittedRating(user)) {
-                // No rating required for subsequent comments
-                saveComment(user, recipe, message, null);
-            } else {
-                String[] messageParts = message.split(" ");
-                int rating = Integer.parseInt(messageParts[0]);
-                String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
-                saveComment(user, recipe, commentText, rating);
-            }
+            String[] messageParts = message.split(" ");
+            int rating = Integer.parseInt(messageParts[0]);
+            String commentText = String.join(" ", Arrays.copyOfRange(messageParts, 1, messageParts.length));
+            saveComment(user, recipe, commentText, rating);
         } else {
             // Handle regular chat messages
             broadcast(username + ": " + message);
-            commentRepo.save(new Comment(username, message));
+            commentRepo.save(new Comment(user, username, message, null, recipe));
         }
     }
-
-
 
     @OnClose
     public void onClose(Session session) throws IOException {
@@ -174,7 +121,7 @@ public class CommentSocket {
         usernameSessionMap.remove(user);
         sessionRecipeMap.remove(session);
 
-        // broadcase that the user disconnected
+        // broadcast that the user disconnected
         String message = user.getUsername() + " disconnected";
         broadcast(message);
     }
@@ -216,18 +163,18 @@ public class CommentSocket {
 
 
     // Gets the Chat history from the repository
-    private String getCommentHistory() {
-        List<Comment> comments = commentRepo.findAll();
+    private String getCommentHistory(Long recipeId) {
+        List<Comment> comments = commentRepo.findByRecipeId(recipeId);
 
-        // convert the list to a string
         StringBuilder sb = new StringBuilder();
-        if(comments != null && comments.size() != 0) {
+        if(comments != null && !comments.isEmpty()) {
             for (Comment comment : comments) {
-                sb.append(comment.getUserName() + ": " + comment.getContent() + "\n");
+                sb.append(comment.getUserName()).append(": ").append(comment.getContent()).append("\n");
             }
         }
         return sb.toString();
     }
+
 
     private void saveComment(Users user, Recipe recipe, String content, Integer rating) {
         // Direct message to a user using the format "@username <message>"
@@ -238,14 +185,7 @@ public class CommentSocket {
         }
 
         // Saving chat history to repository
-        commentRepo.save(new Comment(user.getUsername(), content, rating, recipe));
-    }
-
-    private boolean usernameHasSubmittedRating(Users user) {
-        List<Comment> userComments = commentRepo.findByUsers(user);
-
-        // Check if any of the user's comments have a rating
-        return userComments.stream().anyMatch(comment -> comment.getRating() != null);
+        commentRepo.save(new Comment(user, user.getUsername(), content, rating, recipe));
     }
 
 }

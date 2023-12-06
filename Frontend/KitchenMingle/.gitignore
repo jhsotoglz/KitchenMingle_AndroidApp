@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+/Frontend/KitchenMingle/.gradle/
+/Frontend/KitchenMingle/build/
+

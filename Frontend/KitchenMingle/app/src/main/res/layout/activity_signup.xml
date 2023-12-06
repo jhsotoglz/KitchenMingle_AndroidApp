@@ -21,25 +21,26 @@
         android:id="@+id/confirmPasswordEditText"
         android:layout_width="224dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="76dp"
         android:ems="10"
         android:hint="Reenter your password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="224dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="Enter your username"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -56,24 +57,26 @@
         android:id="@+id/passwordEditText"
         android:layout_width="224dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="156dp"
         android:ems="10"
         android:hint="Enter your password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="220dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="128dp"
         android:ems="10"
         android:hint="Enter your email address"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -86,5 +89,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupUserType"
+        android:layout_width="411dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
+        app:layout_constraintVertical_bias="0.463">
+
+        <RadioButton
+            android:id="@+id/radioButtonUser"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:text="Mingler" />
+
+        <RadioButton
+            android:id="@+id/radioButtonContributor"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:text="Contributor" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAdmin"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:text="Admin" />
+
+    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

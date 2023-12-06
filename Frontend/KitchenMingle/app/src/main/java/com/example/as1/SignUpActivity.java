@@ -14,6 +14,8 @@ import com.example.as1.model.Users;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 
 /**
  * SignUpActivity provides a UI for users to register for KitchenMingle.
@@ -24,6 +26,8 @@ public class SignUpActivity extends AppCompatActivity {
     Button btnToMain, btnSignUp;
     EditText passwordEditText, usernameEditText, emailEditText, confirmPasswordEditText;
     ProgressBar progressBar;
+    RadioGroup radioGroupUserType;
+    RadioButton radioButtonUser, radioButtonAdmin, radioButtonContributor;
 
     /**
      * Initializes the SignUpActivity when it is created.
@@ -42,6 +46,31 @@ public class SignUpActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         progressBar = findViewById(R.id.progressBar);
+        radioGroupUserType = findViewById(R.id.radioGroupUserType);
+        radioButtonUser = findViewById(R.id.radioButtonUser);
+        radioButtonAdmin = findViewById(R.id.radioButtonAdmin);
+        radioButtonContributor = findViewById(R.id.radioButtonContributor);
+
+
+        // todo: send type (Editor, Admin, User) to backend
+
+        radioGroupUserType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                switch (checkedId) {
+                    case R.id.radioButtonUser:
+                        Toast.makeText(SignUpActivity.this, "Ordinary User selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButtonAdmin:
+                        Toast.makeText(SignUpActivity.this, "Admin selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButtonContributor:
+                        Toast.makeText(SignUpActivity.this, "Contributor selected", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
 
         // Set up a click listener to go to main
         btnToMain.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
-
+ //   todo: it returns id and stuff, grab it and save intent
     /**
      * Sends a user registration request to the server and handles the response.
      * @param newUser The user registration request object containing user details.

@@ -167,7 +167,7 @@ public class MyPantryActivity extends AppCompatActivity {
 //                setupIngredientView(ingredientView, entry.getKey(), entry.getValue());
 //                ingredientsListLayout.addView(ingredientView);
 //            }
-        }));
+  //     }));
     }
 
     // RegenerateAllIngredientOnScreen(txtView_IngList);

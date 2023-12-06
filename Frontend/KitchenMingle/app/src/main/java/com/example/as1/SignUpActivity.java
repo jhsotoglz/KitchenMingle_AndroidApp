@@ -143,7 +143,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
- //   todo: it returns id and stuff, grab it and save intent
+
     /**
      * Sends a user registration request to the server and handles the response.
      * @param newUser The user registration request object containing user details.
@@ -171,7 +171,6 @@ public class SignUpActivity extends AppCompatActivity {
                     // registration failed, handle failure
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(SignUpActivity.this, "Did you mean to sign in?", Toast.LENGTH_SHORT).show();
-                    // TODO: make button to login "did you mean to sign in?"
                 }
             }
             @Override

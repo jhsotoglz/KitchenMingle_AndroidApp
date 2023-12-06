@@ -49,6 +49,16 @@ public class ApiClientFactory {
     }
 
     /**
+     * Retrieves the API interface for managing user-related operations.
+     *
+     * @return The API interface for user-related operations.
+     */
+    public static LoginApi GetLoginApi(){
+
+        return GetApiClientSeed().create(LoginApi.class);
+    }
+
+    /**
      * Retrieves the API interface for handling ingredient-related operations.
      *
      * @return The API interface for ingredient-related operations.

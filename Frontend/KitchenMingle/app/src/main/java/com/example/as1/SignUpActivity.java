@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.example.as1.api.*;
 import com.example.as1.model.RegistrationRequest;
 import com.example.as1.api.ApiClientFactory;
-//import com.example.as1.model.Users;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     ProgressBar progressBar;
     RadioGroup radioGroupUserType;
     RadioButton radioButtonUser, radioButtonAdmin, radioButtonContributor;
+    private String userType;
 
     /**
      * Initializes the SignUpActivity when it is created.
@@ -58,7 +58,6 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
-                String userType = "";
                 switch (checkedId) {
                     case R.id.radioButtonUser:
                         userType = "User";
@@ -98,14 +97,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String passwordConfirm = confirmPasswordEditText.getText().toString();
                 boolean valid = true;
 
-                // Create a Users object with user input
-//                Users newUser = new Users();
-//                newUser.setUsername(username);
-//                newUser.setEmail(email);
-//                newUser.setPassword(password);
-
                 // Create new RegistrationRequest object with user input
-                RegistrationRequest newUser = new RegistrationRequest();
+                RegistrationRequest newUser = new RegistrationRequest(userType, email, password, username);
                 newUser.setUsername(username);
                 newUser.setUserType(userType);
                 newUser.setEmail(email);
@@ -157,9 +150,9 @@ public class SignUpActivity extends AppCompatActivity {
      */
     private void registerUser(RegistrationRequest newUser){
         // Initializing retrofit service
-        UsersApi usersApi = ApiClientFactory.GetUsersApi();
+        LoginApi loginApi = ApiClientFactory.GetLoginApi();
 
-        Call<String> call = usersApi.RegisterUsers(newUser);
+        Call<String> call = loginApi.unifedRegister(newUser);
 
         call.enqueue(new Callback<String>(){
             @Override

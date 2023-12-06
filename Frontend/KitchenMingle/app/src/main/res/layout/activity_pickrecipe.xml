@@ -5,22 +5,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <ScrollView
+    <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:queryHint="Search for recipes"
+        android:iconifiedByDefault="false"
+        app:iconifiedByDefault="false"/>
 
-        <LinearLayout
-            android:id="@+id/recipeButtonContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <!-- Recipe buttons will be added dynamically here -->
-        </LinearLayout>
-    </ScrollView>
+    <!-- Replace ScrollView and LinearLayout with RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
 
-<!--    <Button-->
-<!--        android:id="@+id/goToFavBtn"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Go to Favorites" />-->
+    <!-- You can keep other views, such as the "Go to Favorites" button, if needed -->
+
 </LinearLayout>
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    android:orientation="vertical">-->
+    <!--    &lt;!&ndash; Add this SearchView at the top of your layout &ndash;&gt;-->
+    <!--    <SearchView-->
+    <!--        android:id="@+id/searchView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:queryHint="Search for recipes"-->
+    <!--        android:iconifiedByDefault="false"-->
+    <!--        app:iconifiedByDefault="false"/>-->
+
+
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/recipeButtonContainer"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="vertical">-->
+    <!--            &lt;!&ndash; Recipe buttons will be added dynamically here &ndash;&gt;-->
+    <!--        </LinearLayout>-->
+    <!--    </ScrollView>-->
+
+    <!--    &lt;!&ndash;    <Button&ndash;&gt;-->
+    <!--    &lt;!&ndash;        android:id="@+id/goToFavBtn"&ndash;&gt;-->
+    <!--    &lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+    <!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--    &lt;!&ndash;        android:text="Go to Favorites" />&ndash;&gt;-->
+    <!--</LinearLayout>-->
+

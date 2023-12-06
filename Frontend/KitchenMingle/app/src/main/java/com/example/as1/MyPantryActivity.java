@@ -1,153 +1,7 @@
-//package com.example.as1;
-//
-//
-//import static com.example.as1.api.ApiClientFactory.GetIngredientAPI;
-//import androidx.appcompat.app.AppCompatActivity;
-//import android.os.Bundle;
-//import android.text.method.ScrollingMovementMethod;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.EditText;
-//import android.widget.TableLayout;
-//import android.widget.TextView;
-//import android.widget.TableRow;
-//import com.example.as1.model.Ingredient;
-//import com.example.as1.model.SlimCallback;
-//import java.util.List;
-//
-//
-//
-//
-//public class IngredientActivity extends AppCompatActivity {
-//
-//
-//    private TableLayout tableLayout;
-//    private EditText quantityEditText;
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_ingredient);
-//
-//
-//        TextView apiText1 = findViewById(R.id.activity_main_textView1);
-//
-//
-//        apiText1.setMovementMethod(new ScrollingMovementMethod());
-//        apiText1.setHeight(350);
-//
-//
-//        Button PostByBodyBtn = findViewById(R.id.activity_main_post_by_body_button);
-//        EditText ingredientNameIn = findViewById(R.id.activity_main_recipename_editText);
-//        quantityEditText = findViewById(R.id.activity_main_quantity_editText);
-//
-//        RegenerateAllIngredientsOnScreen(apiText1);
-//
-//
-////        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                // Get the ingredient name from the EditText field
-////                String ingredientName = ingredientNameIn.getText().toString().trim();
-////                // Get the quantity from the EditText field
-////                String quantityString = quantityEditText.getText().toString();
-////
-////
-////                if (!ingredientName.isEmpty() && !quantityString.isEmpty()) {
-////                    int quantity = Integer.parseInt(quantityString);
-////                    // Create a new Ingredient and send it to the server
-////                    Ingredient newIngredient = new Ingredient();
-////                    newIngredient.setIngredientName(ingredientName);
-////                    newIngredient.setQuantity(quantity);
-////
-////
-////                    GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
-////                        //addDataRow(ingredient.getIngredientName(), ingredient.getQuantity());
-////                        RegenerateAllIngredientsOnScreen(apiText1);
-////                    }));
-////
-////
-////                    // Clear the input fields
-////                    ingredientNameIn.setText("");
-////                    quantityEditText.setText("");
-////                }
-////            }
-////        });
-//
-//
-//
-//
-////        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                Ingredient newIngredient = new Ingredient();
-////                newIngredient.setIngredientName(ingredientNameIn.getText().toString());
-////                GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient ->{
-////                    RegenerateAllIngredientsOnScreen(apiText1);
-////                    ingredientNameIn.setText("");
-////
-////
-////                }));
-////                String ingredientName = ingredientNameIn.getText().toString().trim();
-////
-////                if (!ingredientName.isEmpty()) {
-////                    // Create a new row for the ingredient
-////
-////                    // Clear the input field
-////                    ingredientNameIn.setText("");
-////                }
-////
-////            }
-////        });
-////
-////
-////    }
-////
-//
-//
-//    void RegenerateAllIngredientsOnScreen(TextView apiText1) {
-//        GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
-//            apiText1.setText("");
-//
-//
-//            for (int i = ingredients.size() - 1; i >= 0; i--) {
-//                Ingredient ingredient = ingredients.get(i);
-//                String ingredientName = ingredient.getIngredientName();
-//                int quantity = ingredient.getQuantity();
-//                String ingredientInfo = ingredientName + " Quantity: " + quantity;
-//
-//                // Display the existing ingredients in the TextView
-//                apiText1.append(ingredientInfo + "\n");
-//
-//
-////                Ingredient ingredient = ingredients.get(i); // new
-////                String ingredientInfo = ingredient.getIngredientName() + " Quantity: " + ingredient.getQuantity(); //new
-////                //apiText1.append(ingredients.get(i).printable());
-////                apiText1.append(ingredientInfo + "\n");
-//            }
-//        }, "GetAllIngredients"));
-//    }
-//
-//
-//
-//
-//}
-//
-//
-//
-//
-//
 package com.example.as1;
 
-
-
-
-import static com.example.as1.api.ApiClientFactory.GetIngredientAPI;
-
-
+import static com.example.as1.api.ApiClientFactory.GetPantryIngredientAPI;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -155,12 +9,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AutoCompleteTextView;
 
-import com.example.as1.model.Ingredient;
+import com.example.as1.api.ApiClientFactory;
+import com.example.as1.api.UsersApi;
+import com.example.as1.model.PantryIngredient;
 import com.example.as1.model.SlimCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import android.widget.LinearLayout;
+import android.view.LayoutInflater;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+
 
 /**
  *
@@ -168,136 +32,18 @@ import java.util.List;
  * It allows users to view, add, and manage ingredients in their pantry.
  */
 public class MyPantryActivity extends AppCompatActivity {
-
-
-
-
-//    private EditText quantityEditText;
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_ingredient);
-//
-//
-//        TextView apiText1 = findViewById(R.id.activity_main_textView1);
-//
-//
-//        apiText1.setMovementMethod(new ScrollingMovementMethod());
-//       tentapiText1.setHeight(350);
-//
-//
-//        Button PostByBodyBtn = findViewById(R.id.activity_main_post_by_body_button);
-//        EditText ingredientNameIn = findViewById(R.id.activity_main_recipename_editText);
-//        quantityEditText = findViewById(R.id.activity_main_quantity_editText);
-//
-//
-//
-//
-//        RegenerateAllIngredientsOnScreen(apiText1);
-//
-//
-//        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Get the ingredient name from the EditText field
-//                String ingredientName = ingredientNameIn.getText().toString().trim();
-//                // Get the quantity from the EditText field
-//                String quantityString = quantityEditText.getText().toString();
-//
-//
-//                if (!ingredientName.isEmpty() && !quantityString.isEmpty()) {
-//                    int quantity = Integer.parseInt(quantityString);
-//
-//                    // Create a new Ingredient and send it to the server
-//                    Ingredient newIngredient = new Ingredient();
-//                    newIngredient.setIngredientName(ingredientName);
-//                    newIngredient.setQuantity(quantity);
-//
-//
-//
-//
-//                    GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
-//                        //addDataRow(ingredient.getIngredientName(), ingredient.getQuantity());
-//                        RegenerateAllIngredientsOnScreen(apiText1);
-//                    }));
-//
-//
-//                    // Clear the input fields
-//                    ingredientNameIn.setText("");
-//                    quantityEditText.setText("");
-//                }
-//            }
-//        });
-//
-//
-//
-//
-////        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                Ingredient newIngredient = new Ingredient();
-////                newIngredient.setIngredientName(ingredientNameIn.getText().toString());
-////                GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient ->{
-////                    RegenerateAllIngredientsOnScreen(apiText1);
-////                    ingredientNameIn.setText("");
-////
-////
-////                }));
-////                String ingredientName = ingredientNameIn.getText().toString().trim();
-////
-////                if (!ingredientName.isEmpty()) {
-////                    // Create a new row for the ingredient
-////                    addDataRow(ingredientName);
-////
-////                    // Clear the input field
-////                    ingredientNameIn.setText("");
-////                }
-////
-////            }
-////        });
-//
-//
-//    }
-//
-//
-//    void RegenerateAllIngredientsOnScreen(TextView apiText1) {
-//        GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
-//            apiText1.setText("");
-//
-//
-//            for (int i = ingredients.size() - 1; i >= 0; i--) {
-//                Ingredient ingredient = ingredients.get(i);
-//                String ingredientName = ingredient.getIngredientName();
-//                int quantity = ingredient.getQuantity();
-//                String ingredientInfo = ingredientName + " " + quantity;
-//
-//                // Display the existing ingredients in the TextView
-//                apiText1.append(ingredientInfo + "\n");
-//
-//
-////                Ingredient ingredient = ingredients.get(i); // new
-////                String ingredientInfo = ingredient.getIngredientName() + " Quantity: " + ingredient.getQuantity(); //new
-////                //apiText1.append(ingredients.get(i).printable());
-////                apiText1.append(ingredientInfo + "\n");
-//            }
-//        }, "GetAllIngredients"));
-//    }
-//
-
+    private Map<String, Integer> pantry = new HashMap<>(); // Mock data structure for pantry items
+    private LinearLayout ingredientsListLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypantry);
 
-
-        TextView txtView_IngList = findViewById(R.id.txtView_IngList);
+        AutoCompleteTextView autoCompleteIngredient = findViewById(R.id.autoCompleteIngredient);
+        EditText eTxtQuantity = findViewById(R.id.eTxt_quantity);
         Button addIngrBtn = findViewById(R.id.addIngrBtn);
-        EditText eTxt_ingr = findViewById(R.id.eTxt_ingr);
-        EditText eTxt_quantity = findViewById(R.id.eTxt_quantity);
-
+        ingredientsListLayout = findViewById(R.id.ingredientsListLayout);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setSelectedItemId(R.id.nav_pantry);
 
@@ -315,88 +61,173 @@ public class MyPantryActivity extends AppCompatActivity {
             return false;
         });
 
-        RegenerateAllIngredientOnScreen(txtView_IngList);
-
-
-        addIngrBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Get the text from the EditText fields
-                String ingredientName = eTxt_ingr.getText().toString();
-                String quantityText = eTxt_quantity.getText().toString();
-
-                try {
-                    // Parse the text to an integer
-                    int quantity = Integer.parseInt(quantityText);
-
-                    // Create a new Ingredient object
-                    Ingredient newIngredient = new Ingredient();
-                    newIngredient.setIngredientName(ingredientName);
-                    newIngredient.setQuantity(quantity);
-                    // Clear the EditText fields after a successful post
-                    eTxt_ingr.setText("");
-                    eTxt_quantity.setText("");
-
-
-                    // Make a POST request to create the new Ingredient
-                    GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
-                        // Callback for success
-                        RegenerateAllIngredientOnScreen(txtView_IngList);
-
-                        // Clear the EditText fields after a successful post
-                        eTxt_ingr.setText("");
-                        eTxt_quantity.setText("");
-                    }));
-                } catch (NumberFormatException e) {
-                    // Handle the case where the input is not a valid integer
-                    // For example, display an error message to the user
-                    Toast.makeText(MyPantryActivity.this, "Invalid quantity. Please enter a valid number.", Toast.LENGTH_SHORT).show();
-                }
+        // Add ingredient button setup
+        addIngrBtn.setOnClickListener(view -> {
+            String ingredientName = autoCompleteIngredient.getText().toString();
+            try {
+                int quantity = Integer.parseInt(eTxtQuantity.getText().toString());
+                addIngredient(ingredientName, quantity);
+            } catch (NumberFormatException e) {
+                Toast.makeText(MyPantryActivity.this, "Invalid quantity. Please enter a valid number.", Toast.LENGTH_SHORT).show();
             }
         });
 
+        updateIngredientList();
+    }
 
-//        PostByBodyBtn.setOnClickListener(new View.OnClickListener() {
+
+    private void addIngredient(String ingredientName, int quantity) {
+        //  GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
+//        PantryIngredientApi pantryIngredientApi = ApiClientFactory.GetPantryIngredientAPI();
+//
+//            Call<String> call = pantryIngredientApi.addPantryIngredient(ingredientName);
+//            Call<String> call2 = pantryIngredientApi.setQuantity(quantity);
+
+        //     call.enqueue(new Callback<String>() {
+        // }
+
+//        newIngredient.setIngredientName(ingredientName);
+//        newIngredient.setQuantity(quantity);
+//        GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
+//
+//        }
+
+        if (pantry.containsKey(ingredientName)) {
+            // If we already have this ingredient, just update the quantity
+            // todo: utilize setQuantity
+            pantry.put(ingredientName, pantry.get(ingredientName) + quantity);
+        } else {
+            // todo: utilize addPantryIngredient and setQuantity
+            // If it's a new ingredient, add it to the pantry and create a new view for it
+            pantry.put(ingredientName, quantity);
+            View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+            setupIngredientView(ingredientView, ingredientName, quantity);
+            ingredientsListLayout.addView(ingredientView);
+        }
+        // Update the UI after adding or updating the ingredient
+        updateIngredientList();
+    }
+
+    private void setupIngredientView(View view, String ingredientName, int quantity) {
+        TextView tvIngredientName = view.findViewById(R.id.tvIngredientName);
+        TextView tvQuantity = view.findViewById(R.id.tvQuantity);
+        Button btnDecrement = view.findViewById(R.id.btnDecrement);
+        Button btnIncrement = view.findViewById(R.id.btnIncrement);
+
+        tvIngredientName.setText(ingredientName);
+        tvQuantity.setText(String.valueOf(quantity));
+
+        btnDecrement.setOnClickListener(v -> {
+            int currentQuantity = Integer.parseInt(tvQuantity.getText().toString());
+            if (currentQuantity > 1) {
+                pantry.put(ingredientName, currentQuantity - 1);
+                tvQuantity.setText(String.valueOf(currentQuantity - 1));
+            } else {
+                pantry.remove(ingredientName);
+                ingredientsListLayout.removeView(view);
+            }
+        });
+
+        btnIncrement.setOnClickListener(v -> {
+            int currentQuantity = Integer.parseInt(tvQuantity.getText().toString());
+            pantry.put(ingredientName, currentQuantity + 1);
+            tvQuantity.setText(String.valueOf(currentQuantity + 1));
+        });
+    }
+
+    /*
+        @GET("ingredient/all")
+    Call<List<PantryIngredient>> GetAllIngredients();
+
+     GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
+//            txtView_IngList.setText("");
+//
+//            for(int i = ingredients.size() - 1; i >= 0; i--){
+//
+//                txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
+//            }
+    /
+     */
+    // Todo: Add ingredients from backend
+    private void updateIngredientList() {
+        ingredientsListLayout.removeAllViews(); // Clear the current list
+       // GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
+            //for(int i = ingredients.size() - 1; i >= 0; i--){
+            // txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
+        GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
+            ingredientsListLayout.removeAllViews(); // Clear the current list
+            for (PantryIngredient ingredient : ingredients) {
+                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+                setupIngredientView(ingredientView, ingredient.getIngredientName(), ingredient.getQuantity());
+                ingredientsListLayout.addView(ingredientView);
+            }
+        }, "GetAllIngredients"));
+//            for (Map.Entry<String, Integer> entry : pantry.entrySet()) {
+//                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+//                setupIngredientView(ingredientView, entry.getKey(), entry.getValue());
+//                ingredientsListLayout.addView(ingredientView);
+//            }
+  //     }));
+    }
+
+    // RegenerateAllIngredientOnScreen(txtView_IngList);
+
+
+//        addIngrBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-////                String quantityString = quantityIn.getText().toString();
-////                int quantity = Integer.parseInt(quantityString);
+//                // Get the text from the EditText fields
+//                String ingredientName = eTxt_ingr.getText().toString();
+//                String quantityText = eTxt_quantity.getText().toString();
 //
-//                Ingredient newIngredient = new Ingredient();
-//                newIngredient.setIngredientName(ingredientNameIn.getText().toString());
-//                newIngredient.setQuantity(quantityIn);
-//                GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient->{
-//                    RegenerateAllIngredientOnScreen(apiText1);
-//                    ingredientNameIn.setText("");
-//                    quantityIn.setText("");
-//                }));
+//               try {
+//                    // Parse the text to an integer
+//                    int quantity = Integer.parseInt(quantityText);
+//
+//                    // Create a new Ingredient object
+//                    Ingredient newIngredient = new Ingredient();
+//                    newIngredient.setIngredientName(ingredientName);
+//                    newIngredient.setQuantity(quantity);
+//                    // Clear the EditText fields after a successful post
+//                    eTxt_ingr.setText("");
+//                    eTxt_quantity.setText("");
+//
+//
+//                    // Make a POST request to create the new Ingredient
+//                    GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
+//                        // Callback for success
+//                        RegenerateAllIngredientOnScreen(txtView_IngList);
+//
+//                        // Clear the EditText fields after a successful post
+//                        eTxt_ingr.setText("");
+//                        eTxt_quantity.setText("");
+//                    }));
+//                } catch (NumberFormatException e) {
+//                    // Handle the case where the input is not a valid integer
+//                    // For example, display an error message to the user
+//                    Toast.makeText(MyPantryActivity.this, "Invalid quantity. Please enter a valid number.", Toast.LENGTH_SHORT).show();
+//                }
 //            }
 //        });
-    }
 
-
-    /**
-     * Refreshes the UI by fetching and displaying all pantry ingredients.
-     *
-     * @param txtView_IngList The TextView where the ingredient list is displayed.
-     */
-    void RegenerateAllIngredientOnScreen(TextView txtView_IngList){
-        GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
-            txtView_IngList.setText("");
-
-            for(int i = ingredients.size() - 1; i >= 0; i--){
-
-                txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
-            }
-        }, "GetAllIngredient"));
-    }
-
-
-
-
-
-
+//    /**
+//     * Refreshes the UI by fetching and displaying all pantry ingredients.
+//     *
+//     * @param txtView_IngList The TextView where the ingredient list is displayed.
+//     */
+//    void RegenerateAllIngredientOnScreen(TextView txtView_IngList){
+//        GetIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
+//            txtView_IngList.setText("");
+//
+//            for(int i = ingredients.size() - 1; i >= 0; i--){
+//
+//                txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
+//            }
+//        }, "GetAllIngredient"));
+//    }
 }
+
+
 
 
 

@@ -5,64 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.as1.MyPantryActivity">
-
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/recipeName"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="48dp"-->
-    <!--        android:layout_margin="16dp"-->
-    <!--        android:layout_marginTop="96dp"-->
-    <!--        android:hint="Recipe Name"-->
-    <!--        android:padding="8dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.52"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.252" />-->
-
-
-    <TextView
-        android:id="@+id/txtView_IngList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ingredient!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
-
-    <Button
-        android:id="@+id/addIngrBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="224dp"
-        android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
-
-    <EditText
-        android:id="@+id/eTxt_ingr"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:ems="10"
-        android:hint="Ingredient Name:"
-        android:inputType="textPersonName"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.231" />
+    tools:context=".MyPantryActivity">
 
     <TextView
         android:id="@+id/txtView_KM"
@@ -76,7 +19,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.03" />
-
 
     <TextView
         android:id="@+id/txtView_MPantry"
@@ -93,47 +35,84 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.059" />
 
+    <!-- AutoCompleteTextView for ingredient input -->
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteIngredient"
+        android:layout_width="218dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="168dp"
+        android:ems="10"
+        android:hint="Type ingredient"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@id/eTxt_quantity"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/eTxt_quantity"
+        android:layout_width="83dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="Quantity"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@id/autoCompleteIngredient"
+        app:layout_constraintEnd_toStartOf="@id/addIngrBtn"
+        app:layout_constraintStart_toEndOf="@id/autoCompleteIngredient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/addIngrBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="@id/eTxt_quantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/eTxt_quantity"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ScrollView
+        android:layout_width="412dp"
+        android:layout_height="338dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/listRec_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/autoCompleteIngredient"
+        app:layout_constraintVertical_bias="0.947">
+
+        <!-- LinearLayout for dynamic ingredient views -->
+        <LinearLayout
+            android:id="@+id/ingredientsListLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <!-- Dynamic ingredient views will be added here -->
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/listRec_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List Recipes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"/>
 
-    <EditText
-        android:id="@+id/eTxt_quantity"
-        android:layout_width="189dp"
-        android:layout_height="53dp"
-        android:layout_margin="16dp"
-        android:ems="10"
-        android:hint="Quantity:"
-        android:inputType="number"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327" />
-
+    <!-- BottomNavigationView for navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="81dp"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

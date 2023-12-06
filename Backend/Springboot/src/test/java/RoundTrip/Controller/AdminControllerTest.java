@@ -140,5 +140,6 @@ public class AdminControllerTest {
                 // Expect the returned JSON object to have an "id" attribute with a value of 1
                 .andExpect(jsonPath("$.id", is(1)));
     }
+    
 }
 

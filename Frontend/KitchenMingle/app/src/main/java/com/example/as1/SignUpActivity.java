@@ -9,8 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.as1.api.*;
+import com.example.as1.model.RegistrationRequest;
 import com.example.as1.api.ApiClientFactory;
-import com.example.as1.model.Users;
+//import com.example.as1.model.Users;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,22 +52,22 @@ public class SignUpActivity extends AppCompatActivity {
         radioButtonAdmin = findViewById(R.id.radioButtonAdmin);
         radioButtonContributor = findViewById(R.id.radioButtonContributor);
 
-
         // todo: send type (Editor, Admin, User) to backend
 
         radioGroupUserType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
+                String userType = "";
                 switch (checkedId) {
                     case R.id.radioButtonUser:
-                        Toast.makeText(SignUpActivity.this, "Ordinary User selected", Toast.LENGTH_SHORT).show();
+                        userType = "User";
                         break;
                     case R.id.radioButtonAdmin:
-                        Toast.makeText(SignUpActivity.this, "Admin selected", Toast.LENGTH_SHORT).show();
+                        userType = "Admin";
                         break;
                     case R.id.radioButtonContributor:
-                        Toast.makeText(SignUpActivity.this, "Contributor selected", Toast.LENGTH_SHORT).show();
+                        userType = "Editor";
                         break;
                 }
             }
@@ -98,8 +99,15 @@ public class SignUpActivity extends AppCompatActivity {
                 boolean valid = true;
 
                 // Create a Users object with user input
-                Users newUser = new Users();
+//                Users newUser = new Users();
+//                newUser.setUsername(username);
+//                newUser.setEmail(email);
+//                newUser.setPassword(password);
+
+                // Create new RegistrationRequest object with user input
+                RegistrationRequest newUser = new RegistrationRequest();
                 newUser.setUsername(username);
+                newUser.setUserType(userType);
                 newUser.setEmail(email);
                 newUser.setPassword(password);
 
@@ -147,7 +155,7 @@ public class SignUpActivity extends AppCompatActivity {
      * Sends a user registration request to the server and handles the response.
      * @param newUser The user registration request object containing user details.
      */
-    private void registerUser(Users newUser){
+    private void registerUser(RegistrationRequest newUser){
         // Initializing retrofit service
         UsersApi usersApi = ApiClientFactory.GetUsersApi();
 

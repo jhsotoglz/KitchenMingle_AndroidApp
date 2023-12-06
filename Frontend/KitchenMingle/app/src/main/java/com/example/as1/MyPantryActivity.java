@@ -77,14 +77,20 @@ public class MyPantryActivity extends AppCompatActivity {
 
 
     private void addIngredient(String ingredientName, int quantity) {
-      //  GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
+        //  GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<Ingredient>>(ingredients ->{
 //        PantryIngredientApi pantryIngredientApi = ApiClientFactory.GetPantryIngredientAPI();
 //
 //            Call<String> call = pantryIngredientApi.addPantryIngredient(ingredientName);
 //            Call<String> call2 = pantryIngredientApi.setQuantity(quantity);
 
-       //     call.enqueue(new Callback<String>() {
-       // }
+        //     call.enqueue(new Callback<String>() {
+        // }
+
+//        newIngredient.setIngredientName(ingredientName);
+//        newIngredient.setQuantity(quantity);
+//        GetIngredientAPI().PostIngredientByBody(newIngredient).enqueue(new SlimCallback<Ingredient>(ingredient -> {
+//
+//        }
 
         if (pantry.containsKey(ingredientName)) {
             // If we already have this ingredient, just update the quantity
@@ -128,6 +134,7 @@ public class MyPantryActivity extends AppCompatActivity {
             tvQuantity.setText(String.valueOf(currentQuantity + 1));
         });
     }
+
     /*
         @GET("ingredient/all")
     Call<List<PantryIngredient>> GetAllIngredients();
@@ -144,13 +151,23 @@ public class MyPantryActivity extends AppCompatActivity {
     // Todo: Add ingredients from backend
     private void updateIngredientList() {
         ingredientsListLayout.removeAllViews(); // Clear the current list
-       // GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients ->{ // todo: use this to populate the list of ingredients after clearing the list
-
-            for (Map.Entry<String, Integer> entry : pantry.entrySet()) {
-            View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
-            setupIngredientView(ingredientView, entry.getKey(), entry.getValue());
-            ingredientsListLayout.addView(ingredientView);
-        }
+       // GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
+            //for(int i = ingredients.size() - 1; i >= 0; i--){
+            // txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
+        GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
+            ingredientsListLayout.removeAllViews(); // Clear the current list
+            for (PantryIngredient ingredient : ingredients) {
+                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+                setupIngredientView(ingredientView, ingredient.getIngredientName(), ingredient.getQuantity());
+                ingredientsListLayout.addView(ingredientView);
+            }
+        }, "GetAllIngredients"));
+//            for (Map.Entry<String, Integer> entry : pantry.entrySet()) {
+//                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+//                setupIngredientView(ingredientView, entry.getKey(), entry.getValue());
+//                ingredientsListLayout.addView(ingredientView);
+//            }
+        }));
     }
 
     // RegenerateAllIngredientOnScreen(txtView_IngList);
@@ -208,8 +225,6 @@ public class MyPantryActivity extends AppCompatActivity {
 //            }
 //        }, "GetAllIngredient"));
 //    }
-
-
 }
 
 

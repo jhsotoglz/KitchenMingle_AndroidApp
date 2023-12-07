@@ -44,45 +44,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Temporary button
-        btnToDiscover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, DiscoverActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Temporary button
-        btnToRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Temporary button
-        btnToIngredient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, MyPantryActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Temporary button
-        btnToPickRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, PickRecipeActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

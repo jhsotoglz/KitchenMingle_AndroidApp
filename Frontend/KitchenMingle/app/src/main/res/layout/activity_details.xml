@@ -7,8 +7,6 @@
     tools:context=".DetailsActivity">
 
     <!-- Kitchen Mingle Header -->
-
-
     <TextView
         android:id="@+id/directionsTextView"
         android:layout_width="408dp"
@@ -29,9 +27,9 @@
         android:gravity="center"
         android:text="Kitchen Mingle"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Average Rating Section -->
 
@@ -177,19 +175,6 @@
         app:layout_constraintStart_toStartOf="@+id/headerTitle" />
 
 
-    <Button
-        android:id="@+id/addToFavoritesButton"
-        android:layout_width="106dp"
-        android:layout_height="52dp"
-        android:text="Add to Favorites"
-        tools:layout_editor_absoluteX="282dp"
-        tools:layout_editor_absoluteY="59dp"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintStart_toStartOf="@+id/headerTitle" />
-
-
     <!--    <ToggleButton-->
     <!--        android:id="@+id/addToFavoritesButton"-->
     <!--        android:layout_width="50dp"-->
@@ -203,6 +188,21 @@
     <!--        app:layout_constraintHorizontal_bias="0.914"-->
     <!--        app:layout_constraintStart_toStartOf="@+id/headerTitle"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/btnToPickRecipe1" />-->
+
+    <ImageButton
+        android:id="@+id/favoriteButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="75dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_unfavorited"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientsListTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toEndOf="@+id/ratingBar"
+        app:layout_constraintTop_toBottomOf="@+id/headerTitle"
+        android:contentDescription="Favorite"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

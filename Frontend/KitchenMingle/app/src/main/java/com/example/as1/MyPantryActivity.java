@@ -28,7 +28,7 @@ import android.view.LayoutInflater;
 public class MyPantryActivity extends AppCompatActivity {
     private Map<String, Integer> pantry = new HashMap<>(); // Mock data structure for pantry items
     private LinearLayout ingredientsListLayout;
-    private String userId; // stores user ID from login
+    private Long userId; // stores user ID from login
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,13 @@ public class MyPantryActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Get user ID from intent
-        userId = intent.getStringExtra("USER_ID");
+        userId = intent.getLongExtra("USER_ID", -1); // -1 as default
 
+        // Check if userId is valid
+        if (userId == -1) {
+            // todo: handle case if id isn't properly passed
+            // maybe redirect back to login or show an error message
+        }
 
         AutoCompleteTextView autoCompleteIngredient = findViewById(R.id.autoCompleteIngredient);
         EditText eTxtQuantity = findViewById(R.id.eTxt_quantity);
@@ -54,7 +59,8 @@ public class MyPantryActivity extends AppCompatActivity {
                 case R.id.nav_discover:
                     Intent discoverIntent = new Intent(MyPantryActivity.this, DiscoverActivity.class);
                     discoverIntent.putExtra("USER_ID", userId);
-                    startActivity(discoverIntent);                    return true;
+                    startActivity(discoverIntent);
+                    return true;
                 case R.id.nav_favorites:
                     Intent favoritesIntent = new Intent(MyPantryActivity.this, FavoritesActivity.class);
                     favoritesIntent.putExtra("USER_ID", userId);

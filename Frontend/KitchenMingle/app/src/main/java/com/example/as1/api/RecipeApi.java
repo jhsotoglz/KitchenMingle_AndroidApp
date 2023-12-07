@@ -1,6 +1,8 @@
 package com.example.as1.api;
 
 import java.util.List;
+import java.util.Set;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -75,6 +77,33 @@ public interface RecipeApi {
 
     @GET("/recipe/{recipeId}/ingredients")
     Call<List<Ingredient>> getIngredientsForRecipe(@Path("recipeId") Long recipeId);
+
+    @GET("recipe/all")
+    Call<List<Recipe>> getAllRecipes();
+
+//    @GET("recipe/{recipeId}/ingredients")
+//    Call<Set<Ingredient>> getIngredientsForRecipe(@Path("recipeId") Long recipeId);
+//
+//    @GET("recipe/searchByName")
+//    Call<List<Recipe>> searchRecipesByName(@Query("name") String name);
+//
+//    @GET("recipe/searchByIngredient")
+//    Call<List<Recipe>> searchRecipesByIngredient(@Query("ingredientName") String ingredientName);
+
+//    @GET("recipe/{recipeId}/instructions")
+//    Call<String> getRecipeInstructions(@Path("recipeId") Long recipeId);
+
+    @GET("recipe/searchByPantry/{userId}")
+    Call<List<Recipe>> searchRecipesByPantry(@Path("userId") Long userId);
+
+
+
+
+
+
+
+
+
 
 
 }

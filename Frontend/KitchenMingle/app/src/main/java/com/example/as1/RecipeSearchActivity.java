@@ -1,66 +1,54 @@
 package com.example.as1;
 
-
-import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
-
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.SearchView;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-
 
 import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
 import com.example.as1.model.SlimCallback;
-
+import com.example.as1.api.ApiClientFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
-import android.view.View;
-import android.widget.Button;
 
 import retrofit2.Call;
 
-public class PickRecipeActivity extends AppCompatActivity {
+public class RecipeSearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecipeAdapter recipeAdapter;
     private long userIdLong;
     private List<Recipe> allRecipes;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pickrecipe);
+        setContentView(R.layout.activity_recipe_search);
+
+        Log.d("RecipeSearchActivity", "RecipeSearchActivity");
+
+
 
         recyclerView = findViewById(R.id.recyclerView);
         userIdLong = getIntent().getLongExtra("user_id", 0);
 
-        // Set up the RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recipeAdapter = new RecipeAdapter(new ArrayList<>());
         recyclerView.setAdapter(recipeAdapter);
 
-
-
         SearchView searchView = findViewById(R.id.searchView);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -70,7 +58,6 @@ public class PickRecipeActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Handle the change in the search query
                 filterRecipes(newText);
                 return true;
             }
@@ -88,7 +75,6 @@ public class PickRecipeActivity extends AppCompatActivity {
             }
         }
 
-        // Update the RecyclerView with filtered recipes
         recipeAdapter.updateData(filteredRecipes);
     }
 
@@ -102,24 +88,14 @@ public class PickRecipeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void getIngredientsForRecipe(int recipeId, String recipeName, String directions) {
-        Call<List<Ingredient>> call = GetRecipeAPI().getIngredientsForRecipe((long) recipeId);
+    private void getIngredientsForRecipe(int recipeId, String recipeName, String directions) {
+        Call<List<Ingredient>> call = ApiClientFactory.GetRecipeAPI().getIngredientsForRecipe((long) recipeId);
 
         call.enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
             String ingredientsString = getIngredientsAsString(ingredients);
             navigateToRecipeDetails(recipeId, recipeName, ingredientsString, directions);
         }, "GetIngredientsForRecipe"));
     }
-
-
-//    private void getIngredientsForRecipe(int recipeId, String recipeName, String directions) {
-//        Call<List<Ingredient>> call = GetRecipeAPI().getIngredientsForRecipe((long) recipeId);
-//
-//        call.enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
-//            String ingredientsString = getIngredientsAsString(ingredients);
-//            navigateToRecipeDetails(recipeId, recipeName, ingredientsString, directions);
-//        }, "GetIngredientsForRecipe"));
-//    }
 
     private String getIngredientsAsString(List<Ingredient> ingredients) {
         StringBuilder ingredientsStringBuilder = new StringBuilder();
@@ -130,10 +106,16 @@ public class PickRecipeActivity extends AppCompatActivity {
     }
 
     private void displayRecipeButtons() {
-        GetRecipeAPI().GetAllRecipes().enqueue(new SlimCallback<List<Recipe>>(recipes -> {
+        ApiClientFactory.GetRecipeAPI().searchRecipesByPantry(userIdLong).enqueue(new SlimCallback<List<Recipe>>(recipes -> {
             allRecipes = recipes;
             recipeAdapter.updateData(recipes);
-        }, "GetAllRecipe"));
+        }, "SearchRecipesByPantry"));
+//        long dummyUserId = 1; // Replace 1 with the actual ID of the dummy user
+//        ApiClientFactory.GetRecipeAPI().searchRecipesByPantry(dummyUserId).enqueue(new SlimCallback<List<Recipe>>(recipes -> {
+//            allRecipes = recipes;
+//            recipeAdapter.updateData(recipes);
+//        }, "SearchRecipesByPantry"));
+
     }
 
     private static class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
@@ -183,13 +165,10 @@ public class PickRecipeActivity extends AppCompatActivity {
                     String recipeName = recipe.getRecipeName();
                     String directions = recipe.getRecipeInstructions();
 
-                    // Get the activity from the context
-                    PickRecipeActivity pickRecipeActivity = (PickRecipeActivity) itemView.getContext();
-                    pickRecipeActivity.getIngredientsForRecipe(recipeId, recipeName, directions);
+                    RecipeSearchActivity recipeSearchActivity = (RecipeSearchActivity) itemView.getContext();
+                    recipeSearchActivity.getIngredientsForRecipe(recipeId, recipeName, directions);
                 });
             }
         }
     }
 }
-
-

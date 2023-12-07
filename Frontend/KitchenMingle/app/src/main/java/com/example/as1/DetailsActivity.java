@@ -12,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
+import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
@@ -71,6 +72,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             // maybe redirect back to login or show an error message
         }
 
+
         // Initialize views and UI elements
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
@@ -89,6 +91,18 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setSelectedItemId(View.NO_ID);
+
+        Button btnGoToRecipeSearch = findViewById(R.id.btnGoToRecipeSearch);
+
+        btnGoToRecipeSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle button click
+                Intent intent = new Intent(DetailsActivity.this, RecipeSearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {

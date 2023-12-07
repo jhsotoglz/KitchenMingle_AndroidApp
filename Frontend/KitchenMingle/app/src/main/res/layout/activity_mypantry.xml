@@ -7,35 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".MyPantryActivity">
 
+    <!-- AutoCompleteTextView for ingredient input -->
     <TextView
         android:id="@+id/txtView_KM"
-        android:layout_width="277dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="Kitchen Mingle"
+        android:gravity="center"
+        android:textColor="@android:color/system_accent3_400"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        tools:ignore="NewApi" />
 
     <TextView
         android:id="@+id/txtView_MPantry"
         android:layout_width="137dp"
         android:layout_height="41dp"
         android:layout_marginTop="56dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="My Pantry:"
+        android:textColor="@android:color/system_accent3_800"
         android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.031"
+        tools:ignore="NewApi" />
 
-    <!-- AutoCompleteTextView for ingredient input -->
     <AutoCompleteTextView
         android:id="@+id/autoCompleteIngredient"
         android:layout_width="218dp"

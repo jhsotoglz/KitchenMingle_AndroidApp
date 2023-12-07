@@ -156,27 +156,14 @@
         android:id="@+id/recipeIdEditText"
         android:layout_width="94dp"
         android:layout_height="51dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="212dp"
         android:ems="10"
         android:hint="Recipe ID"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/commentEditText"
-        app:layout_constraintEnd_toStartOf="@+id/userIdEditText"
+        app:layout_constraintEnd_toStartOf="@+id/commentSectionHeader"
         app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
-        app:layout_constraintVertical_bias="0.903" />
-
-    <EditText
-        android:id="@+id/userIdEditText"
-        android:layout_width="142dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="156dp"
-        android:ems="10"
-        android:hint="UserID"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/commentEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/connectBtn"
@@ -187,17 +174,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="@+id/headerTitle" />
-
-    <Button
-        android:id="@+id/btnToPickRecipe1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="@+id/headerTitle" />
 
 
@@ -227,17 +203,6 @@
     <!--        app:layout_constraintHorizontal_bias="0.914"-->
     <!--        app:layout_constraintStart_toStartOf="@+id/headerTitle"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/btnToPickRecipe1" />-->
-
-    <Button
-        android:id="@+id/goToFavoritesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Go to Fav"
-        app:layout_constraintBottom_toBottomOf="@+id/ingredientsTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.973"
-        app:layout_constraintStart_toStartOf="@+id/headerTitle" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

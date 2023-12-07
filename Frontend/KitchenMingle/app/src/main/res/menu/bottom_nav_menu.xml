@@ -3,14 +3,12 @@
         android:id="@+id/nav_discover"
         android:icon="@drawable/ic_discover"
         android:title="Discover" />
-
-    <item
-        android:id="@+id/nav_favorites"
-        android:icon="@drawable/ic_favorites"
-        android:title="Recipe" />
-
     <item
         android:id="@+id/nav_pantry"
         android:icon="@drawable/ic_pantry"
         android:title="Pantry" />
+    <item
+        android:id="@+id/nav_favorites"
+        android:icon="@drawable/ic_favorites"
+        android:title="Favorites" />
 </menu>

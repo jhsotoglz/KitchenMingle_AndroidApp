@@ -84,4 +84,11 @@ public class ApiClientFactory {
      */
     public static PantryIngredientApi GetPantryIngredientAPI() { return GetApiClientSeed().create(PantryIngredientApi.class);}
 
+    /**
+     * Retrieves the API interface for handling pantry ingredient-related operations.
+     *
+     * @return The API interface for pantry ingredient-related operations.
+     */
+    public static PantryApi GetPantryAPI() { return GetApiClientSeed().create(PantryApi.class);}
 }
+

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
-import android.widget.ToggleButton;
+import android.widget.ImageButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +27,7 @@ import org.java_websocket.handshake.ServerHandshake;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Path;
 
 import static com.example.as1.api.ApiClientFactory.GetUsersApi;
 
@@ -43,6 +44,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
     private RecyclerView commentsRecyclerView;
     private CommentAdapter commentAdapter;
     private List<Comment> commentList = new ArrayList<>();
+    private ImageButton favoriteButton;
+    private boolean isFavorited = false;
     private long recipeId;
     private Long userId; // stores user ID from login
 
@@ -68,7 +71,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             // maybe redirect back to login or show an error message
         }
 
-
         // Initialize views and UI elements
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
@@ -83,7 +85,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         directionsTextView = findViewById(R.id.directionsTextView);
         ingredientsTextView = findViewById(R.id.ingredientsListTextView);
         recipeId = getIntent().getLongExtra("recipe_id", 0);
-        Button addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
+        favoriteButton = findViewById(R.id.favoriteButton);
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setSelectedItemId(View.NO_ID);
@@ -109,12 +111,16 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             return false;
         });
 
-        addToFavoritesButton.setOnClickListener(new View.OnClickListener() {
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                addToFavorites(recipeId);
+            public void onClick(View v) {
+                isFavorited = !isFavorited; // Toggle the state
+                updateFavoriteButton();
             }
         });
+
+        // Set initial state of fav button
+        updateFavoriteButton();
 
         // Fetch comments and update the RecyclerView
         loadComments();
@@ -137,7 +143,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         recipeNameTextView.setText(recipeName);
         ingredientsTextView.setText(ingredients);
         directionsTextView.setText(directions);
-
 
         // todo: onStart() make page start listening instead of when clicking button
 
@@ -166,6 +171,16 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         });
     }
 
+    //todo:
+    private void updateFavoriteButton() {
+        if (isFavorited) {
+            favoriteButton.setImageResource(R.drawable.ic_favorited);
+            addToFavorites(recipeId);
+        } else {
+            favoriteButton.setImageResource(R.drawable.ic_unfavorited);
+            removeFromFavorites(recipeId);
+        }
+    }
 
     /*
      * On page close, WebSocket stops listening
@@ -222,6 +237,27 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         });
     }
 
+    private void removeFromFavorites(long recipeId) {
+        UsersApi usersApi = GetUsersApi();
+        usersApi.deleteFavoriteRecipe(userId, recipeId).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    // Handle success (e.g., update UI)
+                    Toast.makeText(DetailsActivity.this, "Recipe removed from Favorites", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Handle error (e.g., show an error message)
+                    Log.e("Remove from Favorites", "Failed to remove a recipe from favorites. Code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                // Handle failure (e.g., show an error message)
+                Log.e("Add to Favorites", "Failed to add recipe to favorites: " + t.getMessage());
+            }
+        });
+    }
 
     private void addToFavorites(long recipeId) {
         UsersApi usersApi = GetUsersApi();
@@ -244,11 +280,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             }
         });
     }
-
-
-
-
-
 }
 
 

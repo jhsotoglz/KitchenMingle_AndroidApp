@@ -16,7 +16,7 @@ import java.util.List;
 public class FavoritesActivity extends AppCompatActivity {
     private LinearLayout recipeButtonContainer;
     private Button allRecipes;
-    private String userId; // stores user ID from login
+    private Long userId; // stores user ID from login
 
     /**
      * Initializes the activity and sets up the layout.
@@ -32,7 +32,13 @@ public class FavoritesActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Get user ID from intent
-        userId = intent.getStringExtra("USER_ID");
+        userId = intent.getLongExtra("USER_ID", -1); // -1 is default
+
+        // Check if userId is valid
+        if (userId == -1) {
+            // todo: handle case if id isn't properly passed
+            // maybe redirect back to login or show an error message
+        }
 
         recipeButtonContainer = findViewById(R.id.recipeButtonContainer);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -43,7 +49,8 @@ public class FavoritesActivity extends AppCompatActivity {
                 case R.id.nav_discover:
                     Intent discoverIntent = new Intent(FavoritesActivity.this, DiscoverActivity.class);
                     discoverIntent.putExtra("USER_ID", userId);
-                    startActivity(discoverIntent);                    return true;
+                    startActivity(discoverIntent);
+                    return true;
                 case R.id.nav_favorites:
                     return true;
                 case R.id.nav_pantry:
@@ -55,36 +62,26 @@ public class FavoritesActivity extends AppCompatActivity {
             return false;
         });
 
-
         // Call the displayRecipeButtons method to fetch and display recipes
         displayRecipeButtons();
     }
-
-//    Users user = new Users();
-//    int userId = user.getUserId();
-//    long userIdLong = (long) userId;
-//
-
 
     /**
      * Fetches and displays recipe buttons dynamically.
      */
     void displayRecipeButtons() {
-        GetUsersApi().getFavoriteRecipes(userIdLong).enqueue(new SlimCallback<List<Recipe>>(recipes -> {
+        GetUsersApi().getFavoriteRecipes(userId).enqueue(new SlimCallback<List<Recipe>>(recipes -> {
 
 
             for (int i = recipes.size() - 1; i >= 0; i--) {
                 Recipe recipe = recipes.get(i);
 
-
                 // Create a new button for each recipe
                 Button recipeButton = new Button(this);
                 recipeButton.setText(recipe.getRecipeName()); // Set the button text to the recipe name
 
-
                 // Set an ID for the button (you can use the recipe's ID here)
                 recipeButton.setId(recipe.getRecipeId());
-
 
                 // Set an onClickListener to handle button click events
                 recipeButton.setOnClickListener(new View.OnClickListener() {

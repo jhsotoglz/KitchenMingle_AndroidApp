@@ -254,7 +254,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 // Handle failure (e.g., show an error message)
-                Log.e("Add to Favorites", "Failed to add recipe to favorites: " + t.getMessage());
+                Log.e("Remove from Favorites", "Failed to remove a recipe from favorites: " + t.getMessage());
             }
         });
     }

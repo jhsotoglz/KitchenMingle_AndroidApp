@@ -61,11 +61,6 @@ public class PickRecipeActivity extends AppCompatActivity {
         recipeAdapter = new RecipeAdapter(new ArrayList<>());
         recyclerView.setAdapter(recipeAdapter);
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> fav-detail-discover
         SearchView searchView = findViewById(R.id.searchView);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setSelectedItemId(R.id.nav_favorites);

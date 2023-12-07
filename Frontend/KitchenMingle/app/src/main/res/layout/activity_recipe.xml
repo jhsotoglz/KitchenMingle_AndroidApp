@@ -44,23 +44,23 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_main_instruction_editText"
         app:layout_constraintVertical_bias="0.742" />
 
-    <Button
-        android:id="@+id/addIngrBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="post by body"
-        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.722"
-        app:layout_constraintStart_toEndOf="@+id/activity_main_post_by_path_button"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_instruction_editText"
-        app:layout_constraintVertical_bias="0.742" />
+<!--    <Button-->
+<!--        android:id="@+id/addIngrBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="post by body"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.722"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/activity_main_post_by_path_button"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/activity_main_instruction_editText"-->
+<!--        app:layout_constraintVertical_bias="0.742" />-->
 
 
     <EditText
         android:id="@+id/activity_main_ingredient_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="55dp"
         android:ems="10"
         android:hint="Ingredient Name:"
         android:inputType="textPersonName"
@@ -85,8 +85,8 @@
 
     <EditText
         android:id="@+id/activity_main_recipename_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="316dp"
+        android:layout_height="66dp"
         android:ems="10"
         android:hint="Recipe Name:"
         android:inputType="textPersonName"

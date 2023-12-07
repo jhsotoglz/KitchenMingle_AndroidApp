@@ -84,4 +84,9 @@ public class ApiClientFactory {
      */
     public static PantryIngredientApi GetPantryIngredientAPI() { return GetApiClientSeed().create(PantryIngredientApi.class);}
 
+    public static EditorApi GetEditorAPI(){
+        return GetApiClientSeed().create(EditorApi.class);
+    }
+
+
 }

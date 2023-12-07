@@ -1,6 +1,8 @@
 package com.example.as1;
 
 import static com.example.as1.api.ApiClientFactory.GetPantryIngredientAPI;
+import com.example.as1.model.PantryIngredient;
+import com.example.as1.model.Pantry;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AutoCompleteTextView;
 
+<<<<<<< HEAD
 import com.example.as1.api.ApiClientFactory;
 import com.example.as1.api.PantryIngredientApi;
 import com.example.as1.model.PantryIngredient;
+=======
+>>>>>>> b37749c2027e70058ec7209d0bcc93e9cd0c8344
 import com.example.as1.model.SlimCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
@@ -203,6 +208,7 @@ public class MyPantryActivity extends AppCompatActivity {
      * Refreshes the UI by fetching and displaying all pantry ingredients.
      */
     private void updateIngredientList() {
+<<<<<<< HEAD
         // TODO: Make API call to get all pantry ingredients from the server
         PantryIngredientApi pantryIngredientApi = ApiClientFactory.GetPantryIngredientAPI();
 
@@ -217,6 +223,43 @@ public class MyPantryActivity extends AppCompatActivity {
                 ingredientsListLayout.addView(ingredientView);
             }
         }));
+=======
+//        GetPantryAPI().getPantryForUser(userId).enqueue(new SlimCallback<Pantry>(pantry -> {
+//            // Clear the current list
+//            ingredientsListLayout.removeAllViews();
+//
+//            // Retrieve the set of ingredients from the pantry
+//            Set<Ingredient> pantryIngredients = pantry.getPantryIngredients();
+//
+//            // Loop through the pantry ingredients and update ingredient list
+//            for (Ingredient ingredient : pantryIngredients) {
+//                String ingredientName = ingredient.getName();
+//                int quantity = 1; // fixme
+//
+//                View ingredientView = LayoutInflater.from(MyPantryActivity.this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+//                setupIngredientView(ingredientView, ingredientName, quantity);
+//                ingredientsListLayout.addView(ingredientView);
+//            }
+//        }));
+       // GetPantryAPI().getPantryForUser().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
+            //for(int i = ingredients.size() - 1; i >= 0; i--){
+            // txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
+//        GetPantryAPI().getPantryForUser().enqueue(new SlimCallback<List<Pantry>>(ingredients -> {
+//            ingredientsListLayout.removeAllViews(); // Clear the current list
+//            for (PantryIngredient ingredient : ingredients) {
+//                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+//                setupIngredientView(ingredientView, ingredient.getIngredientName(), ingredient.getQuantity());
+//                ingredientsListLayout.addView(ingredientView);
+//            }
+//        }, "GetAllIngredients"));
+
+//            for (Map.Entry<String, Integer> entry : pantry.entrySet()) {
+//                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+//                setupIngredientView(ingredientView, entry.getKey(), entry.getValue());
+//                ingredientsListLayout.addView(ingredientView);
+//            }
+  //     }));
+>>>>>>> b37749c2027e70058ec7209d0bcc93e9cd0c8344
     }
 
 

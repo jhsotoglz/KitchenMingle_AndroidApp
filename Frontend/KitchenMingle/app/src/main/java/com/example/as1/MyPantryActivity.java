@@ -1,6 +1,8 @@
 package com.example.as1;
 
 import static com.example.as1.api.ApiClientFactory.GetPantryIngredientAPI;
+import com.example.as1.model.PantryIngredient;
+import com.example.as1.model.Pantry;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AutoCompleteTextView;
 
-import com.example.as1.model.PantryIngredient;
 import com.example.as1.model.SlimCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
@@ -161,18 +162,35 @@ public class MyPantryActivity extends AppCompatActivity {
      */
     // Todo: Add ingredients from backend
     private void updateIngredientList() {
-        ingredientsListLayout.removeAllViews(); // Clear the current list
-       // GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
+//        GetPantryAPI().getPantryForUser(userId).enqueue(new SlimCallback<Pantry>(pantry -> {
+//            // Clear the current list
+//            ingredientsListLayout.removeAllViews();
+//
+//            // Retrieve the set of ingredients from the pantry
+//            Set<Ingredient> pantryIngredients = pantry.getPantryIngredients();
+//
+//            // Loop through the pantry ingredients and update ingredient list
+//            for (Ingredient ingredient : pantryIngredients) {
+//                String ingredientName = ingredient.getName();
+//                int quantity = 1; // fixme
+//
+//                View ingredientView = LayoutInflater.from(MyPantryActivity.this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+//                setupIngredientView(ingredientView, ingredientName, quantity);
+//                ingredientsListLayout.addView(ingredientView);
+//            }
+//        }));
+       // GetPantryAPI().getPantryForUser().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
             //for(int i = ingredients.size() - 1; i >= 0; i--){
             // txtView_IngList.append(ingredients.get(i).getIngredientName() + " " + ingredients.get(i).getQuantity() + "\n");
-        GetPantryIngredientAPI().GetAllIngredients().enqueue(new SlimCallback<List<PantryIngredient>>(ingredients -> {
-            ingredientsListLayout.removeAllViews(); // Clear the current list
-            for (PantryIngredient ingredient : ingredients) {
-                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
-                setupIngredientView(ingredientView, ingredient.getIngredientName(), ingredient.getQuantity());
-                ingredientsListLayout.addView(ingredientView);
-            }
-        }, "GetAllIngredients"));
+//        GetPantryAPI().getPantryForUser().enqueue(new SlimCallback<List<Pantry>>(ingredients -> {
+//            ingredientsListLayout.removeAllViews(); // Clear the current list
+//            for (PantryIngredient ingredient : ingredients) {
+//                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+//                setupIngredientView(ingredientView, ingredient.getIngredientName(), ingredient.getQuantity());
+//                ingredientsListLayout.addView(ingredientView);
+//            }
+//        }, "GetAllIngredients"));
+
 //            for (Map.Entry<String, Integer> entry : pantry.entrySet()) {
 //                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
 //                setupIngredientView(ingredientView, entry.getKey(), entry.getValue());

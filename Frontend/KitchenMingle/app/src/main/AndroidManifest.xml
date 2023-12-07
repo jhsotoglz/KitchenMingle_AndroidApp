@@ -36,9 +36,6 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".DiscoverActivity"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

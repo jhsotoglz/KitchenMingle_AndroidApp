@@ -6,30 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
-    <!-- Kitchen Mingle Header -->
-    <TextView
-        android:id="@+id/directionsTextView"
-        android:layout_width="408dp"
-        android:layout_height="60dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
-        app:layout_constraintVertical_bias="0.003" />
 
-    <TextView
-        android:id="@+id/headerTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Kitchen Mingle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Kitchen Mingle Header -->
 
     <!-- Average Rating Section -->
 
@@ -42,6 +21,36 @@
     <!-- Button for sending the comment -->
 
     <!-- Comments RecyclerView -->
+
+    <TextView
+        android:id="@+id/directionsTextView"
+        android:layout_width="408dp"
+        android:layout_height="60dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/headerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Kitchen Mingle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/system_accent3_400"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="NewApi" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -163,17 +172,6 @@
         app:layout_constraintTop_toBottomOf="@+id/directionsTitle"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/connectBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:text="Connect"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="@+id/headerTitle" />
-
 
     <!--    <ToggleButton-->
     <!--        android:id="@+id/addToFavoritesButton"-->
@@ -188,6 +186,18 @@
     <!--        app:layout_constraintHorizontal_bias="0.914"-->
     <!--        app:layout_constraintStart_toStartOf="@+id/headerTitle"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/btnToPickRecipe1" />-->
+
+    <Button
+        android:id="@+id/connectBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:text="Connect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/favoriteButton"

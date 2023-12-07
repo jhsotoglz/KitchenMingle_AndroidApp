@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         btnToLogin = findViewById(R.id.btnToLogin);
         btnToSignUp = findViewById(R.id.btnToSignUp);
-        btnToRecipe = findViewById(R.id.btnToRecipe);
-        btnToIngredient = findViewById(R.id.btnToIngredient);
-        btnToPickRecipe = findViewById(R.id.btnToPickRecipe);
-        btnToDiscover = findViewById(R.id.btnToDiscover);
+//        btnToRecipe = findViewById(R.id.btnToRecipe);
+//        btnToIngredient = findViewById(R.id.btnToIngredient);
+//        btnToPickRecipe = findViewById(R.id.btnToPickRecipe);
+//        btnToDiscover = findViewById(R.id.btnToDiscover);
 
         // Set up a click listener for the "Login" button"
         btnToLogin.setOnClickListener(new View.OnClickListener() {

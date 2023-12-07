@@ -12,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
+import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             // todo: handle case if id isn't properly passed
             // maybe redirect back to login or show an error message
         }
+
 
         // Initialize views and UI elements
         commentEditText = findViewById(R.id.commentEditText);

@@ -3,11 +3,14 @@ package com.example.as1;
 import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.List;
 import com.example.as1.model.SlimCallback;
 import com.example.as1.model.Recipe;
@@ -28,15 +31,42 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
+
         TextView apiText1 = findViewById(R.id.txtView_IngList);
 
         apiText1.setMovementMethod(new ScrollingMovementMethod());
         apiText1.setHeight(350);
+        RegenerateAllRecipesOnScreen(apiText1);
 
         Button PostByPathBtn = findViewById(R.id.activity_main_post_by_path_button);
         Button PostByBodyBtn = findViewById(R.id.addIngrBtn);
         EditText recipeNameIn = findViewById(R.id.activity_main_recipename_editText);
         EditText instructionIn = findViewById(R.id.activity_main_instruction_editText);
+
+        EditText ingredientIn = findViewById(R.id.activity_main_ingredient_editText);
+        Button addIngredientBtn = findViewById(R.id.addIngredientBtn);
+
+        // Set up click listener for adding ingredients
+        addIngredientBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get the entered ingredient name
+                String ingredientName = ingredientIn.getText().toString();
+
+                // Check if the ingredient name is not empty
+                if (!TextUtils.isEmpty(ingredientName)) {
+                    // TODO: Add the ingredient to your data structure or perform any required action
+
+                    // Clear the ingredient input field
+                    ingredientIn.setText("");
+                } else {
+                    // Display an error or notify the user that the ingredient name is required
+                    Toast.makeText(RecipeActivity.this, "Please enter an ingredient name", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         RegenerateAllRecipesOnScreen(apiText1);
 
@@ -77,9 +107,28 @@ public class RecipeActivity extends AppCompatActivity {
 
             for(int i = recipes.size() - 1; i >= 0; i--){
                 apiText1.append(recipes.get(i).printable());
+                //apiText1.append(recipes.get(i).getRecipeIngredients());
             }
         }, "GetAllRecipe"));
     }
+
+//    void RegenerateAllRecipesOnScreen(TextView apiText1){
+//        GetRecipeAPI().GetAllRecipes().enqueue(new SlimCallback<List<Recipe>>(recipes ->{
+//            apiText1.setText("");
+//
+//            for(int i = recipes.size() - 1; i >= 0; i--){
+//                apiText1.append(recipes.get(i).printable());
+//
+//                // Append the ingredients for each recipe
+//                apiText1.append("\nIngredients: ");
+//                apiText1.append(recipes.get(i).getRecipeIngredients());
+//
+//                // Add a separator for better readability
+//                apiText1.append("\n------------------------\n");
+//            }
+//        }, "GetAllRecipe"));
+//    }
+
 }
 
 

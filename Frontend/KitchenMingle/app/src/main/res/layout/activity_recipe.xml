@@ -23,15 +23,15 @@
 
     <TextView
         android:id="@+id/txtView_IngList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_width="292dp"
+        android:layout_height="122dp"
+        android:text="Current Recipes!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.594" />
+        app:layout_constraintVertical_bias="0.839" />
 
     <Button
         android:id="@+id/activity_main_post_by_path_button"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_main_instruction_editText"
-        app:layout_constraintVertical_bias="0.322" />
+        app:layout_constraintVertical_bias="0.742" />
 
     <Button
         android:id="@+id/addIngrBtn"
@@ -51,10 +51,37 @@
         android:text="post by body"
         app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.719"
+        app:layout_constraintHorizontal_bias="0.722"
         app:layout_constraintStart_toEndOf="@+id/activity_main_post_by_path_button"
         app:layout_constraintTop_toBottomOf="@+id/activity_main_instruction_editText"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintVertical_bias="0.742" />
+
+
+    <EditText
+        android:id="@+id/activity_main_ingredient_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingredient Name:"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.716" />
+
+    <Button
+        android:id="@+id/addIngredientBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Ingredient"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_IngList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toEndOf="@+id/activity_main_post_by_path_button"
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_instruction_editText"
+        app:layout_constraintVertical_bias="0.279" />
 
     <EditText
         android:id="@+id/activity_main_recipename_editText"
@@ -68,12 +95,12 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.227" />
+        app:layout_constraintVertical_bias="0.18" />
 
     <EditText
         android:id="@+id/activity_main_instruction_editText"
-        android:layout_width="229dp"
-        android:layout_height="126dp"
+        android:layout_width="327dp"
+        android:layout_height="122dp"
         android:ems="10"
         android:hint="Recipe Instructions:"
         android:inputType="textPersonName"

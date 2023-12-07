@@ -83,7 +83,7 @@
         android:layout_width="412dp"
         android:layout_height="338dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/listRec_btn"
+        app:layout_constraintBottom_toTopOf="@id/btnGoToRecipeSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/listRec_btn"
+        android:id="@+id/btnGoToRecipeSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List Recipes"

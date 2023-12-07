@@ -92,17 +92,6 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setSelectedItemId(View.NO_ID);
 
-        Button btnGoToRecipeSearch = findViewById(R.id.btnGoToRecipeSearch);
-
-        btnGoToRecipeSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle button click
-                Intent intent = new Intent(DetailsActivity.this, RecipeSearchActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {

@@ -181,6 +181,7 @@ public class SignUpActivity extends AppCompatActivity {
                     // registration failed, handle failure
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(SignUpActivity.this, "Did you mean to sign in?", Toast.LENGTH_SHORT).show();
+                    btnSignUp.setEnabled(true);
                 }
             }
             @Override

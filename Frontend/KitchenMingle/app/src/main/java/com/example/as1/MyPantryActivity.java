@@ -73,7 +73,7 @@ public class MyPantryActivity extends AppCompatActivity {
         bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_discover:
-                    Intent discoverIntent = new Intent(MyPantryActivity.this, DiscoverActivity.class);
+                    Intent discoverIntent = new Intent(MyPantryActivity.this, PickRecipeActivity.class);
                     discoverIntent.putExtra("USER_ID", userId);
                     startActivity(discoverIntent);
                     return true;

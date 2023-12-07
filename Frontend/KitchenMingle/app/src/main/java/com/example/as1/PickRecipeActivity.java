@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
 import com.example.as1.model.SlimCallback;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import java.util.ArrayList;
@@ -44,6 +45,9 @@ public class PickRecipeActivity extends AppCompatActivity {
     private long userIdLong;
     private List<Recipe> allRecipes;
 
+    private Long userId; // stores user ID from login
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +61,38 @@ public class PickRecipeActivity extends AppCompatActivity {
         recipeAdapter = new RecipeAdapter(new ArrayList<>());
         recyclerView.setAdapter(recipeAdapter);
 
-
-
         SearchView searchView = findViewById(R.id.searchView);
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setSelectedItemId(R.id.nav_favorites);
+        // Get intent from login
+        Intent intent = getIntent();
+
+        // Get user ID from intent
+        userId = intent.getLongExtra("USER_ID", -1); // -1 is default
+
+        // Check if userId is valid
+        if (userId == -1) {
+            // todo: handle case if id isn't properly passed
+            // maybe redirect back to login or show an error message
+        }
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_discover:
+                    return true;
+                case R.id.nav_favorites:
+                    Intent discoverIntent = new Intent(PickRecipeActivity.this, FavoritesActivity.class);
+                    discoverIntent.putExtra("USER_ID", userId);
+                    startActivity(discoverIntent);
+                    return true;
+                case R.id.nav_pantry:
+                    Intent favoritesIntent = new Intent(PickRecipeActivity.this, MyPantryActivity.class);
+                    favoritesIntent.putExtra("USER_ID", userId);
+                    startActivity(favoritesIntent);
+                    return true;
+            }
+            return false;
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

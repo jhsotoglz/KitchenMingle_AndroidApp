@@ -307,15 +307,16 @@ import static com.example.as1.api.ApiClientFactory.GetUsersApi;
  */
 public class DetailsActivity extends AppCompatActivity implements WebSocketListener {
     // Views and UI elements
-    private TextView ingredientsTextView, directionsTextView, recipeNameTextView, commentUserName, btnToPickRecipe;
-    private EditText commentEditText, userIdEditText, recipeIdEditText;
+    private TextView ingredientsTextView, directionsTextView, recipeNameTextView;
+    private EditText commentEditText, recipeIdEditText;
     private Button sendCommentButton, connectBtn;
     private RatingBar ratingBar;
     private RecyclerView commentsRecyclerView;
     private CommentAdapter commentAdapter;
     private List<Comment> commentList = new ArrayList<>();
-    private long userIdLong;
     private long recipeId;
+    private Long userId; // stores user ID from login
+
 
 
     // WebSocket server URL
@@ -326,12 +327,23 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        // Get intent from login
+        Intent intent = getIntent();
+
+        // Get user ID from intent
+        userId = intent.getLongExtra("USER_ID", -1); // -1 is default
+
+        // Check if userId is valid
+        if (userId == -1) {
+            // todo: handle case if id isn't properly passed
+            // maybe redirect back to login or show an error message
+        }
+
 
         // Initialize views and UI elements
         commentEditText = findViewById(R.id.commentEditText);
         sendCommentButton = findViewById(R.id.sendCommentButton);
         recipeNameTextView = findViewById(R.id.recipeName);
-        userIdEditText = findViewById(R.id.userIdEditText);
         recipeIdEditText = findViewById(R.id.recipeIdEditText);
         ratingBar = findViewById(R.id.ratingBar);
         connectBtn = findViewById(R.id.connectBtn);
@@ -341,14 +353,8 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         commentsRecyclerView.setAdapter(commentAdapter);
         directionsTextView = findViewById(R.id.directionsTextView);
         ingredientsTextView = findViewById(R.id.ingredientsListTextView);
-        btnToPickRecipe = findViewById(R.id.btnToPickRecipe1);
-        userIdLong = getIntent().getLongExtra("user_id", 0);
         recipeId = getIntent().getLongExtra("recipe_id", 0);
         Button addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
-        Button goToFavoritesButton = findViewById(R.id.goToFavoritesButton);
-        //ToggleButton addToFavoritesButton = findViewById(R.id.addToFavoritesButton);
-
-
 
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setSelectedItemId(View.NO_ID);
@@ -356,19 +362,23 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         bottomNavigation.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_discover:
-                    startActivity(new Intent(DetailsActivity.this, DiscoverActivity.class));
+                    Intent discoverIntent = new Intent(DetailsActivity.this, DiscoverActivity.class);
+                    discoverIntent.putExtra("USER_ID", userId);
+                    startActivity(discoverIntent);
                     return true;
                 case R.id.nav_favorites:
-                    startActivity(new Intent(DetailsActivity.this, FavoritesActivity.class));
+                    Intent favoritesIntent = new Intent(DetailsActivity.this, FavoritesActivity.class);
+                    favoritesIntent.putExtra("USER_ID", userId);
+                    startActivity(favoritesIntent);
                     return true;
                 case R.id.nav_pantry:
-                    startActivity(new Intent(DetailsActivity.this, MyPantryActivity.class));
+                    Intent pantryIntent = new Intent(DetailsActivity.this, MyPantryActivity.class);
+                    pantryIntent.putExtra("USER_ID", userId);
+                    startActivity(pantryIntent);
                     return true;
             }
             return false;
         });
-
-
 
         addToFavoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -377,32 +387,13 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
             }
         });
 
-        goToFavoritesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Start the FavoritesActivity
-                Intent intent = new Intent(DetailsActivity.this, FavoritesActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Set up click listener to go to the pick recipe button
-        btnToPickRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(DetailsActivity.this, PickRecipeActivity.class);
-                startActivity(intent);
-            }
-        });
-
         // Fetch comments and update the RecyclerView
         loadComments();
 
-        Intent intent = getIntent();
-        String recipeName = intent.getStringExtra("recipe_name");
-        String ingredients = intent.getStringExtra("ingredients");
-        String directions = intent.getStringExtra("directions");
+        Intent intent1 = getIntent();
+        String recipeName = intent1.getStringExtra("recipe_name");
+        String ingredients = intent1.getStringExtra("ingredients");
+        String directions = intent1.getStringExtra("directions");
         Log.d("DetailsActivity", "Ingredients: " + ingredients);
         Log.d("DetailsActivity", "Directions: " + directions);
 //        if (directions != null) {
@@ -423,7 +414,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
         // Set up click listener for connect button to establish WebSocket connection
         connectBtn.setOnClickListener(view -> {
-            String userID = userIdEditText.getText().toString();
+            String userID = userId.toString();
             String recipeID = recipeIdEditText.getText().toString();
             // Appends server url with the rest of the endpoint (/{userID}/{recipeID}/)
             String serverUrl = BASE_URL + userID + "/" + recipeID; // TODO: Pull ID's instead of dummy variables
@@ -478,8 +469,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
         int rating = Math.round(floatingRating);
 
         runOnUiThread(() -> {
-            commentList.add(new Comment(userIdEditText.getText().toString(), message, rating ));
-            //  commentList.add(new Comment(userID, text, rating));
+            commentList.add(new Comment(userId.toString(), message, rating ));
             commentAdapter.notifyDataSetChanged();
         });
     }
@@ -506,7 +496,7 @@ public class DetailsActivity extends AppCompatActivity implements WebSocketListe
 
     private void addToFavorites(long recipeId) {
         UsersApi usersApi = GetUsersApi();
-        usersApi.addFavoriteRecipe(userIdLong, recipeId).enqueue(new Callback<Void>() {
+        usersApi.addFavoriteRecipe(userId, recipeId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {

@@ -33,7 +33,7 @@ public class LoginController {
     @Autowired
     UsersRepository usersRepository;
 
-    @PostMapping("/user/register")
+    @PostMapping("/register")
     public ResponseEntity<?> unifiedRegister(@RequestBody RegistrationRequest registrationRequest) {
         String email = registrationRequest.getEmail();
         String password = registrationRequest.getPassword();

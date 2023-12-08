@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextRecipeName"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:hint="Recipe Name" />
+
+    <EditText
+        android:id="@+id/editTextDirections"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@id/editTextRecipeName"
+        android:hint="Recipe Directions" />
+
+    <EditText
+        android:id="@+id/editTextIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_below="@id/editTextDirections"
+        android:hint="Ingredient" />
+
+    <Button
+        android:id="@+id/buttonAddIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextIngredient"
+        android:text="Add Ingredient" />
+
+    <Button
+        android:id="@+id/buttonAddRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonAddIngredient"
+        android:text="Add Recipe" />
+
+</RelativeLayout>

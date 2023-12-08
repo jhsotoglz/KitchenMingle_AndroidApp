@@ -90,11 +90,11 @@ public class LoginActivity extends AppCompatActivity {
         // Initializing retrofit service
         LoginApi loginApi = ApiClientFactory.GetLoginApi();
 
-        Call<String> call = loginApi.unifiedLogin(currentUser);
+        Call<LoginResponse> call = loginApi.unifiedLogin(currentUser);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 progressBar.setProgress(50);
                 Toast.makeText(LoginActivity.this, "Received a response...", Toast.LENGTH_SHORT).show();
                 progressBar.setProgress(75);
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                     passwordEditText.setBackground(shapeDrawable);
 
                     // get user ID from response
-                    LoginResponse loginResponse = new Gson().fromJson(response.body(), LoginResponse.class);
+                    LoginResponse loginResponse = response.body();
                     Long userId = loginResponse.getUserId();
 
                     // Take the user to their Pantry
@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 progressBar.setVisibility(View.INVISIBLE);
                 // handle network error on request failure
             }

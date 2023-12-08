@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -17,7 +18,7 @@ public class Ingredient {
     private String ingredientName;
 
     @ManyToMany(mappedBy = "ingredients")
-    @JsonIgnore
+    @JsonBackReference
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)

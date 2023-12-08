@@ -79,9 +79,11 @@ public class Pantry {
     }
 
     // Retrieve ingredients from pantry ingredients
-    public Set<Ingredient> getPantryIngredients() {
-        return pantryIngredient.stream()
-                .map(PantryIngredient::getIngredient)
-                .collect(Collectors.toSet());
+    public Set<Ingredient> getIngredientFromPantry() {
+        Set<Ingredient> ingredientSet = new HashSet<>();
+        for (PantryIngredient pantryIngredient : pantryIngredient) {
+            ingredientSet.add(pantryIngredient.getIngredient());
+        }
+        return ingredientSet;
     }
 }

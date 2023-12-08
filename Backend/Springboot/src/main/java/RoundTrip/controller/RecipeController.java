@@ -132,7 +132,7 @@ public class RecipeController {
             Pantry pantry = existingUser.getPantry();
 
             // Get the ingredients in the user's pantry
-            Set<Ingredient> pantryIngredients = pantry.getPantryIngredients();
+            Set<Ingredient> pantryIngredients = pantry.getIngredientFromPantry();
 
             // Search for recipes that can be made with the ingredients in the pantry
             List<Recipe> recipes = recipeRepository.findRecipesByIngredientSet(pantryIngredients);

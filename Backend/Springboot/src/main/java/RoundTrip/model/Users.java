@@ -41,12 +41,6 @@ public class Users {
         this.id = id;
     }
 
-    public Users(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
     public Long getId() {
         return id;
     }

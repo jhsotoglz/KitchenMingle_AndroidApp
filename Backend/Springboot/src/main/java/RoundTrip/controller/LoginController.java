@@ -40,10 +40,18 @@ public class LoginController {
         String username = registrationRequest.getUsername();
 
         try {
-            registerUser(username, email, password, registrationRequest.getUserType());
-        } catch (IllegalArgumentException e) {
-            logger.error("Invalid user type: {}", registrationRequest.getUserType());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            switch (registrationRequest.getUserType()) {
+                case "Admin" -> saveAdmin(username, email, password);
+                case "Editor" -> saveEditor(username, email, password);
+                case "User" -> saveUser(username, email, password);
+                default -> {
+                    logger.error("Invalid user type: {}", registrationRequest.getUserType());
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user type");
+                }
+            }
+        } catch (DataAccessException e) {
+            logger.error("Database access error for user: {} - {}", username, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Database access error");
         } catch (Exception e) {
             logger.error("Unexpected error for user: {} - {}", username, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
@@ -53,22 +61,28 @@ public class LoginController {
         return ResponseEntity.ok("User registered successfully");
     }
 
-    private void registerUser(String username, String email, String password, String userType) {
-        switch (userType) {
-            case "Admin" -> {
-                Admin admin = new Admin(username, email, password);
-                adminRepository.save(admin);
-            }
-            case "Editor" -> {
-                Editor editor = new Editor(username, email, password);
-                editorRepository.save(editor);
-            }
-            case "User" -> {
-                Users user = new Users(username, email, password);
-                usersRepository.save(user);
-            }
-            default -> throw new IllegalArgumentException("Invalid user type: " + userType);
-        }
+    private void saveAdmin(String username, String email, String password) {
+        Admin admin = new Admin();
+        admin.setUsername(username);
+        admin.setEmail(email);
+        admin.setPassword(password);
+        adminRepository.save(admin);
+    }
+
+    private void saveEditor(String username, String email, String password) {
+        Editor editor = new Editor();
+        editor.setUsername(username);
+        editor.setEmail(email);
+        editor.setPassword(password);
+        editorRepository.save(editor);
+    }
+
+    private void saveUser(String username, String email, String password) {
+        Users user = new Users();
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        usersRepository.save(user);
     }
     
     @PostMapping("/login")

@@ -40,6 +40,8 @@ public class LoginController {
         String username = registrationRequest.getUsername();
         String userType = registrationRequest.getUserType();
 
+        logger.error("Trying to get user type.");
+
         try {
             switch (registrationRequest.getUserType()) {
                 case "Admin" -> saveAdmin(username, email, password, userType);

@@ -19,10 +19,11 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"), // Specify the column name in the join table for the Recipe
             inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Specify the column name in the join table for the Ingredient
     )
-    @JsonManagedReference
+    @JsonIgnore
     private Set<Ingredient> ingredients;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "editor_id")
     private Editor editor;
 

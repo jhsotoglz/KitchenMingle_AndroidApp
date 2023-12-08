@@ -1,5 +1,6 @@
 package RoundTrip.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -17,10 +18,12 @@ public class Editor {
 
     // Relationship with Ingredients
     @OneToMany(mappedBy = "editor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Ingredient> createdIngredients;
 
     // Relationship with Recipes
     @OneToMany(mappedBy = "editor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Recipe> createdRecipes;
 
     public Editor() {

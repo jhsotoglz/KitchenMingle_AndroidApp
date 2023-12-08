@@ -68,6 +68,6 @@ public class PantryTest {
     public void testGetPantryIngredient() {
         pantry.setPantryIngredient(pantryIngredient1);
         pantry.setPantryIngredient(pantryIngredient2);
-        assertEquals(ingredientSet, pantry.getPantryIngredients());
+        assertEquals(ingredientSet, pantry.getIngredientFromPantry());
     }
 }

@@ -12,17 +12,7 @@ public class Admin {
     private String email;
     private String password;
 
-    private  String userType;
-
     public Admin() {
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 
     public Long getId() {

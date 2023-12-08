@@ -1,6 +1,5 @@
 package com.example.as1.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class Recipe {

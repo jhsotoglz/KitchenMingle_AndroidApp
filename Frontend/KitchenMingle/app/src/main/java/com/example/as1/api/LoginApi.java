@@ -1,7 +1,6 @@
 package com.example.as1.api;
 
 import com.example.as1.model.RegistrationRequest;
-import com.example.as1.model.LoginResponse;
 import com.example.as1.model.LoginRequest;
 import retrofit2.Call;
 import retrofit2.http.POST;

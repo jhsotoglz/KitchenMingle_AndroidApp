@@ -1,7 +1,6 @@
 package com.example.as1.api;
 
 import java.util.List;
-import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

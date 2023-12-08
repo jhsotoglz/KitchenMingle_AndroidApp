@@ -1,12 +1,10 @@
 package com.example.as1.model;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
-//import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 @Entity
@@ -19,7 +17,7 @@ public class Pantry {
     // Pantry has one-to-one relationship with the User entity
     // i.e. each pantry belongs to one user
     @OneToOne(mappedBy = "pantry")
-  //  @JsonIgnore // to assure that there is no infinite loop while returning either user/pantry objects
+    @JsonIgnore // to assure that there is no infinite loop while returning either user/pantry objects
     private Users user;
 
     // Pantry has many-to-many relationship with the Ingredient
@@ -32,7 +30,7 @@ public class Pantry {
 
     // One pantry can store many items
     @OneToMany(mappedBy = "pantry", cascade = CascadeType.ALL, orphanRemoval = true)
- //   @JsonIgnore
+    @JsonIgnore
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
 
@@ -79,9 +77,11 @@ public class Pantry {
     }
 
     // Retrieve ingredients from pantry ingredients
-    public Set<Ingredient> getPantryIngredients() {
-        return pantryIngredient.stream()
-                .map(PantryIngredient::getIngredient)
-                .collect(Collectors.toSet());
+    public Set<Ingredient> getIngredientFromPantry() {
+        Set<Ingredient> ingredientSet = new HashSet<>();
+        for (PantryIngredient pantryIngredient : pantryIngredient) {
+            ingredientSet.add(pantryIngredient.getIngredient());
+        }
+        return ingredientSet;
     }
 }

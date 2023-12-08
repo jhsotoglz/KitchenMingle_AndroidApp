@@ -63,7 +63,7 @@ public class PickRecipeActivity extends AppCompatActivity {
 
         SearchView searchView = findViewById(R.id.searchView);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
-        bottomNavigation.setSelectedItemId(R.id.nav_favorites);
+        bottomNavigation.setSelectedItemId(R.id.nav_discover);
         // Get intent from login
         Intent intent = getIntent();
 

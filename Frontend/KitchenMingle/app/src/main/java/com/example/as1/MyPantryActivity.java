@@ -170,21 +170,22 @@ public class MyPantryActivity extends AppCompatActivity {
         btnDecrement.setOnClickListener(v -> {
             int currentQuantity = Integer.parseInt(tvQuantity.getText().toString());
             if (currentQuantity > 1) {
+                //todo: decrementQuantity
                 pantry.put(ingredientName, currentQuantity - 1);
                 tvQuantity.setText(String.valueOf(currentQuantity - 1));
             } else {
+                //todo: deleteIngredient
                 pantry.remove(ingredientName);
                 ingredientsListLayout.removeView(view);
             }
         });
 
         btnIncrement.setOnClickListener(v -> {
+            // todo: incrementQuantity/setQuantity/addPantryIngredient
             int currentQuantity = Integer.parseInt(tvQuantity.getText().toString());
             pantry.put(ingredientName, currentQuantity + 1);
             tvQuantity.setText(String.valueOf(currentQuantity + 1));
         });
-
-
     }
 
     /*

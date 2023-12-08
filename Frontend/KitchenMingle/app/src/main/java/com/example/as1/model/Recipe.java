@@ -1,5 +1,6 @@
 package com.example.as1.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Recipe {
@@ -76,6 +77,18 @@ public class Recipe {
         result.append("\n");
         return result.toString();
     }
+
+//    public void addIngredient(String ingredientName) {
+//        if (ingredients == null) {
+//            ingredients = new HashSet<>();
+//        }
+//
+//        Ingredient ingredient = new Ingredient();
+//        ingredient.setIngredientName(ingredientName);
+//        ingredients.add(ingredient);
+//    }
+
+
 
 }
 

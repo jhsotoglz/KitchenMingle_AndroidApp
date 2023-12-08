@@ -59,7 +59,17 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     private void addIngredient() {
         String ingredientName = ingredientEditText.getText().toString();
-        // Add the ingredient to your recipe object or UI
+
+        // Ensure ingredient name is not empty
+        if (!ingredientName.trim().isEmpty()) {
+            // Add the ingredient to your recipe object or UI
+            newRecipe.setRecipeIngredients(ingredientName);
+
+            // Clear the ingredient EditText
+            ingredientEditText.getText().clear();
+        } else {
+            Toast.makeText(AddRecipeActivity.this, "Ingredient name cannot be empty", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void addRecipe() {

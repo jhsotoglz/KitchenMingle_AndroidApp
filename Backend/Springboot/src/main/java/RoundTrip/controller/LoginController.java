@@ -9,7 +9,10 @@ import RoundTrip.model.Users;
 import RoundTrip.repository.AdminRepository;
 import RoundTrip.repository.EditorRepository;
 import RoundTrip.repository.UsersRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
+
+    private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     AdminRepository adminRepository;
@@ -34,34 +39,50 @@ public class LoginController {
         String password = registrationRequest.getPassword();
         String username = registrationRequest.getUsername();
 
-
-        switch (registrationRequest.getUserType()) {
-            case "Admin" -> {
-                Admin admin = new Admin();
-                admin.setUsername(username);
-                admin.setEmail(email);
-                admin.setPassword(password);
-                adminRepository.save(admin);
+        try {
+            switch (registrationRequest.getUserType()) {
+                case "Admin" -> saveAdmin(username, email, password);
+                case "Editor" -> saveEditor(username, email, password);
+                case "User" -> saveUser(username, email, password);
+                default -> {
+                    logger.error("Invalid user type: {}", registrationRequest.getUserType());
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user type");
+                }
             }
-            case "Editor" -> {
-                Editor editor = new Editor();
-                editor.setUsername(username);
-                editor.setEmail(email);
-                editor.setPassword(password);
-                editorRepository.save(editor);
-            }
-            case "User" -> {
-                Users user = new Users();
-                user.setUsername(username);
-                user.setEmail(email);
-                user.setPassword(password);
-                usersRepository.save(user);
-            }
-            default -> {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user type");
-            }
+        } catch (DataAccessException e) {
+            logger.error("Database access error for user: {} - {}", username, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Database access error");
+        } catch (Exception e) {
+            logger.error("Unexpected error for user: {} - {}", username, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
         }
+
+        logger.info("User registered successfully: {}", username);
         return ResponseEntity.ok("User registered successfully");
+    }
+
+    private void saveAdmin(String username, String email, String password) {
+        Admin admin = new Admin();
+        admin.setUsername(username);
+        admin.setEmail(email);
+        admin.setPassword(password);
+        adminRepository.save(admin);
+    }
+
+    private void saveEditor(String username, String email, String password) {
+        Editor editor = new Editor();
+        editor.setUsername(username);
+        editor.setEmail(email);
+        editor.setPassword(password);
+        editorRepository.save(editor);
+    }
+
+    private void saveUser(String username, String email, String password) {
+        Users user = new Users();
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        usersRepository.save(user);
     }
     
     @PostMapping("/login")

@@ -61,9 +61,10 @@ public class LoginControllerTest {
         setUp();
         // Registration
         String userType = "User";
+        String username = "User1";
         String email= "user1@example.com";
         String password= "user1111";
-        RegistrationRequest registrationRequest = new RegistrationRequest(userType, email, password);
+        RegistrationRequest registrationRequest = new RegistrationRequest(username, userType, email, password);
         registrationRequest.setUsername("User1");
 
         mockMvc.perform(post("/register")

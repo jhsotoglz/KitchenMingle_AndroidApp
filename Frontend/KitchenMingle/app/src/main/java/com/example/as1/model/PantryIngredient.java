@@ -20,7 +20,7 @@ public class PantryIngredient {
   //  @JsonIgnore
     private Ingredient ingredient;
 
-    pfrivate int quantity;
+    private int quantity;
 
     // Default constructor
     public PantryIngredient() {

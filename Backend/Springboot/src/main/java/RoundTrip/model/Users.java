@@ -3,6 +3,7 @@ package RoundTrip.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,6 +34,7 @@ public class Users {
     public Users() {
         this.pantry = new Pantry();
         this.pantry.setUser(this);
+        this.favoriteRecipes = new HashSet<>();
     }
 
     public Users(Long id) {
@@ -84,6 +86,9 @@ public class Users {
     }
 
     public Set<Recipe> getFavoriteRecipes() {
+        if (favoriteRecipes == null) {
+            favoriteRecipes = new HashSet<>();
+        }
         return favoriteRecipes;
     }
 }

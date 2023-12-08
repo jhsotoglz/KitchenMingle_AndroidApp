@@ -104,10 +104,11 @@ public class EditorController {
     }
 
     // Link existing ingredients to an existing recipe in a many-to-many relationship (By Path).
-    @PostMapping("/recipe/{recipeId}/associateIngredient/{editorId}/{ingredientId}")
-    public Recipe associateIngredientWithRecipe(@PathVariable Long recipeId,
-                                                @PathVariable Long editorId,
-                                                @PathVariable Long ingredientId) {
+    // Method to associate ingredient by name
+    @PostMapping("/recipe/{recipeId}/associateIngredientByName/{editorId}/{ingredientName}")
+    public Recipe associateIngredientWithRecipeById(@PathVariable Long recipeId,
+                                                    @PathVariable Long editorId,
+                                                    @PathVariable Long ingredientId) {
         // Verify that there is an editor with the provided id
         Optional<Editor> editorOptional = editorRepository.findById(editorId);
         if (!editorOptional.isPresent()) {
@@ -285,4 +286,38 @@ public class EditorController {
 //                .orElseThrow(() -> new NotFoundException("Editor not found"));
 //        return new ArrayList<>(editor.getFavoriteRecipes());
 //    }
+
+    // Method to associate ingredient by Name
+    @PostMapping("/recipe/{recipeId}/associateIngredientByName/{editorId}/{ingredientName}")
+    public Recipe associateIngredientWithRecipeByName(@PathVariable Long recipeId,
+                                                      @PathVariable Long editorId,
+                                                      @PathVariable String ingredientName) {
+        // Verify that there is an editor with the provided id
+        Optional<Editor> editorOptional = editorRepository.findById(editorId);
+        if (!editorOptional.isPresent()) {
+            throw new RuntimeException("Editor not found");
+        }
+
+        // Verify that there is a recipe with the provided id
+        Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
+        if (!recipeOptional.isPresent()) {
+            throw new RuntimeException("Recipe not found");
+        }
+
+        // Find ingredient by name using findByIngName
+        Optional<Ingredient> ingredientOptional = ingredientRepository.findByIngredientName(ingredientName);
+        if (!ingredientOptional.isPresent()) {
+            throw new RuntimeException("Ingredient with name " + ingredientName + " not found");
+        }
+
+        // Get the Recipe and Ingredient from the optionals
+        Recipe recipe = recipeOptional.get();
+        Ingredient ingredient = ingredientOptional.get();
+
+        // Associate the ingredient with the recipe
+        recipe.getIngredients().add(ingredient);
+        recipeRepository.save(recipe); // Save the updated recipe
+
+        return recipe;
+    }
 }

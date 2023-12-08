@@ -19,7 +19,7 @@ public class Pantry {
     // Pantry has one-to-one relationship with the User entity
     // i.e. each pantry belongs to one user
     @OneToOne(mappedBy = "pantry")
- //   @JsonIgnore // to assure that there is no infinite loop while returning either user/pantry objects
+  //  @JsonIgnore // to assure that there is no infinite loop while returning either user/pantry objects
     private Users user;
 
     // Pantry has many-to-many relationship with the Ingredient
@@ -32,7 +32,7 @@ public class Pantry {
 
     // One pantry can store many items
     @OneToMany(mappedBy = "pantry", cascade = CascadeType.ALL, orphanRemoval = true)
-   // @JsonIgnore
+ //   @JsonIgnore
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
 

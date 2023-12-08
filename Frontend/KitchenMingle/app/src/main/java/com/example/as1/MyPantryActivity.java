@@ -163,8 +163,8 @@ public class MyPantryActivity extends AppCompatActivity {
     // Todo: Add ingredients from backend
     private void updateIngredientList() {
 //        GetPantryAPI().getPantryForUser(userId).enqueue(new SlimCallback<Pantry>(pantry -> {
-//            // Clear the current list
-//            ingredientsListLayout.removeAllViews();
+            // Clear the current list
+            ingredientsListLayout.removeAllViews();
 //
 //            // Retrieve the set of ingredients from the pantry
 //            Set<Ingredient> pantryIngredients = pantry.getPantryIngredients();
@@ -191,11 +191,11 @@ public class MyPantryActivity extends AppCompatActivity {
 //            }
 //        }, "GetAllIngredients"));
 
-//            for (Map.Entry<String, Integer> entry : pantry.entrySet()) {
-//                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
-//                setupIngredientView(ingredientView, entry.getKey(), entry.getValue());
-//                ingredientsListLayout.addView(ingredientView);
-//            }
+            for (Map.Entry<String, Integer> entry : pantry.entrySet()) {
+                View ingredientView = LayoutInflater.from(this).inflate(R.layout.ingredient_item, ingredientsListLayout, false);
+                setupIngredientView(ingredientView, entry.getKey(), entry.getValue());
+                ingredientsListLayout.addView(ingredientView);
+            }
   //     }));
     }
 

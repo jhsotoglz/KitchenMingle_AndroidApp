@@ -1,0 +1,27 @@
+stages:
+  - androidbuild
+  - androidtest
+
+android-build:
+  image: afirefly/android-ci:java17
+  stage: androidbuild
+  tags:
+    - kea1_tag
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/KitchenMingle
+  script:
+    - cd Frontend/KitchenMingle
+    - ./gradlew build
+
+android-test:
+  image: afirefly/android-ci:java17
+  stage: androidtest
+  tags:
+    - kea1_tag
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/KitchenMingle
+  script:
+    - cd Frontend/KitchenMingle
+    - ./gradlew test

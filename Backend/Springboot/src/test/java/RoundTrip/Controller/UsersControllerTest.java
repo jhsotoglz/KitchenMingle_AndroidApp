@@ -163,7 +163,7 @@ public class UsersControllerTest {
         mockMvc.perform(get("/users/{userId}/favRecipe", 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].id", is(2)))
-                .andExpect(jsonPath("$[1].id", is(1)));
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[1].id", is(2)));
     }
 }

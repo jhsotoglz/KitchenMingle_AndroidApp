@@ -64,4 +64,8 @@ public class Recipe {
     public void setEditor(Editor editor) {
         this.editor = editor; // Assigns the passed Editor object to the editor field of this Recipe instance.
     }
+
+    public Editor getEditor() {
+        return editor;
+    }
 }

@@ -23,6 +23,12 @@ public class UsersTest {
     }
 
     @Test
+    public void testConstructor() {
+        Users user2 = new Users(2L);
+        assertEquals(2L, user2.getId());
+    }
+
+    @Test
     public void testIdGetterAndSetter() {
         users.setId(1L);
         assertEquals(1L, users.getId());
@@ -68,5 +74,6 @@ public class UsersTest {
         Recipe recipe2 = new Recipe();
         favoriteRecipes.add(recipe1);
         favoriteRecipes.add(recipe2);
+        assertNotNull(favoriteRecipes);
     }
 }

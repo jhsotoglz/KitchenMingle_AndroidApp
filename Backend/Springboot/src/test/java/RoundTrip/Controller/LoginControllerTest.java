@@ -57,22 +57,23 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void testRegistrationAndLogin() throws Exception {
-        setUp();
+    public void testRegister() throws Exception {
         // Registration
         String userType = "User";
         String username = "User1";
         String email= "user1@example.com";
         String password= "user1111";
-        RegistrationRequest registrationRequest = new RegistrationRequest(username, userType, email, password);
-        registrationRequest.setUsername("User1");
+        RegistrationRequest registrationRequest = new RegistrationRequest(userType, email, password, username);
 
         mockMvc.perform(post("/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(registrationRequest)))
                 .andExpect(status().isOk());
+    }
 
-        // Login
+    @Test
+    public void testLogin() throws Exception {
+        setUp();
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail("user1@example.com");
         loginRequest.setPassword("user1111");

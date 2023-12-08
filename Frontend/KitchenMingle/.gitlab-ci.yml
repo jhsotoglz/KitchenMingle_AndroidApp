@@ -9,9 +9,9 @@ android-build:
     - kea1_tag
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
-    - chmod +x ./Frontend/KitchenMingle/gradlew
+    - chmod +x ./Frontend/KitchenMingle
   script:
-    - cd Frontend/KitchenMingle/gradlew
+    - cd Frontend/KitchenMingle
     - ./gradlew build
 
 android-test:
@@ -21,7 +21,7 @@ android-test:
     - kea1_tag
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
-    - chmod +x ./Frontend/KitchenMingle/gradlew
+    - chmod +x ./Frontend/KitchenMingle
   script:
-    - cd Frontend/KitchenMingle/gradlew
+    - cd Frontend/KitchenMingle
     - ./gradlew test

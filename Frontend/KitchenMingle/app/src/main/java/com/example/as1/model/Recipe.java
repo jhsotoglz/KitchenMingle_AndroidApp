@@ -55,9 +55,26 @@ public class Recipe {
     }
 
 
+//    public String printable(){
+//        return "\nRecipe Name:  " + getRecipeName()
+//                + "\nRecipe Instruction:  " + getRecipeInstructions()
+//                + "\nIngredients: " + getRecipeIngredients() + "\n";
+//    }
+
     public String printable(){
-        return "\nRecipe Name:  " + getRecipeName()
-                + "\nRecipe Instruction:  " + getRecipeInstructions() + "\n";
+        StringBuilder result = new StringBuilder();
+        result.append("\nRecipe Name: ").append(getRecipeName())
+                .append("\nRecipe Instruction: ").append(getRecipeInstructions())
+                .append("\nIngredients:");
+
+        if (ingredients != null) {
+            for (Ingredient ingredient : ingredients) {
+                result.append("\n- ").append(ingredient.getIngredientName());
+            }
+        }
+
+        result.append("\n");
+        return result.toString();
     }
 
 }

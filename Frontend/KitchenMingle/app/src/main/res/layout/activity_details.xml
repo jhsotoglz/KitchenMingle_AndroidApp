@@ -52,16 +52,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="NewApi" />
 
-    <Button
-        android:id="@+id/btnGoToRecipeSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="Allowed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -217,13 +207,14 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="75dp"
         android:background="?attr/selectableItemBackground"
+        android:contentDescription="Favorite"
         android:src="@drawable/ic_unfavorited"
         app:layout_constraintBottom_toTopOf="@+id/ingredientsListTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintHorizontal_bias="0.638"
         app:layout_constraintStart_toEndOf="@+id/ratingBar"
         app:layout_constraintTop_toBottomOf="@+id/headerTitle"
-        android:contentDescription="Favorite"/>
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

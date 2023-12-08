@@ -27,6 +27,12 @@ public class Editor {
         // Default constructor
     }
 
+    public Editor(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }

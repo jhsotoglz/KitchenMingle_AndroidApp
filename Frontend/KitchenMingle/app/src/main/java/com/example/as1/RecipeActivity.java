@@ -152,35 +152,35 @@ public class RecipeActivity extends AppCompatActivity {
                 String recipeName = currentRecipe.getRecipeName();
                 String directions = currentRecipe.getRecipeInstructions();
 
-                getIngredientsForRecipe(apiText1, recipeId, recipeName, directions);
+                //getIngredientsForRecipe(apiText1, recipeId, recipeName, directions);
             }
         }, "GetAllRecipe"));
     }
 
-    void getIngredientsForRecipe(TextView apiText1, int recipeId, String recipeName, String directions) {
-        Call<List<Ingredient>> call = GetRecipeAPI().getIngredientsForRecipe((long) recipeId);
-
-        call.enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
-            String ingredientsString = getIngredientsAsString(ingredients);
-            apiText1.append("\nIngredients for " + recipeName + ":\n" + ingredientsString);
-
-        }, "GetIngredientsForRecipe"));
-    }
-
-
-
-//    void getIngredientsForRecipe(Recipe recipe) {
-//        Call<List<Ingredient>> call = GetRecipeAPI().getIngredientsForRecipe((long) recipe.getRecipeId());
+//    void getIngredientsForRecipe(TextView apiText1, int recipeId, String recipeName, String directions) {
+//        Call<List<Ingredient>> call = GetRecipeAPI().getIngredientsForRecipe((long) recipeId);
 //
 //        call.enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
-//            // Format ingredients
 //            String ingredientsString = getIngredientsAsString(ingredients);
+//            apiText1.append("\nIngredients for " + recipeName + ":\n" + ingredientsString);
 //
-//            // Display the formatted ingredients in the TextView
-//            TextView apiText1 = findViewById(R.id.txtView_IngList);
-//            apiText1.append(ingredientsString);
 //        }, "GetIngredientsForRecipe"));
 //    }
+
+
+
+    void getIngredientsForRecipe(Recipe recipe) {
+        Call<List<Ingredient>> call = GetRecipeAPI().getIngredientsForRecipe((long) recipe.getRecipeId());
+
+        call.enqueue(new SlimCallback<List<Ingredient>>(ingredients -> {
+            // Format ingredients
+            String ingredientsString = getIngredientsAsString(ingredients);
+
+            // Display the formatted ingredients in the TextView
+            TextView apiText1 = findViewById(R.id.txtView_IngList);
+            apiText1.append(ingredientsString);
+        }, "GetIngredientsForRecipe"));
+    }
 
 
     String getIngredientsAsString(List<Ingredient> ingredients) {

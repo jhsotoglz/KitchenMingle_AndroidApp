@@ -13,12 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AutoCompleteTextView;
 
-<<<<<<< HEAD
 import com.example.as1.api.ApiClientFactory;
 import com.example.as1.api.PantryIngredientApi;
 import com.example.as1.model.PantryIngredient;
-=======
->>>>>>> b37749c2027e70058ec7209d0bcc93e9cd0c8344
 import com.example.as1.model.SlimCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
@@ -208,7 +205,6 @@ public class MyPantryActivity extends AppCompatActivity {
      * Refreshes the UI by fetching and displaying all pantry ingredients.
      */
     private void updateIngredientList() {
-<<<<<<< HEAD
         // TODO: Make API call to get all pantry ingredients from the server
         PantryIngredientApi pantryIngredientApi = ApiClientFactory.GetPantryIngredientAPI();
 
@@ -223,7 +219,6 @@ public class MyPantryActivity extends AppCompatActivity {
                 ingredientsListLayout.addView(ingredientView);
             }
         }));
-=======
 //        GetPantryAPI().getPantryForUser(userId).enqueue(new SlimCallback<Pantry>(pantry -> {
 //            // Clear the current list
 //            ingredientsListLayout.removeAllViews();
@@ -259,7 +254,6 @@ public class MyPantryActivity extends AppCompatActivity {
 //                ingredientsListLayout.addView(ingredientView);
 //            }
   //     }));
->>>>>>> b37749c2027e70058ec7209d0bcc93e9cd0c8344
     }
 
 

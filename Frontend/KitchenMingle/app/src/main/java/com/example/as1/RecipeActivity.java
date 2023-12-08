@@ -4,6 +4,7 @@ package com.example.as1;
 import static com.example.as1.api.ApiClientFactory.GetEditorAPI;
 import static com.example.as1.api.ApiClientFactory.GetRecipeAPI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
@@ -20,6 +21,7 @@ import com.example.as1.api.RecipeApi;
 import com.example.as1.model.Ingredient;
 import com.example.as1.model.SlimCallback;
 import com.example.as1.model.Recipe;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,7 @@ public class RecipeActivity extends AppCompatActivity {
     private EditorApi editorApi;
     private List<String> currentRecipeIngredients = new ArrayList<>(); // Data structure to store ingredients
 
+    private Long userId; // stores user ID from login
 
     /**
      * Initializes the activity and sets up the layout.
@@ -55,6 +58,18 @@ public class RecipeActivity extends AppCompatActivity {
         apiText1.setHeight(350);
         RegenerateAllRecipesOnScreen(apiText1);
 
+        // Get intent from login
+        Intent intent = getIntent();
+
+        // Get user ID from intent
+        userId = intent.getLongExtra("USER_ID", -1); // -1 as default
+
+        // Check if userId is valid
+        if (userId == -1) {
+            // todo: handle case if id isn't properly passed
+            // maybe redirect back to login or show an error message
+        }
+
         Button PostByPathBtn = findViewById(R.id.activity_main_post_by_path_button);
 //        Button PostByBodyBtn = findViewById(R.id.addIngrBtn);
         EditText recipeNameIn = findViewById(R.id.activity_main_recipename_editText);
@@ -62,6 +77,31 @@ public class RecipeActivity extends AppCompatActivity {
 
         EditText ingredientIn = findViewById(R.id.activity_main_ingredient_editText);
         Button addIngredientBtn = findViewById(R.id.addIngredientBtn);
+
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setSelectedItemId(View.NO_ID);
+
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_discover:
+                    Intent discoverIntent = new Intent(RecipeActivity.this, PickRecipeActivity.class);
+                    discoverIntent.putExtra("USER_ID", userId);
+                    startActivity(discoverIntent);
+                    return true;
+                case R.id.nav_favorites:
+                    Intent favoritesIntent = new Intent(RecipeActivity.this, FavoritesActivity.class);
+                    favoritesIntent.putExtra("USER_ID", userId);
+                    startActivity(favoritesIntent);
+                    return true;
+                case R.id.nav_pantry:
+                    Intent pantryIntent = new Intent(RecipeActivity.this, MyPantryActivity.class);
+                    pantryIntent.putExtra("USER_ID", userId);
+                    startActivity(pantryIntent);
+                    return true;
+            }
+            return false;
+        });
 
 
         addIngredientBtn.setOnClickListener(new View.OnClickListener() {

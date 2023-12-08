@@ -19,6 +19,7 @@ import com.example.as1.model.Ingredient;
 import com.example.as1.model.Recipe;
 import com.example.as1.model.SlimCallback;
 import com.example.as1.api.ApiClientFactory;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ import retrofit2.Call;
 public class RecipeSearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecipeAdapter recipeAdapter;
-    private long userIdLong;
+    private Long userId; // stores user ID from login
     private List<Recipe> allRecipes;
 
 
@@ -39,14 +40,47 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
         Log.d("RecipeSearchActivity", "RecipeSearchActivity");
 
+        // Get intent from login
+        Intent intent = getIntent();
 
+        // Get user ID from intent
+        userId = intent.getLongExtra("USER_ID", -1); // -1 as default
+
+        // Check if userId is valid
+        if (userId == -1) {
+            // todo: handle case if id isn't properly passed
+            // maybe redirect back to login or show an error message
+        }
 
         recyclerView = findViewById(R.id.recyclerView);
-        userIdLong = getIntent().getLongExtra("user_id", 0);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recipeAdapter = new RecipeAdapter(new ArrayList<>());
         recyclerView.setAdapter(recipeAdapter);
+
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setSelectedItemId(View.NO_ID);
+
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_discover:
+                    Intent discoverIntent = new Intent(RecipeSearchActivity.this, PickRecipeActivity.class);
+                    discoverIntent.putExtra("USER_ID", userId);
+                    startActivity(discoverIntent);
+                    return true;
+                case R.id.nav_favorites:
+                    Intent favoritesIntent = new Intent(RecipeSearchActivity.this, FavoritesActivity.class);
+                    favoritesIntent.putExtra("USER_ID", userId);
+                    startActivity(favoritesIntent);
+                    return true;
+                case R.id.nav_pantry:
+                    Intent pantryIntent = new Intent(RecipeSearchActivity.this, MyPantryActivity.class);
+                    pantryIntent.putExtra("USER_ID", userId);
+                    startActivity(pantryIntent);
+                    return true;
+            }
+            return false;
+        });
 
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -84,7 +118,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
         intent.putExtra("recipe_name", recipeName);
         intent.putExtra("ingredients", ingredients);
         intent.putExtra("directions", directions);
-        intent.putExtra("user_id", userIdLong);
+        intent.putExtra("user_id", userId);
         startActivity(intent);
     }
 
@@ -106,7 +140,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
     }
 
     private void displayRecipeButtons() {
-        ApiClientFactory.GetRecipeAPI().searchRecipesByPantry(userIdLong).enqueue(new SlimCallback<List<Recipe>>(recipes -> {
+        ApiClientFactory.GetRecipeAPI().searchRecipesByPantry(userId).enqueue(new SlimCallback<List<Recipe>>(recipes -> {
             allRecipes = recipes;
             recipeAdapter.updateData(recipes);
         }, "SearchRecipesByPantry"));

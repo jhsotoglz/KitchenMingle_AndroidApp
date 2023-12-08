@@ -63,9 +63,7 @@ public class LoginController {
         }
         return ResponseEntity.ok("User registered successfully");
     }
-
-
-
+    
     @PostMapping("/login")
     public ResponseEntity<?> unifiedLogin(@RequestBody LoginRequest loginRequest) {
         // Check Admin

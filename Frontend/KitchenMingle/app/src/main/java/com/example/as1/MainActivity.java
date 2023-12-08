@@ -11,7 +11,7 @@ import android.widget.Button;
  * Sets up UI and handles button clicks to navigate to different sections of the app upon startup.
  */
 public class MainActivity extends AppCompatActivity {
-    Button btnToLogin, btnToSignUp, btnToRecipe, btnToIngredient, btnToDiscover, btnToPickRecipe;
+    Button btnToLogin, btnToSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnToLogin = findViewById(R.id.btnToLogin);
         btnToSignUp = findViewById(R.id.btnToSignUp);
-//        btnToRecipe = findViewById(R.id.btnToRecipe);
-//        btnToIngredient = findViewById(R.id.btnToIngredient);
-//        btnToPickRecipe = findViewById(R.id.btnToPickRecipe);
-//        btnToDiscover = findViewById(R.id.btnToDiscover);
 
         // Set up a click listener for the "Login" button"
         btnToLogin.setOnClickListener(new View.OnClickListener() {

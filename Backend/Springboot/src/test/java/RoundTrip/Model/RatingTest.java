@@ -26,6 +26,11 @@ public class RatingTest {
     }
 
     @Test
+    public void testConstructor() {
+        Rating rating2 = new Rating(4);
+        assertEquals(4, rating2.getRating());
+    }
+    @Test
     public void testGetAndSetId() {
         rating.setId(1L);
         assertEquals(1L, rating.getId());

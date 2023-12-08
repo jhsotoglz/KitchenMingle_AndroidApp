@@ -26,6 +26,20 @@ public class PantryIngredientTest {
     }
 
     @Test
+    public void testConstructor1() {
+        PantryIngredient pantryIngredient1 = new PantryIngredient(ingredient);
+        assertEquals(ingredient, pantryIngredient1.getIngredient());
+        assertEquals(1, pantryIngredient1.getQuantity());
+    }
+
+    @Test
+    public void testConstructor2() {
+        PantryIngredient pantryIngredient2 = new PantryIngredient(ingredient, 8);
+        assertEquals(ingredient, pantryIngredient2.getIngredient());
+        assertEquals(8, pantryIngredient2.getQuantity());
+    }
+
+    @Test
     public void testGetAndSetId() {
         pantryIngredient.setId(1L);
         assertEquals(1L, pantryIngredient.getId());

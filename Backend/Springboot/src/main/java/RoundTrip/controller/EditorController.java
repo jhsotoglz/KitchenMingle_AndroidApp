@@ -104,8 +104,8 @@ public class EditorController {
     }
 
     // Link existing ingredients to an existing recipe in a many-to-many relationship (By Path).
-    // Method to associate ingredient by name
-    @PostMapping("/recipe/{recipeId}/associateIngredientByName/{editorId}/{ingredientName}")
+    // Method to associate ingredient by ID
+    @PostMapping("/recipe/{recipeId}/associateIngredientById/{editorId}/{ingredientId}")
     public Recipe associateIngredientWithRecipeById(@PathVariable Long recipeId,
                                                     @PathVariable Long editorId,
                                                     @PathVariable Long ingredientId) {

@@ -18,7 +18,7 @@ public class Ingredient {
     private String ingredientName;
 
     @ManyToMany(mappedBy = "ingredients")
-    @JsonBackReference
+    @JsonIgnore
     private Set<Recipe> recipes; // Use Set<Recipe> instead of List<Recipe>
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -26,6 +26,7 @@ public class Ingredient {
     private Set<PantryIngredient> pantryIngredient = new HashSet<>();
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "editor_id")
     private Editor editor;
 

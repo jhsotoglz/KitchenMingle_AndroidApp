@@ -1,7 +1,6 @@
 package com.example.as1.model;
 
 import jakarta.persistence.*;
-//import lombok.Data;
 
 import java.util.Date;
 

@@ -1,8 +1,5 @@
 package com.example.as1;
 
-import static com.example.as1.api.ApiClientFactory.GetPantryIngredientAPI;
-import com.example.as1.model.PantryIngredient;
-import com.example.as1.model.Pantry;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AutoCompleteTextView;
 
-import com.example.as1.api.ApiClientFactory;
-import com.example.as1.api.PantryIngredientApi;
-import com.example.as1.model.PantryIngredient;
-import com.example.as1.model.SlimCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import java.util.List;
+
 import java.util.HashMap;
 import java.util.Map;
 import android.widget.LinearLayout;

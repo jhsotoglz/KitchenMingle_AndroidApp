@@ -38,10 +38,11 @@ public class LoginController {
         String email = registrationRequest.getEmail();
         String password = registrationRequest.getPassword();
         String username = registrationRequest.getUsername();
+        String userType = registrationRequest.getUserType();
 
         try {
             switch (registrationRequest.getUserType()) {
-                case "Admin" -> saveAdmin(username, email, password);
+                case "Admin" -> saveAdmin(username, email, password, userType);
                 case "Editor" -> saveEditor(username, email, password);
                 case "User" -> saveUser(username, email, password);
                 default -> {
@@ -61,11 +62,12 @@ public class LoginController {
         return ResponseEntity.ok("User registered successfully");
     }
 
-    private void saveAdmin(String username, String email, String password) {
+    private void saveAdmin(String username, String email, String password, String userType) {
         Admin admin = new Admin();
         admin.setUsername(username);
         admin.setEmail(email);
         admin.setPassword(password);
+        admin.setUserType(userType);
         adminRepository.save(admin);
     }
 
